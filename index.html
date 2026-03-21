@@ -47,7 +47,7 @@
             font-family: var(--serif); font-weight: 600; font-size: 1.15rem;
             color: var(--ink); text-decoration: none;
         }
-        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; margin-left: 2.5rem; }
         .nav-links a {
             text-decoration: none; color: var(--muted); font-size: 0.82rem;
             font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
@@ -247,7 +247,7 @@
     <div class="hero-top">
         <div class="hero-photo"><img src="photo.png" alt="Youngjun Lee"></div>
         <div class="hero-text">
-            <h1>Youngjun Lee <span class="kr-name">이영준</span></h1>
+            <h1>Youngjun Lee</h1>
             <p class="hero-title">Postdoctoral Research Fellow</p>
             <p class="hero-affiliation">
                 Department of Pediatrics · Division of Gastroenterology, Hepatology and Nutrition<br>
@@ -261,12 +261,14 @@
         for individuals with developmental disabilities, including autism spectrum disorder.
         My work integrates immersive technologies — such as virtual reality and wearable devices —
         with population-level analyses of national health datasets to understand and promote health behaviors in underserved populations.
+        More recently, I have expanded into <strong>wearable-derived digital epidemiology</strong>, leveraging large-scale accelerometer and sensor data
+        to identify behavioral markers associated with depression and other mental health outcomes.
     </p>
 
     <div class="hero-links">
-        <a href="mailto:leey14@chop.edu">
+        <a href="/cdn-cgi/l/email-protection#ec80898995ddd8ac8f84839cc2898899">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
-            leey14@chop.edu
+            <span class="__cf_email__" data-cfemail="157970706c242155767d7a653b707160">[email&#160;protected]</span>
         </a>
         <a href="https://scholar.google.com/citations?hl=en&user=6WHUjNYAAAAJ" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -586,7 +588,7 @@
     <div class="contact-grid">
         <div class="contact-card">
             <div class="label">Email</div>
-            <div class="value"><a href="mailto:leey14@chop.edu">leey14@chop.edu</a></div>
+            <div class="value"><a href="/cdn-cgi/l/email-protection#167a73736f272256757e796638737263"><span class="__cf_email__" data-cfemail="553930302c646115363d3a257b303120">[email&#160;protected]</span></a></div>
         </div>
         <div class="contact-card">
             <div class="label">Phone</div>
@@ -610,17 +612,8 @@
     &copy; 2025 Youngjun Lee. Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>.
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
     document.querySelectorAll('.nav-links a').forEach(link =>
-        link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'))
-    );
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+        link.addEventListener('click',
