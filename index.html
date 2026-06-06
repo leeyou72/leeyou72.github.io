@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youngjun Lee, Ph.D. — Researcher</title>
+    <meta name="description" content="Youngjun Lee, Postdoctoral Research Fellow at Children's Hospital of Philadelphia. Autism, depression, physical activity, extended reality, and wearable device research.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #faf8f5;
+            --accent: #2d5a3d;
+            --accent-light: #e8f0eb;
+            --muted: #6b6b6b;
+            --border: #e0dcd6;
+            --warm: #f5f2ed;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Source Sans 3', 'Segoe UI', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-weight: 400; -webkit-font-smoothing: antialiased; }
+        ::selection { background: var(--accent); color: #fff; }
+        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #1e3d2a; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+        nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+        .nav-inner { max-width: 900px; margin: 0 auto; padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-name { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+        .nav-links { display: flex; gap: 1.4rem; list-style: none; margin-left: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.25s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .hero { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .hero-top { display: flex; gap: 2.5rem; align-items: flex-start; }
+        .hero-photo { width: 140px; height: 140px; border-radius: 50%; background: var(--accent-light); border: 3px solid var(--border); flex-shrink: 0; overflow: hidden; }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-text h1 { font-family: var(--serif); font-size: 2.8rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.15rem; }
+        .hero-title { font-size: 1.05rem; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem; }
+        .hero-affiliation { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+        .hero-bio { font-size: 1.02rem; line-height: 1.85; color: #3a3a3a; max-width: 680px; margin-top: 1.8rem; }
+        .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.2rem; }
+        .hero-links a { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem; border: 1px solid var(--border); border-radius: 4px; color: var(--ink); font-size: 0.82rem; font-weight: 500; transition: all 0.25s; }
+        .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+        .hero-links a svg { width: 14px; height: 14px; }
+
+        section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+        section + section { border-top: 1px solid var(--border); }
+        .section-label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+        h2 { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .research-card { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.4rem; transition: all 0.3s; }
+        .research-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+        .research-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+        .pub-year-group { margin-bottom: 2rem; }
+        .pub-year { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+        .pub-item { padding: 0.8rem 0; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
+        .pub-item + .pub-item { border-top: 1px solid #f0ede8; }
+        .pub-title { font-family: var(--serif); font-size: 1.02rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.25rem; }
+        .pub-title a { color: var(--ink); border-bottom: 1px solid transparent; }
+        .pub-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        .pub-authors { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+        .pub-authors strong { color: var(--ink); font-weight: 600; }
+        .pub-journal { font-size: 0.84rem; color: var(--accent); font-style: italic; margin-top: 0.15rem; }
+        .pub-badge { font-family: var(--mono); font-size: 0.62rem; padding: 0.25rem 0.55rem; border-radius: 3px; letter-spacing: 0.05em; white-space: nowrap; height: fit-content; }
+        .badge-first { background: var(--accent-light); color: var(--accent); }
+        .badge-co { background: #f5f0e0; color: #8a7230; }
+        .pub-note { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-top: 1rem; }
+
+        .timeline { position: relative; padding-left: 1.8rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1.5px; background: var(--border); }
+        .timeline-item { position: relative; padding-bottom: 1.8rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before { content: ''; position: absolute; left: -1.8rem; top: 0.55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); box-shadow: 0 0 0 1.5px var(--accent); }
+        .timeline-period { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+        .timeline-role { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 0.15rem 0; }
+        .timeline-org { font-size: 0.92rem; color: var(--accent); font-weight: 500; }
+        .timeline-detail { font-size: 0.88rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.6; }
+
+        .grants-list { list-style: none; }
+        .grant-item { padding: 0.9rem 0; border-bottom: 1px solid #f0ede8; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+        .grant-item:last-child { border-bottom: none; }
+        .grant-name { font-family: var(--serif); font-size: 1rem; font-weight: 600; }
+        .grant-meta { font-size: 0.85rem; color: var(--muted); }
+        .grant-amount { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+        .teaching-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem; }
+        .teaching-chip { background: var(--warm); border: 1px solid var(--border); border-radius: 4px; padding: 0.6rem 1rem; font-size: 0.88rem; }
+        .teaching-chip .code { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+
+        .service-group { margin-bottom: 1.5rem; }
+        .service-group h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .service-item { font-size: 0.9rem; color: #3a3a3a; padding: 0.25rem 0; }
+        .service-item .year { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-right: 0.4rem; }
+
+        .media-item { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1.4rem; }
+        .media-item .date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+        .contact-card { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1.4rem; }
+        .contact-card .label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.35rem; }
+        .contact-card .value { font-size: 0.95rem; }
+
+        footer { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.82rem; color: var(--muted); }
+
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.3rem; }
+        .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px 0; transition: 0.3s; }
+
+        .fade-in { opacity: 1; transform: none; }
+
+        @media (max-width: 700px) {
+            .hero { padding: 6.5rem 1.4rem 2.5rem; }
+            .hero-top { flex-direction: column; gap: 1.2rem; align-items: center; text-align: center; }
+            .hero-photo { width: 110px; height: 110px; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-links { justify-content: center; }
+            h2 { font-size: 1.5rem; }
+            section { padding: 2rem 1.4rem; }
+            .grant-item { flex-direction: column; gap: 0.2rem; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--paper); flex-direction: column; padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border); gap: 0.8rem;
+            }
+            .nav-links.open { display: flex; }
+            .menu-toggle { display: block; }
+        }
+
+        @media print {
+            nav { display: none; }
+            .hero { padding-top: 2rem; }
+            section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-name">Youngjun Lee</a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#grants">Grants</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-top">
+        <div class="hero-photo"><img src="photo.png" alt="Youngjun Lee"></div>
+        <div class="hero-text">
+            <h1>Youngjun Lee</h1>
+            <p class="hero-title">Postdoctoral Research Fellow</p>
+            <p class="hero-affiliation">
+                Department of Pediatrics · Division of Gastroenterology, Hepatology and Nutrition<br>
+                Children's Hospital of Philadelphia<br>
+                Affiliated Researcher · Annenberg Extended Reality Lab, University of Pennsylvania
+            </p>
+        </div>
+    </div>
+    <p class="hero-bio">
+        I am a postdoctoral researcher working to <strong>reduce depression and promote physical activity in autistic individuals</strong>
+        through technology-driven approaches. My research combines two complementary streams:
+        <strong>intervention studies</strong> using extended reality (XR) and wearable devices to design accessible exercise programs,
+        and <strong>population-level epidemiological analyses</strong> of large-scale datasets (NHANES, NSCH, NIH All of Us)
+        to uncover behavioral and physiological markers of depression. Across both lines of work,
+        I aim to bridge the gap between technology, physical activity science, and mental health
+        to improve the lives of individuals on the autism spectrum.
+    </p>
+    <div class="hero-links">
+        <a href="mailto:leey14@chop.edu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+            leey14@chop.edu
+        </a>
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Google Scholar
+        </a>
+        <a href="https://orcid.org/0009-0001-3915-1389" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            ORCID
+        </a>
+        <a href="assets/CV_YoungjunLee.pdf" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Download CV
+        </a>
+    </div>
+</header>
+
+<section id="research" class="fade-in">
+    <span class="section-label">01</span>
+    <h2>Research Interests</h2>
+    <div class="research-grid">
+        <div class="research-card">
+            <h3>Autism &amp; Depression</h3>
+            <p>Understanding the mechanisms linking physical inactivity to depression in autistic individuals, and developing evidence-based strategies to improve mental health outcomes across the lifespan.</p>
+        </div>
+        <div class="research-card">
+            <h3>XR &amp; Wearable Interventions</h3>
+            <p>Designing extended reality (XR) exergames and leveraging wearable sensor technology to create accessible, engaging physical activity interventions tailored for autistic populations.</p>
+        </div>
+        <div class="research-card">
+            <h3>Physical Activity Epidemiology</h3>
+            <p>Conducting population-level analyses using large-scale datasets (NHANES, NSCH, NIH All of Us) to identify activity and sleep patterns associated with depressive outcomes.</p>
+        </div>
+        <div class="research-card">
+            <h3>Wearable-Derived Health Markers</h3>
+            <p>Analyzing accelerometer and Fitbit data to characterize behavioral rhythms and physiological indicators that may predict or reflect depression in adults with and without autism.</p>
+        </div>
+    </div>
+</section>
+
+<section id="publications" class="fade-in">
+    <span class="section-label">02</span>
+    <h2>Publications</h2>
+    <div class="pub-year-group">
+        <div class="pub-year">2026</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.3390/soc16040118" target="_blank">Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport</a></div>
+                <div class="pub-authors">Ciaccioni S, <strong>Lee Y</strong>, Capranica L, Urban A, May R, Massini S, Guidotti F.</div>
+                <div class="pub-journal">Societies, 16(4), 118</div>
+            </div>
+            <span class="pub-badge badge-co">Co-Author</span>
+        </div>
+    </div>
+    <div class="pub-year-group">
+        <div class="pub-year">2025</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1567978" target="_blank">Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials</a></div>
+                <div class="pub-authors"><strong>Lee Y</strong>, Guidotti F, Capranica L, Pesce C, Benzing V, Hauck J, Ciaccioni S.</div>
+                <div class="pub-journal">Frontiers in Psychology, 16, 1567978</div>
+            </div>
+            <span class="pub-badge badge-first">1st Author</span>
+        </div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.1371/journal.pone.0301949" target="_blank">Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review</a></div>
+                <div class="pub-authors"><strong>Lee Y</strong>, Capranica L, Pesce C, Guidotti F, Benzing V, Hauck J, Ciaccioni S.</div>
+                <div class="pub-journal">PLoS ONE, 20(2), e0301949</div>
+            </div>
+            <span class="pub-badge badge-first">1st Author</span>
+        </div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.3389/fpubh.2025.1588706" target="_blank">Analysis of sleep duration, energy intakes, physical activity, and metabolic syndrome based on the presence or absence of obesity and hypertension in working Korean adults</a></div>
+                <div class="pub-authors">Sung E*, <strong>Lee Y*</strong>, Lee S, Park J. (*co-first authors)</div>
+                <div class="pub-journal">Frontiers in Public Health, 13, 1588706</div>
+            </div>
+            <span class="pub-badge badge-first">Co-1st</span>
+        </div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1587672" target="_blank">Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners</a></div>
+                <div class="pub-authors">Ciaccioni S, <strong>Lee Y</strong>, Guidotti F, Stankovic N, Pocscco E, Izzicupo P, Capranica L.</div>
+                <div class="pub-journal">Frontiers in Psychology, 16, 1587672</div>
+            </div>
+            <span class="pub-badge badge-co">Co-Author</span>
+        </div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2025.0003" target="_blank">The role of late eating in circadian disruption and depression: A review of emotional health impacts</a></div>
+                <div class="pub-authors">Kim Y, Kim E, <strong>Lee Y</strong>, Park J.</div>
+                <div class="pub-journal">Physical Activity and Nutrition, 29(1), 18-24</div>
+            </div>
+            <span class="pub-badge badge-co">Co-Author</span>
+        </div>
+    </div>
+    <div class="pub-year-group">
+        <div class="pub-year">2024</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.3389/fpubh.2024.1396598" target="_blank">Sugary snack restriction enhances body composition improvement in overweight women engaging in non-face-to-face walking during COVID-19</a></div>
+                <div class="pub-authors"><strong>Lee Y</strong>, Kim N, Go S, Kim J, Park J.</div>
+                <div class="pub-journal">Frontiers in Public Health, 12, 1396598</div>
+            </div>
+            <span class="pub-badge badge-first">1st Author</span>
+        </div>
+    </div>
+    <div class="pub-year-group">
+        <div class="pub-year">2023</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://paahjournal.com/articles/10.5334/paah.305" target="_blank">Sex-specific physical activity levels and energy intake in US young adults with depression: NHANES 2017-2020 pre-pandemic data</a></div>
+                <div class="pub-authors"><strong>Lee Y</strong>, Hauck J, Brooks D.</div>
+                <div class="pub-journal">Physical Activity and Health, 7(1), 332-344</div>
+            </div>
+            <span class="pub-badge badge-first">1st Author</span>
+        </div>
+    </div>
+    <div class="pub-year-group">
+        <div class="pub-year">2022</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.21203/rs.3.rs-923728/v1" target="_blank">Household-specific physical activity levels and energy intakes according to the presence of metabolic syndrome in Korean young adults: KNHANES 2016-2018</a></div>
+                <div class="pub-authors"><strong>Lee Y</strong>, Park Y, Lee J, Sung E, Lee H, Park J.</div>
+                <div class="pub-journal">BMC Public Health, 22, 476</div>
+            </div>
+            <span class="pub-badge badge-first">1st Author</span>
+        </div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2022.0011" target="_blank">Analysis of energy intakes, physical activities and metabolic syndrome according to the income level in Korean elderly people: KNHANES 2016-2018</a></div>
+                <div class="pub-authors">Sung E, Lee S, <strong>Lee Y</strong>, Lee S, Park J.</div>
+                <div class="pub-journal">Physical Activity and Nutrition, 26(2), 28-35</div>
+            </div>
+            <span class="pub-badge badge-co">Co-Author</span>
+        </div>
+    </div>
+    <div class="pub-year-group">
+        <div class="pub-year">2021</div>
+        <div class="pub-item">
+            <div>
+                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2021.0020" target="_blank">Comparative analysis of energy intake and physical activity according to household type and presence of metabolic syndrome in middle-aged men: KNHANES 2016-2018</a></div>
+                <div class="pub-authors">Park Y, Lee J, <strong>Lee Y</strong>, Park J.</div>
+                <div class="pub-journal">Physical Activity and Nutrition, 25(4), 1-9</div>
+            </div>
+            <span class="pub-badge badge-co">Co-Author</span>
+        </div>
+    </div>
+    <p class="pub-note">Full list including manuscripts under review available on <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">Google Scholar</a></p>
+</section>
+
+<section id="experience" class="fade-in">
+    <span class="section-label">03</span>
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-period">2026 - Present</div>
+            <div class="timeline-role">Postdoctoral Research Fellow</div>
+            <div class="timeline-org">Children's Hospital of Philadelphia (CHOP)</div>
+            <div class="timeline-detail">Department of Pediatrics, Division of Gastroenterology, Hepatology and Nutrition</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-period">2026 - Present</div>
+            <div class="timeline-role">Affiliated Postdoctoral Researcher</div>
+            <div class="timeline-org">University of Pennsylvania</div>
+            <div class="timeline-detail">Annenberg School for Communication, Annenberg Extended Reality Lab</div>
+        </div>
+    </div>
+</section>
+
+<section id="education" class="fade-in">
+    <span class="section-label">04</span>
+    <h2>Education</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-period">2025</div>
+            <div class="timeline-role">Ph.D. in Kinesiology</div>
+            <div class="timeline-org">Michigan State University</div>
+            <div class="timeline-detail">Dissertation: <a href="https://www.proquest.com/docview/3278169726" target="_blank"><em>Immersive Virtual Reality Exercise to Improve Depressive Symptoms in Young Adults with Autism Spectrum Disorder</em></a></div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-period">2022</div>
+            <div class="timeline-role">M.S. in Physical Education</div>
+            <div class="timeline-org">Korea University</div>
+            <div class="timeline-detail">Exercise Nutrition Biochemistry Lab</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-period">2020</div>
+            <div class="timeline-role">B.Ed. in Physical Education</div>
+            <div class="timeline-org">Korea University</div>
+        </div>
+    </div>
+</section>
+
+<section id="grants" class="fade-in">
+    <span class="section-label">05</span>
+    <h2>Grants &amp; Awards</h2>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin-bottom:1rem;">Research Funding</h3>
+    <ul class="grants-list">
+        <li class="grant-item"><div><div class="grant-name">Summer Research Fellowship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$7,000</div></li>
+        <li class="grant-item"><div><div class="grant-name">Future of Work Graduate Student Funding</div><div class="grant-meta">Michigan State University, PI, 2025</div></div><div class="grant-amount">$3,000</div></li>
+        <li class="grant-item"><div><div class="grant-name">Hard Cost Practicum/Dissertation Funding</div><div class="grant-meta">Michigan State University, PI, 2024</div></div><div class="grant-amount">$1,763</div></li>
+        <li class="grant-item"><div><div class="grant-name">Summer Research Fellowship</div><div class="grant-meta">Michigan State University, 2024</div></div><div class="grant-amount">$7,000</div></li>
+        <li class="grant-item"><div><div class="grant-name">Summer Research Development Fellowship</div><div class="grant-meta">Michigan State University, 2023</div></div><div class="grant-amount">$7,000</div></li>
+        <li class="grant-item"><div><div class="grant-name">Summer Research Development Fellowship</div><div class="grant-meta">Michigan State University, 2022</div></div><div class="grant-amount">$6,000</div></li>
+    </ul>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:2rem 0 1rem;">Scholarships &amp; Awards</h3>
+    <ul class="grants-list">
+        <li class="grant-item"><div><div class="grant-name">KIN Endowed Fellowship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,500</div></li>
+        <li class="grant-item"><div><div class="grant-name">Inclusive Teaching Grant</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,400</div></li>
+        <li class="grant-item"><div><div class="grant-name">Dr. Kenneth Hardin Graduate Student Endowed Scholarship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,500</div></li>
+        <li class="grant-item"><div><div class="grant-name">David Cho Scholarship Award</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,000</div></li>
+        <li class="grant-item"><div><div class="grant-name">Henry J. and Betty Montoye Endowed Scholarship</div><div class="grant-meta">Michigan State University, 2024</div></div><div class="grant-amount">$2,325</div></li>
+    </ul>
+</section>
+
+<section id="teaching" class="fade-in">
+    <span class="section-label">06</span>
+    <h2>Teaching</h2>
+    <p style="font-size:0.95rem;color:var(--muted);margin-bottom:1.2rem;">Graduate Teaching Assistant, Michigan State University, Department of Kinesiology</p>
+    <div class="teaching-grid">
+        <div class="teaching-chip"><span class="code">KIN 492</span> Internship in Kinesiology</div>
+        <div class="teaching-chip"><span class="code">KIN 300C</span> Soccer Coaching</div>
+        <div class="teaching-chip"><span class="code">KIN 173</span> Foundations of Kinesiology</div>
+        <div class="teaching-chip"><span class="code">KIN 121</span> The Healthy Lifestyle</div>
+        <div class="teaching-chip"><span class="code">KIN 116B</span> Golf</div>
+        <div class="teaching-chip"><span class="code">KIN 108R</span> Indoor Soccer</div>
+        <div class="teaching-chip"><span class="code">KIN 107E</span> Tennis</div>
+        <div class="teaching-chip"><span class="code">KIN 103T</span> Distance Running</div>
+        <div class="teaching-chip"><span class="code">KIN 103G</span> Power Walking</div>
+        <div class="teaching-chip"><span class="code">KIN 103D</span> General Conditioning</div>
+        <div class="teaching-chip"><span class="code">KIN 103A</span> Aerobic Exercise</div>
+    </div>
+</section>
+
+<section id="service" class="fade-in">
+    <span class="section-label">07</span>
+    <h2>Professional Service</h2>
+    <div class="service-group">
+        <h3>Journal Peer Review</h3>
+        <div class="service-item"><span class="year">2026-</span> BMC Sports Science</div>
+        <div class="service-item"><span class="year">2026-</span> Sports Sciences for Health</div>
+        <div class="service-item"><span class="year">2026-</span> Frontiers in Psychology</div>
+        <div class="service-item"><span class="year">2025-</span> Journal of Applied Research in Intellectual Disabilities</div>
+        <div class="service-item"><span class="year">2025-</span> Mental Health and Physical Activity</div>
+        <div class="service-item"><span class="year">2025-</span> BMJ Open</div>
+        <div class="service-item"><span class="year">2025-</span> Applied Psychology: Health and Well-Being</div>
+        <div class="service-item"><span class="year">2025-</span> Frontiers in Psychiatry</div>
+        <div class="service-item"><span class="year">2024-</span> Journal of Physical Activity and Health</div>
+        <div class="service-item"><span class="year">2024-</span> Journal for Advancing Sport Psychology In Research</div>
+    </div>
+    <div class="service-group">
+        <h3>Professional Memberships</h3>
+        <div class="service-item"><span class="year">2024-</span> North American Federation of Adapted Physical Activity</div>
+        <div class="service-item"><span class="year">2023-</span> North American Society for the Psychology of Sport and Physical Activity</div>
+        <div class="service-item"><span class="year">2021-</span> Korean Society Exercise Nutrition</div>
+        <div class="service-item"><span class="year">2021-</span> Korean Alliance for Health, Physical Education, Recreation, and Dance</div>
+    </div>
+</section>
+
+<section id="media" class="fade-in">
+    <span class="section-label">08</span>
+    <h2>Media &amp; Press</h2>
+    <div class="media-item">
+        <span class="date">Oct 21, 2025</span>
+        <p style="margin-top:0.3rem;">
+            <strong>WKAR Public Media</strong> -
+            <a href="https://www.wkar.org/wkar-news/2025-10-21/watch-from-the-ring-to-the-msu-classroom-how-vr-technology-is-helping-with-autism-spectrum-disorder" target="_blank">
+                From the ring to the MSU classroom: How VR technology is helping with autism spectrum disorder
+            </a>
+        </p>
+    </div>
+</section>
+
+<section id="contact" class="fade-in">
+    <span class="section-label">09</span>
+    <h2>Contact</h2>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:leey14@chop.edu">leey14@chop.edu</a></div>
+        </div>
+        <div class="contact-card">
+            <div class="label">Phone</div>
+            <div class="value">+1 (517) 220-8178</div>
+        </div>
+        <div class="contact-card">
+            <div class="label">Office</div>
+            <div class="value">Children's Hospital of Philadelphia<br>Department of Pediatrics<br>Philadelphia, PA</div>
+        </div>
+        <div class="contact-card">
+            <div class="label">Profiles</div>
+            <div class="value">
+                <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">Google Scholar</a> ·
+                <a href="https://orcid.org/0009-0001-3915-1389" target="_blank">ORCID</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Youngjun Lee. Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>.
+</footer>
+
+<script>
+    var nav = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 20) { nav.classList.add('scrolled'); }
+        else { nav.classList.remove('scrolled'); }
+    });
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
