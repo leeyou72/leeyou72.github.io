@@ -1,16 +1,14 @@
 # Google Scholar sync for leeyou72.github.io
 #
-# Save this file in the repository at:  .github/workflows/google-scholar.yml
-#
-# Once a day it reads the public Google Scholar profile, writes the totals
-# (citations, h-index, i10-index) and per-paper "cited by" counts to
+# Once a day this reads the public Google Scholar profile page, writes the
+# totals (citations, h-index, i10-index) and per-paper "cited by" counts to
 # scholar.json, and stores that file on a separate branch named
-# "google-scholar-data". The homepage reads it from there, so the main
-# branch and the site files are never touched.
+# "google-scholar-data". The homepage reads it from there, so the main branch
+# and the site files are never touched.
 #
-# Google Scholar has no official API, so this uses the open-source
-# "scholarly" library. If Google refuses a request on a given day, the run
-# ends with a warning and the site keeps showing the last good numbers.
+# Google Scholar has no official API. This makes a single page request with a
+# short time limit. If Google refuses it on a given day, the run ends with a
+# warning and the site keeps showing the last good numbers.
 
 name: Google Scholar sync
 
@@ -25,67 +23,93 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: google-scholar-sync
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install scholarly
-        # bibtexparser 2.x removed a module scholarly still imports, so stay on 1.x
-        run: pip install --quiet scholarly "bibtexparser<2"
+      - name: Install libraries
+        run: pip install --quiet requests beautifulsoup4
 
       - name: Read the Google Scholar profile
         id: fetch
+        timeout-minutes: 5
         env:
           SCHOLAR_ID: 6WHUjNYAAAAJ
         run: |
           python - <<'PY'
-          import datetime, json, os, sys, time
-          from scholarly import scholarly
+          import datetime, json, os, re, sys, time
+          import requests
+          from bs4 import BeautifulSoup
 
           sid = os.environ["SCHOLAR_ID"]
-          author = None
+          profile = f"https://scholar.google.com/citations?hl=en&user={sid}"
+          headers = {
+              "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                             "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"),
+              "Accept-Language": "en-US,en;q=0.9",
+          }
+
+          def to_int(text):
+              digits = re.sub(r"[^0-9]", "", text or "")
+              return int(digits) if digits else 0
+
+          html = None
           for attempt in range(3):
               try:
-                  author = scholarly.search_author_id(sid)
-                  author = scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
-                  break
-              except Exception as err:
+                  r = requests.get(profile + "&cstart=0&pagesize=100", headers=headers, timeout=30)
+                  if r.status_code == 200 and "gsc_rsb_st" in r.text:
+                      html = r.text
+                      break
+                  print(f"Attempt {attempt + 1}: HTTP {r.status_code}, profile table not found")
+              except requests.RequestException as err:
                   print(f"Attempt {attempt + 1} failed: {err}")
-                  time.sleep(30 * (attempt + 1))
+              time.sleep(20)
 
-          if not author or not author.get("publications"):
-              print("::warning::Google Scholar did not respond; keeping the previous data.")
+          if html is None:
+              print("::warning::Google Scholar did not return the profile page; keeping the previous data.")
               sys.exit(0)
 
+          soup = BeautifulSoup(html, "html.parser")
+          stats = [to_int(td.get_text()) for td in soup.select("#gsc_rsb_st td.gsc_rsb_std")]
+          stats += [0] * (6 - len(stats))
+
           pubs = []
-          for p in author["publications"]:
-              bib = p.get("bib", {})
-              pid = p.get("author_pub_id", "")
+          for row in soup.select("tr.gsc_a_tr"):
+              link = row.select_one("a.gsc_a_at")
+              if not link:
+                  continue
+              grays = row.select("div.gs_gray")
+              year = row.select_one(".gsc_a_y span")
+              href = link.get("href", "")
               pubs.append({
-                  "title": bib.get("title", ""),
-                  "year": str(bib.get("pub_year", "")),
-                  "venue": bib.get("citation", ""),
-                  "cited_by": int(p.get("num_citations", 0) or 0),
-                  "url": (f"https://scholar.google.com/citations?view_op=view_citation&hl=en&user={sid}"
-                          f"&citation_for_view={pid}") if pid else "",
+                  "title": link.get_text(strip=True),
+                  "year": year.get_text(strip=True) if year else "",
+                  "venue": grays[1].get_text(" ", strip=True) if len(grays) > 1 else "",
+                  "cited_by": to_int(row.select_one(".gsc_a_ac").get_text() if row.select_one(".gsc_a_ac") else ""),
+                  "url": ("https://scholar.google.com" + href) if href.startswith("/") else "",
               })
+
+          if not pubs:
+              print("::warning::The profile page had no publication rows; keeping the previous data.")
+              sys.exit(0)
 
           data = {
               "updated": datetime.date.today().isoformat(),
-              "profile": f"https://scholar.google.com/citations?hl=en&user={sid}",
-              "citations": int(author.get("citedby", 0) or 0),
-              "citations_5y": int(author.get("citedby5y", 0) or 0),
-              "h_index": int(author.get("hindex", 0) or 0),
-              "h_index_5y": int(author.get("hindex5y", 0) or 0),
-              "i10_index": int(author.get("i10index", 0) or 0),
-              "i10_index_5y": int(author.get("i10index5y", 0) or 0),
-              "cites_per_year": {str(k): int(v) for k, v in (author.get("cites_per_year") or {}).items()},
-              "publications": sorted(pubs, key=lambda x: (x["year"], x["title"]), reverse=True),
+              "profile": profile,
+              "citations": stats[0], "citations_since_2021": stats[1],
+              "h_index": stats[2], "h_index_since_2021": stats[3],
+              "i10_index": stats[4], "i10_index_since_2021": stats[5],
+              "publications": pubs,
           }
           os.makedirs("out", exist_ok=True)
           with open("out/scholar.json", "w", encoding="utf-8") as f:
