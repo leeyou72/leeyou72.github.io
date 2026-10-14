@@ -583,7 +583,7 @@ main > .page[id] { scroll-margin-top: 68px; }
             <p class="pub-meta"><span><cite>Frontiers in Psychology</cite>, 16, 1587672</span><a class="doi" href="https://doi.org/10.3389/fpsyg.2025.1587672" target="_blank" rel="noopener">DOI</a></p>
           </article>
           <article class="pub">
-            <h3 class="pub-title"><a href="https://doi.org/10.20463/pan.2025.0003" target="_blank" rel="noopener">The role of late eating in circadian disruption and depression: A review of emotional health impacts</a></h3>
+            <h3 class="pub-title"><a href="https://doi.org/10.20463/pan.2025.0003" target="_blank" rel="noopener">Role of late-night eating in circadian disruption and depression: A review of emotional health impacts</a></h3>
             <p class="pub-authors">Kim Y, Kim E, <b>Lee Y</b>, Park J.</p>
             <p class="pub-meta"><span><cite>Physical Activity and Nutrition</cite>, 29(1), 18–24</span><a class="doi" href="https://doi.org/10.20463/pan.2025.0003" target="_blank" rel="noopener">DOI</a></p>
           </article>
@@ -898,10 +898,14 @@ main > .page[id] { scroll-margin-top: 68px; }
       var entries = (gs.publications || []).map(function (p) { return { key: norm(p.title), p: p, used: false }; });
       Array.prototype.forEach.call(document.querySelectorAll('#pub-list .pub'), function (pub) {
         var key = norm(pub.querySelector('.pub-title').textContent);
-        var hit = null;
+        /* Prefer an exact title, then the more-cited entry when Scholar lists duplicates. */
+        var hit = null, best = null;
         entries.forEach(function (e) {
-          if (!hit && !e.used && sameTitle(e.key, key)) { hit = e.p; e.used = true; }
+          if (e.used || !sameTitle(e.key, key)) { return; }
+          var score = (e.key === key ? 1e9 : 0) + (Number(e.p.cited_by) || 0);
+          if (!best || score > best.score) { best = { e: e, score: score }; }
         });
+        if (best) { best.e.used = true; hit = best.e.p; }
         if (hit && Number(hit.cited_by) > 0) {
           var a = document.createElement('a');
           a.className = 'cited';
