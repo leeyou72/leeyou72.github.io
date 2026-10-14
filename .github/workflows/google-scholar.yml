@@ -18,6 +18,9 @@ on:
   schedule:
     - cron: "23 10 * * *"   # every day at 10:23 UTC (6:23 am in Philadelphia)
   workflow_dispatch:         # adds a "Run workflow" button in the Actions tab
+  push:                      # also run right after this file is edited
+    branches: [main]
+    paths: [".github/workflows/google-scholar.yml"]
 
 permissions:
   contents: write
