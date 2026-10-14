@@ -1,515 +1,920 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youngjun Lee, Ph.D. — Researcher</title>
-    <meta name="description" content="Youngjun Lee, Postdoctoral Research Fellow at Children's Hospital of Philadelphia. Autism, depression, physical activity, extended reality, and wearable device research.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #1a1a1a;
-            --paper: #faf8f5;
-            --accent: #2d5a3d;
-            --accent-light: #e8f0eb;
-            --muted: #6b6b6b;
-            --border: #e0dcd6;
-            --warm: #f5f2ed;
-            --serif: 'Cormorant Garamond', Georgia, serif;
-            --sans: 'Source Sans 3', 'Segoe UI', sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-weight: 400; -webkit-font-smoothing: antialiased; }
-        ::selection { background: var(--accent); color: #fff; }
-        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: #1e3d2a; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Youngjun Lee, Ph.D. | Autism, Depression, Physical Activity, Wearables, VR/XR</title>
+<meta name="description" content="Youngjun Lee, Ph.D., Postdoctoral Research Fellow at Children's Hospital of Philadelphia and affiliated researcher at the Annenberg Extended Reality Lab, University of Pennsylvania. Physical activity and depression in autistic people, using wearable sensors, population and EHR data, and immersive VR/XR exercise.">
+<meta name="keywords" content="autism, autism spectrum disorder, depression, physical activity, wearable devices, accelerometry, Fitbit, virtual reality, VR, extended reality, XR, exergames, epidemiology, electronic health records, EHR, All of Us, NHANES, NSCH">
+<meta property="og:title" content="Youngjun Lee, Ph.D.">
+<meta property="og:description" content="Physical activity and depression in autism: wearable sensors, population and EHR data, and immersive VR/XR exercise.">
+<meta property="og:image" content="https://leeyou72.github.io/photo.png">
+<meta property="og:url" content="https://leeyou72.github.io/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317656F'/%3E%3Cpath d='M6 22v-4M10 22v-9M14 22v-6M18 22v-12M22 22v-7M26 22v-3' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FBFBF9;
+  --ink: #1C2321;
+  --ink-2: #38423F;
+  --muted: #5D6864;
+  --rule: #E2E6E3;
+  --accent: #17656F;
+  --accent-ink: #0F4A52;
+  --tint: #E8F1F1;
+  --night: #16201E;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1120px;
+  --gutter: clamp(20px, 4vw, 40px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
-        nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-        .nav-inner { max-width: 900px; margin: 0 auto; padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .nav-name { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
-        .nav-links { display: flex; gap: 1.4rem; list-style: none; margin-left: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.25s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s ease; }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-links a:hover::after { width: 100%; }
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(251, 251, 249, 0.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid transparent; transition: border-color .2s ease; }
+.site-header.is-scrolled { border-bottom-color: var(--rule); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+.wordmark { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink); text-decoration: none; white-space: nowrap; letter-spacing: -0.01em; }
+.wordmark:hover { color: var(--ink); }
+.site-nav ul { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.site-nav a { display: inline-block; padding: 6px 12px; border-radius: 6px; color: var(--ink-2); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+.site-nav a:hover { color: var(--ink); background: rgba(28, 35, 33, 0.05); }
+.site-nav a[aria-current="page"] { color: var(--accent-ink); box-shadow: inset 0 -2px 0 var(--accent); border-radius: 0; }
+.site-nav .nav-cv { margin-left: 10px; border: 1px solid var(--ink); color: var(--ink); border-radius: 6px; }
+.site-nav .nav-cv:hover { background: var(--ink); color: var(--paper); }
+.menu-btn { display: none; align-items: center; gap: 8px; background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; font: 500 0.95rem var(--sans); color: var(--ink); cursor: pointer; }
 
-        .hero { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
-        .hero-top { display: flex; gap: 2.5rem; align-items: flex-start; }
-        .hero-photo { width: 140px; height: 140px; border-radius: 50%; background: var(--accent-light); border: 3px solid var(--border); flex-shrink: 0; overflow: hidden; }
-        .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-text h1 { font-family: var(--serif); font-size: 2.8rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.15rem; }
-        .hero-title { font-size: 1.05rem; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem; }
-        .hero-affiliation { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
-        .hero-bio { font-size: 1.02rem; line-height: 1.85; color: #3a3a3a; max-width: 680px; margin-top: 1.8rem; }
-        .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.2rem; }
-        .hero-links a { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem; border: 1px solid var(--border); border-radius: 4px; color: var(--ink); font-size: 0.82rem; font-weight: 500; transition: all 0.25s; }
-        .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-        .hero-links a svg { width: 14px; height: 14px; }
+/* Page shell */
+main { min-height: 60vh; }
+[id] { scroll-margin-top: 88px; }
+main > .page[id] { scroll-margin-top: 68px; }
+.routed .page:not(.is-active) { display: none; }
+.page { padding-bottom: clamp(64px, 9vw, 112px); }
+.page-head { padding-top: clamp(48px, 7vw, 88px); padding-bottom: 28px; }
+.page-title { font-size: clamp(2.4rem, 5vw, 3.5rem); line-height: 1.05; font-weight: 500; }
+.page-title:focus, .statement:focus { outline: none; }
+.page-intro { margin-top: 18px; font-size: 1.12rem; color: var(--ink-2); max-width: 62ch; }
+.block { margin-top: clamp(48px, 6vw, 72px); }
+.block-title { font-size: 1.65rem; line-height: 1.2; margin-bottom: 20px; }
+.rule-top { border-top: 1px solid var(--rule); padding-top: clamp(32px, 4vw, 44px); }
 
-        section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
-        section + section { border-top: 1px solid var(--border); }
-        .section-label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; display: block; }
-        h2 { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+/* Buttons */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 6px; font-size: 0.95rem; font-weight: 500; text-decoration: none; border: 1px solid var(--rule); color: var(--ink); background: #fff; transition: border-color .15s ease, background .15s ease; }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn:hover { border-color: var(--ink); color: var(--ink); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
+.btn-quiet { background: none; border-color: transparent; padding-left: 8px; padding-right: 8px; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+.btn-quiet:hover { border-color: transparent; text-decoration-color: var(--ink); }
 
-        .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
-        .research-card { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.4rem; transition: all 0.3s; }
-        .research-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
-        .research-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
-        .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+/* Home hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr); gap: clamp(32px, 6vw, 80px); align-items: center; padding-top: clamp(40px, 7vw, 96px); }
+.statement { font-size: clamp(2.2rem, 4.4vw, 3.55rem); line-height: 1.1; font-weight: 500; font-variation-settings: "opsz" 72; letter-spacing: -0.02em; max-width: 17ch; }
+.lede { margin-top: 22px; font-size: 1.15rem; line-height: 1.6; color: var(--ink-2); max-width: 50ch; }
+.keywords { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
+.keywords li { font-size: 0.86rem; font-weight: 500; color: var(--accent-ink); background: var(--tint); padding: 4px 12px; border-radius: 999px; }
+.signature { margin-top: 28px; padding-left: 16px; border-left: 2px solid var(--accent); }
+.signature .name { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; line-height: 1.3; }
+.signature .role { font-size: 0.97rem; color: var(--muted); line-height: 1.5; margin-top: 4px; }
+.portrait { margin: 0; justify-self: end; width: 100%; max-width: 360px; }
+.portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; border-radius: 14px; background: #111; }
 
-        .pub-year-group { margin-bottom: 2rem; }
-        .pub-year { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
-        .pub-item { padding: 0.8rem 0; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
-        .pub-item + .pub-item { border-top: 1px solid #f0ede8; }
-        .pub-title { font-family: var(--serif); font-size: 1.02rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.25rem; }
-        .pub-title a { color: var(--ink); border-bottom: 1px solid transparent; }
-        .pub-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-        .pub-authors { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
-        .pub-authors strong { color: var(--ink); font-weight: 600; }
-        .pub-journal { font-size: 0.84rem; color: var(--accent); font-style: italic; margin-top: 0.15rem; }
-        .pub-badge { font-family: var(--mono); font-size: 0.62rem; padding: 0.25rem 0.55rem; border-radius: 3px; letter-spacing: 0.05em; white-space: nowrap; height: fit-content; }
-        .badge-first { background: var(--accent-light); color: var(--accent); }
-        .badge-co { background: #f5f0e0; color: #8a7230; }
-        .pub-note { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-top: 1rem; }
+/* Actogram */
+.actogram { margin: clamp(48px, 6vw, 72px) auto 0; }
+.actogram-plot { width: 100%; height: clamp(150px, 16vw, 200px); display: block; }
+.actogram-bars { stroke: var(--accent); stroke-width: 3.6; stroke-linecap: butt; fill: none; }
+.actogram-base { stroke: var(--rule); stroke-width: 1; }
+.actogram-axis { position: relative; height: 22px; margin-top: 8px; font-size: 0.8rem; color: var(--muted); }
+.actogram-axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.actogram-axis span:first-child { transform: none; }
+.actogram-axis span:last-child { transform: translateX(-100%); }
+.actogram figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--muted); max-width: 70ch; }
+@media (prefers-reduced-motion: no-preference) {
+  .actogram-plot { animation: sweep 2.2s cubic-bezier(.2, .7, .2, 1) .25s both; }
+  @keyframes sweep { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+}
 
-        .timeline { position: relative; padding-left: 1.8rem; }
-        .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1.5px; background: var(--border); }
-        .timeline-item { position: relative; padding-bottom: 1.8rem; }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-item::before { content: ''; position: absolute; left: -1.8rem; top: 0.55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); box-shadow: 0 0 0 1.5px var(--accent); }
-        .timeline-period { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
-        .timeline-role { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 0.15rem 0; }
-        .timeline-org { font-size: 0.92rem; color: var(--accent); font-weight: 500; }
-        .timeline-detail { font-size: 0.88rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.6; }
+/* Home: two lines of work */
+.streams-overview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.streams-overview > div { padding: 24px 32px 4px 0; }
+.streams-overview > div + div { padding-left: 32px; border-left: 1px solid var(--rule); }
+.streams-overview h3 { font-size: 1.45rem; line-height: 1.2; font-weight: 600; }
+.streams-overview .sub { margin-top: 4px; font-size: 0.95rem; color: var(--accent-ink); font-weight: 600; }
+.streams-overview p.desc { margin-top: 12px; color: var(--ink-2); max-width: 52ch; }
+.more-link { display: inline-block; margin-top: 22px; font-weight: 500; }
 
-        .grants-list { list-style: none; }
-        .grant-item { padding: 0.9rem 0; border-bottom: 1px solid #f0ede8; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-        .grant-item:last-child { border-bottom: none; }
-        .grant-name { font-family: var(--serif); font-size: 1rem; font-weight: 600; }
-        .grant-meta { font-size: 0.85rem; color: var(--muted); }
-        .grant-amount { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+/* News */
+.news { list-style: none; margin: 0; padding: 0; max-width: 820px; }
+.news li { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.news li:first-child { border-top: 1px solid var(--rule); }
+.news time { color: var(--muted); font-size: 0.92rem; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.news p { color: var(--ink-2); }
 
-        .teaching-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem; }
-        .teaching-chip { background: var(--warm); border: 1px solid var(--border); border-radius: 4px; padding: 0.6rem 1rem; font-size: 0.88rem; }
-        .teaching-chip .code { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+/* Research */
+.lead-text { font-size: 1.1rem; line-height: 1.7; color: var(--ink-2); max-width: 66ch; }
+.lead-text p + p { margin-top: 16px; }
+.goal { margin-top: 44px; padding: 28px 32px; background: var(--tint); border-radius: 10px; max-width: 820px; }
+.goal-label { font-size: 0.95rem; font-weight: 600; color: var(--accent-ink); }
+.goal-text { margin-top: 8px; font-family: var(--serif); font-size: clamp(1.4rem, 2.4vw, 1.85rem); line-height: 1.3; font-style: italic; font-weight: 400; color: var(--ink); }
+.scholar-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 28px; }
+.gs-line { color: var(--ink-2); font-size: 0.97rem; }
+.gs-line b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gs-line[hidden] { display: none; }
+.stream { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 56px); padding: 40px 0; border-top: 1px solid var(--rule); }
+.stream:first-of-type { border-top: 1px solid var(--ink); }
+.stream h2 { font-size: 1.75rem; line-height: 1.15; }
+.stream .stream-tagline { margin-top: 8px; color: var(--accent-ink); font-size: 0.97rem; font-weight: 600; }
+.stream-body > p { color: var(--ink-2); max-width: 62ch; }
+.facets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; margin-top: 24px; }
+.facets > div { border-top: 2px solid var(--accent); padding-top: 12px; }
+.facets h3 { font-family: var(--sans); font-size: 0.98rem; font-weight: 600; letter-spacing: 0; }
+.facets p { margin-top: 4px; font-size: 0.93rem; color: var(--ink-2); line-height: 1.55; }
+.work-label { margin-top: 28px; font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+.work { list-style: none; margin: 8px 0 0; padding: 0; }
+.work li { padding: 10px 0 10px 16px; border-left: 2px solid var(--rule); font-size: 0.95rem; color: var(--ink-2); }
+.work li + li { margin-top: 6px; }
+.work .t { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); font-weight: 500; }
+.toolkit { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 10px 24px; max-width: 880px; }
+.toolkit dt { font-weight: 600; }
+.toolkit dd { margin: 0; color: var(--ink-2); }
 
-        .service-group { margin-bottom: 1.5rem; }
-        .service-group h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
-        .service-item { font-size: 0.9rem; color: #3a3a3a; padding: 0.25rem 0; }
-        .service-item .year { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-right: 0.4rem; }
+/* Publications */
+.pub-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; margin-top: 8px; padding: 16px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.pub-summary p { color: var(--ink-2); }
+.pub-summary .gs-line { flex-basis: 100%; }
+.filter { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; padding: 3px; background: #fff; }
+.filter button { font: 500 0.9rem var(--sans); color: var(--ink-2); background: none; border: 0; border-radius: 6px; padding: 7px 14px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.no-filter .filter { display: none; }
+.year-group { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 28px 0 8px; border-bottom: 1px solid var(--rule); }
+.year-group[hidden] { display: none; }
+.year { font-family: var(--serif); font-size: 2rem; line-height: 1; color: var(--muted); font-weight: 400; position: sticky; top: 92px; align-self: start; }
+.year.small { font-size: 1.45rem; padding-top: 4px; }
+.pub { padding-bottom: 22px; }
+.pub[hidden] { display: none; }
+.pub-title { font-family: var(--serif); font-size: 1.2rem; line-height: 1.35; font-weight: 600; color: var(--ink); margin: 0; }
+.pub-title a { color: inherit; text-decoration: none; }
+.pub-title a:hover { color: var(--accent-ink); text-decoration: underline; }
+.pub-authors { margin-top: 6px; font-size: 0.95rem; color: var(--muted); }
+.pub-authors b { color: var(--ink); font-weight: 600; }
+.pub-meta { margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 0.95rem; color: var(--ink-2); }
+.pub-meta cite { font-style: italic; }
+.role-tag { font-size: 0.8rem; font-weight: 600; color: var(--accent-ink); background: var(--tint); padding: 2px 9px; border-radius: 999px; }
+.press-tag { font-size: 0.8rem; font-weight: 600; color: var(--ink-2); border: 1px dashed var(--muted); padding: 1px 9px; border-radius: 999px; }
+.doi { font-size: 0.88rem; font-weight: 500; text-decoration: none; border: 1px solid var(--rule); border-radius: 6px; padding: 2px 10px; color: var(--ink); background: #fff; }
+.doi:hover { border-color: var(--ink); color: var(--ink); }
+.cited { font-size: 0.88rem; font-weight: 500; color: var(--accent); }
+.pub-foot { margin-top: 24px; color: var(--muted); font-size: 0.95rem; }
 
-        .media-item { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1.4rem; }
-        .media-item .date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+/* Lists */
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 48px; }
+.plain-list { list-style: none; margin: 0; padding: 0; }
+.plain-list li { padding: 11px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+.plain-list li:first-child { border-top: 1px solid var(--rule); }
+.plain-list li.has-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+.row-meta { flex: none; color: var(--muted); font-size: 0.92rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.course-code { display: inline-block; min-width: 5.2em; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.spacer-head { visibility: hidden; }
+.subhead { font-family: var(--sans); font-size: 1rem; font-weight: 600; letter-spacing: 0; margin: 0 0 12px; color: var(--ink); }
+.callout-line { margin-top: 18px; color: var(--ink-2); max-width: 66ch; }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.timeline li:first-child { border-top: 1px solid var(--ink); }
+.timeline .when { color: var(--muted); font-size: 0.95rem; font-variant-numeric: tabular-nums; padding-top: 3px; }
+.timeline .what { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; line-height: 1.3; }
+.timeline .where { color: var(--ink-2); }
+.timeline .detail { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+.bio { font-size: 1.1rem; line-height: 1.7; color: var(--ink-2); max-width: 66ch; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.contact-grid > div { padding: 20px 24px 0 0; }
+.contact-grid > div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.contact-grid .k { font-weight: 600; margin-bottom: 6px; }
+.contact-grid .v { color: var(--ink-2); }
+.media-feature { display: block; text-decoration: none; padding: 26px 28px; border: 1px solid var(--rule); border-radius: 10px; background: #fff; color: var(--ink); max-width: 820px; }
+.media-feature:hover { border-color: var(--ink); color: var(--ink); }
+.media-feature .src { font-size: 0.92rem; color: var(--muted); }
+.media-feature .hl { margin-top: 6px; font-family: var(--serif); font-size: 1.4rem; line-height: 1.3; font-weight: 500; }
+.media-feature .go { margin-top: 12px; font-size: 0.95rem; font-weight: 500; color: var(--accent); }
 
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-        .contact-card { background: var(--warm); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1.4rem; }
-        .contact-card .label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.35rem; }
-        .contact-card .value { font-size: 0.95rem; }
+/* Footer */
+.site-footer { background: var(--night); color: #C9D2CF; padding: 56px 0 40px; }
+.footer-inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; }
+.site-footer .fname { font-family: var(--serif); font-size: 1.5rem; color: #fff; font-weight: 500; }
+.site-footer p { margin-top: 8px; font-size: 0.95rem; line-height: 1.6; }
+.site-footer a { color: #fff; }
+.footer-links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; align-content: start; font-size: 0.95rem; }
+.footer-base { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; color: #93A09C; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-        footer { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.82rem; color: var(--muted); }
-
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.3rem; }
-        .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px 0; transition: 0.3s; }
-
-        .fade-in { opacity: 1; transform: none; }
-
-        @media (max-width: 700px) {
-            .hero { padding: 6.5rem 1.4rem 2.5rem; }
-            .hero-top { flex-direction: column; gap: 1.2rem; align-items: center; text-align: center; }
-            .hero-photo { width: 110px; height: 110px; }
-            .hero-text h1 { font-size: 2rem; }
-            .hero-links { justify-content: center; }
-            h2 { font-size: 1.5rem; }
-            section { padding: 2rem 1.4rem; }
-            .grant-item { flex-direction: column; gap: 0.2rem; }
-            .nav-links {
-                display: none; position: absolute; top: 100%; left: 0; right: 0;
-                background: var(--paper); flex-direction: column; padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border); gap: 0.8rem;
-            }
-            .nav-links.open { display: flex; }
-            .menu-toggle { display: block; }
-        }
-
-        @media print {
-            nav { display: none; }
-            .hero { padding-top: 2rem; }
-            section { page-break-inside: avoid; }
-        }
-    </style>
+/* Responsive */
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .site-nav { position: absolute; left: 0; right: 0; top: 68px; background: var(--paper); border-bottom: 1px solid var(--rule); display: none; }
+  .site-nav.is-open { display: block; }
+  .site-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--gutter) 16px; }
+  .site-nav a { display: block; padding: 12px 4px; border-radius: 0; border-bottom: 1px solid var(--rule); }
+  .site-nav a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--accent); padding-left: 12px; }
+  .site-nav .nav-cv { margin: 12px 0 0; text-align: center; border-radius: 6px; border: 1px solid var(--ink); }
+  .hero { grid-template-columns: 1fr; }
+  .portrait { order: -1; justify-self: start; max-width: 220px; }
+  .streams-overview, .contact-grid { grid-template-columns: 1fr; }
+  .streams-overview > div, .contact-grid > div { padding: 18px 0; }
+  .streams-overview > div + div, .contact-grid > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .stream { grid-template-columns: 1fr; gap: 14px; }
+  .facets { grid-template-columns: 1fr; gap: 16px; }
+  .two-col { grid-template-columns: 1fr; }
+  .two-col .plain-list + .plain-list li:first-child { border-top: 0; }
+  .spacer-head { display: none; }
+  .spacer-head + .plain-list li:first-child { border-top: 0; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .year-group { grid-template-columns: 1fr; gap: 10px; }
+  .year { position: static; font-size: 1.6rem; }
+  .news li, .timeline li { grid-template-columns: 1fr; gap: 4px; }
+  .toolkit { grid-template-columns: 1fr; gap: 2px; }
+  .toolkit dd { margin-bottom: 12px; }
+  .goal { padding: 22px; }
+  .plain-list li.has-meta { display: block; }
+  .row-meta { display: block; margin-top: 2px; }
+  .actogram-axis span:nth-child(2), .actogram-axis span:nth-child(4) { display: none; }
+}
+@media print {
+  .site-header, .site-footer, .actogram, .filter { display: none; }
+  .routed .page:not(.is-active) { display: block; }
+}
+</style>
 </head>
 <body>
 
-<nav id="navbar">
-    <div class="nav-inner">
-        <a href="#" class="nav-name">Youngjun Lee</a>
-        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#grants">Grants</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#service">Service</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-<header class="hero">
-    <div class="hero-top">
-        <div class="hero-photo"><img src="photo.png" alt="Youngjun Lee"></div>
-        <div class="hero-text">
-            <h1>Youngjun Lee</h1>
-            <p class="hero-title">Postdoctoral Research Fellow</p>
-            <p class="hero-affiliation">
-                Department of Pediatrics · Division of Gastroenterology, Hepatology and Nutrition<br>
-                Children's Hospital of Philadelphia<br>
-                Affiliated Researcher · Annenberg Extended Reality Lab, University of Pennsylvania
-            </p>
-        </div>
-    </div>
-    <p class="hero-bio">
-        I am a postdoctoral researcher working to <strong>reduce depression and promote physical activity in autistic individuals</strong>
-        through technology-driven approaches. My research combines two complementary streams:
-        <strong>intervention studies</strong> using extended reality (XR) and wearable devices to design accessible exercise programs,
-        and <strong>population-level epidemiological analyses</strong> of large-scale datasets (NHANES, NSCH, NIH All of Us)
-        to uncover behavioral and physiological markers of depression. Across both lines of work,
-        I aim to bridge the gap between technology, physical activity science, and mental health
-        to improve the lives of individuals on the autism spectrum.
-    </p>
-    <div class="hero-links">
-        <a href="mailto:leey14@chop.edu">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
-            leey14@chop.edu
-        </a>
-        <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            Google Scholar
-        </a>
-        <a href="https://orcid.org/0009-0001-3915-1389" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            ORCID
-        </a>
-        <a href="assets/CV_YoungjunLee.pdf" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Download CV
-        </a>
-    </div>
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#home">Youngjun Lee</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      Menu
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="nav-cv" href="assets/CV_YoungjunLee.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<section id="research" class="fade-in">
-    <span class="section-label">01</span>
-    <h2>Research Interests</h2>
-    <div class="research-grid">
-        <div class="research-card">
-            <h3>XR &amp; Wearable Interventions</h3>
-            <p>Designing extended reality (XR) exergames and wearable-based programs to promote physical activity and reduce depressive symptoms in autistic individuals.</p>
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="page" id="home" aria-labelledby="home-title">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1 class="statement" id="home-title" tabindex="-1">I study how physical activity can protect the mental health of autistic people.</h1>
+        <p class="lede">I work with wearable technology in two ways. Wrist-worn sensors, national surveys, and electronic health records show who is active and who is at risk of depression. VR and XR headsets deliver exercise that autistic people want to do.</p>
+        <ul class="keywords" aria-label="Research keywords">
+          <li>Autism</li><li>Depression</li><li>Physical activity</li><li>Wearable sensors</li><li>VR / XR</li><li>Epidemiology</li><li>Health records (EHR)</li>
+        </ul>
+        <div class="signature">
+          <p class="name">Youngjun Lee, Ph.D.</p>
+          <p class="role">Postdoctoral Research Fellow, Children's Hospital of Philadelphia</p>
+          <p class="role">Affiliated Postdoctoral Researcher, Annenberg Extended Reality Lab, University of Pennsylvania</p>
         </div>
-        <div class="research-card">
-            <h3>Physical Activity Epidemiology</h3>
-            <p>Leveraging large-scale datasets (NHANES, NSCH, NIH All of Us) to examine how physical activity patterns relate to depression risk in populations with and without autism.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="assets/CV_YoungjunLee.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+            Download CV
+          </a>
+          <a class="btn" href="mailto:leey14@chop.edu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            Email
+          </a>
+          <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+            Google Scholar
+          </a>
+          <a class="btn btn-quiet" href="https://orcid.org/0009-0001-3915-1389" target="_blank" rel="noopener">ORCID</a>
+          <a class="btn btn-quiet" href="https://www.linkedin.com/in/youngjun-lee-3b960024a/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <div class="research-card">
-            <h3>Wearable-Derived Health Markers</h3>
-            <p>Analyzing accelerometer and sensor data to identify behavioral and physiological markers — such as activity rhythms and sleep patterns — that predict or reflect depression in autistic adults.</p>
-        </div>
+      </div>
+      <figure class="portrait">
+        <img src="photo.png" alt="Portrait of Youngjun Lee" width="720" height="900">
+      </figure>
     </div>
+
+    <figure class="actogram">
+      <svg class="actogram-plot" viewBox="0 0 960 216" preserveAspectRatio="none" role="img" aria-label="Illustrative actogram of seven days of wrist-worn activity: near-zero activity overnight, peaks in the morning, midday and evening, and later wake times on the weekend."><line class="actogram-base" x1="0" y1="24" x2="960" y2="24" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="56" x2="960" y2="56" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="88" x2="960" y2="88" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="120" x2="960" y2="120" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="152" x2="960" y2="152" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="184" x2="960" y2="184" vector-effect="non-scaling-stroke"/><line class="actogram-base" x1="0" y1="216" x2="960" y2="216" vector-effect="non-scaling-stroke"/><path class="actogram-bars" d="M76.7 24v-1.6M90.0 24v-1.9M123.3 24v-1.0M143.3 24v-0.9M250.0 24v-1.5M270.0 24v-1.7M276.7 24v-7.0M283.3 24v-15.1M290.0 24v-7.6M296.7 24v-13.8M303.3 24v-8.5M310.0 24v-5.7M316.7 24v-10.4M323.3 24v-13.5M330.0 24v-11.3M336.7 24v-7.9M343.3 24v-11.8M350.0 24v-11.1M356.7 24v-3.2M363.3 24v-6.9M370.0 24v-2.1M376.7 24v-4.4M383.3 24v-6.0M390.0 24v-6.2M396.7 24v-1.8M403.3 24v-5.2M410.0 24v-8.3M416.7 24v-8.3M423.3 24v-1.9M430.0 24v-7.0M436.7 24v-11.0M443.3 24v-8.5M450.0 24v-14.9M456.7 24v-5.9M463.3 24v-10.0M470.0 24v-4.8M476.7 24v-21.6M483.3 24v-6.5M490.0 24v-7.4M496.7 24v-5.8M503.3 24v-16.2M510.0 24v-10.8M516.7 24v-12.2M523.3 24v-12.5M530.0 24v-10.1M536.7 24v-20.3M543.3 24v-13.7M550.0 24v-12.7M556.7 24v-7.9M563.3 24v-4.7M570.0 24v-6.6M576.7 24v-3.8M583.3 24v-6.4M590.0 24v-6.6M596.7 24v-2.3M603.3 24v-5.4M610.0 24v-9.3M616.7 24v-6.8M623.3 24v-7.4M630.0 24v-10.2M636.7 24v-7.5M643.3 24v-4.7M650.0 24v-5.4M656.7 24v-6.2M663.3 24v-7.9M670.0 24v-24.0M676.7 24v-16.4M683.3 24v-5.3M690.0 24v-7.3M696.7 24v-7.7M703.3 24v-23.2M710.0 24v-19.6M716.7 24v-23.0M723.3 24v-23.2M730.0 24v-19.4M736.7 24v-22.2M743.3 24v-13.6M750.0 24v-3.5M756.7 24v-5.3M763.3 24v-3.7M770.0 24v-3.4M776.7 24v-5.7M783.3 24v-7.9M790.0 24v-6.8M796.7 24v-4.7M803.3 24v-9.8M810.0 24v-9.0M816.7 24v-4.8M823.3 24v-1.9M830.0 24v-11.7M836.7 24v-6.4M843.3 24v-7.2M850.0 24v-4.0M856.7 24v-4.0M863.3 24v-7.2M870.0 24v-2.7M876.7 24v-5.7M883.3 24v-2.0M890.0 24v-14.5M896.7 24v-3.3M903.3 24v-2.2M910.0 24v-3.6M916.7 24v-6.1M70.0 56v-1.9M116.7 56v-1.0M263.3 56v-8.4M270.0 56v-10.6M276.7 56v-9.3M283.3 56v-5.5M290.0 56v-9.8M296.7 56v-9.4M303.3 56v-7.5M310.0 56v-15.3M316.7 56v-12.2M323.3 56v-19.2M330.0 56v-3.1M336.7 56v-5.7M343.3 56v-11.1M350.0 56v-3.9M356.7 56v-7.7M363.3 56v-3.9M370.0 56v-3.0M376.7 56v-2.2M383.3 56v-2.6M390.0 56v-8.7M396.7 56v-6.6M403.3 56v-2.0M410.0 56v-5.6M416.7 56v-3.7M423.3 56v-12.6M430.0 56v-8.6M436.7 56v-5.8M443.3 56v-5.5M450.0 56v-10.4M456.7 56v-6.3M463.3 56v-7.2M470.0 56v-4.5M476.7 56v-23.9M483.3 56v-23.9M490.0 56v-7.9M496.7 56v-12.7M503.3 56v-14.8M510.0 56v-24.0M516.7 56v-4.0M523.3 56v-24.0M530.0 56v-24.0M536.7 56v-5.8M543.3 56v-4.0M550.0 56v-6.8M556.7 56v-4.5M563.3 56v-7.2M570.0 56v-3.8M576.7 56v-6.6M583.3 56v-8.7M590.0 56v-7.4M596.7 56v-4.9M603.3 56v-3.4M610.0 56v-3.3M616.7 56v-12.9M623.3 56v-7.1M630.0 56v-11.6M636.7 56v-2.3M643.3 56v-6.3M650.0 56v-6.9M656.7 56v-6.4M663.3 56v-9.4M670.0 56v-4.8M676.7 56v-9.9M683.3 56v-12.6M690.0 56v-14.2M696.7 56v-18.7M703.3 56v-4.2M710.0 56v-5.4M716.7 56v-2.1M723.3 56v-16.7M730.0 56v-2.8M736.7 56v-6.5M743.3 56v-2.6M750.0 56v-3.2M756.7 56v-7.7M763.3 56v-3.3M770.0 56v-3.9M776.7 56v-4.1M783.3 56v-6.4M790.0 56v-2.7M796.7 56v-6.2M803.3 56v-8.8M810.0 56v-3.6M816.7 56v-3.0M823.3 56v-4.3M830.0 56v-2.2M836.7 56v-7.2M843.3 56v-5.9M850.0 56v-4.6M856.7 56v-2.6M863.3 56v-7.3M870.0 56v-2.7M876.7 56v-1.2M883.3 56v-2.8M890.0 56v-7.7M896.7 56v-4.5M903.3 56v-7.2M910.0 56v-3.0M916.7 56v-1.4M923.3 56v-3.1M50.0 88v-1.4M236.7 88v-1.0M270.0 88v-19.6M276.7 88v-22.8M283.3 88v-20.3M290.0 88v-22.9M296.7 88v-23.8M303.3 88v-15.3M310.0 88v-12.8M316.7 88v-6.8M323.3 88v-24.0M330.0 88v-12.8M336.7 88v-23.8M343.3 88v-6.9M350.0 88v-14.7M356.7 88v-4.3M363.3 88v-5.4M370.0 88v-4.6M376.7 88v-10.2M383.3 88v-4.9M390.0 88v-3.4M396.7 88v-3.8M403.3 88v-8.9M410.0 88v-4.0M416.7 88v-4.3M423.3 88v-8.1M430.0 88v-7.6M436.7 88v-6.0M443.3 88v-4.7M450.0 88v-16.0M456.7 88v-5.9M463.3 88v-8.2M470.0 88v-8.2M476.7 88v-24.0M483.3 88v-10.8M490.0 88v-6.1M496.7 88v-10.5M503.3 88v-10.5M510.0 88v-4.6M516.7 88v-4.6M523.3 88v-4.7M530.0 88v-15.2M536.7 88v-3.3M543.3 88v-2.9M550.0 88v-3.8M556.7 88v-6.7M563.3 88v-9.7M570.0 88v-4.9M576.7 88v-4.0M583.3 88v-7.6M590.0 88v-6.7M596.7 88v-4.5M603.3 88v-3.6M610.0 88v-3.1M616.7 88v-5.3M623.3 88v-2.8M630.0 88v-4.3M636.7 88v-6.5M643.3 88v-5.1M650.0 88v-8.7M656.7 88v-2.6M663.3 88v-10.0M670.0 88v-3.5M676.7 88v-11.6M683.3 88v-5.4M690.0 88v-10.6M696.7 88v-7.0M703.3 88v-5.1M710.0 88v-7.8M716.7 88v-15.3M723.3 88v-12.9M730.0 88v-5.6M736.7 88v-3.2M743.3 88v-14.3M750.0 88v-6.7M756.7 88v-4.5M763.3 88v-6.5M770.0 88v-4.3M776.7 88v-6.1M783.3 88v-5.7M790.0 88v-5.3M796.7 88v-5.6M803.3 88v-7.8M810.0 88v-3.9M816.7 88v-3.0M823.3 88v-6.9M830.0 88v-9.6M836.7 88v-4.8M843.3 88v-11.1M850.0 88v-5.3M856.7 88v-5.1M863.3 88v-6.8M870.0 88v-7.0M876.7 88v-6.2M883.3 88v-2.1M890.0 88v-2.2M896.7 88v-5.4M903.3 88v-5.6M23.3 120v-1.3M176.7 120v-1.4M250.0 120v-1.3M263.3 120v-5.2M270.0 120v-7.3M276.7 120v-16.7M283.3 120v-14.6M290.0 120v-18.5M296.7 120v-15.4M303.3 120v-23.1M310.0 120v-8.2M316.7 120v-16.6M323.3 120v-6.6M330.0 120v-14.2M336.7 120v-7.2M343.3 120v-15.7M350.0 120v-4.1M356.7 120v-4.4M363.3 120v-6.5M370.0 120v-18.3M376.7 120v-1.7M383.3 120v-11.2M390.0 120v-3.2M396.7 120v-2.8M403.3 120v-3.8M410.0 120v-2.6M416.7 120v-8.6M423.3 120v-21.4M430.0 120v-6.6M436.7 120v-7.7M443.3 120v-7.6M450.0 120v-15.7M456.7 120v-7.9M463.3 120v-6.1M470.0 120v-11.7M476.7 120v-4.0M483.3 120v-6.9M490.0 120v-10.5M496.7 120v-4.4M503.3 120v-14.8M510.0 120v-22.2M516.7 120v-4.8M523.3 120v-11.3M530.0 120v-17.1M536.7 120v-8.3M543.3 120v-21.0M550.0 120v-10.4M556.7 120v-2.9M563.3 120v-4.0M570.0 120v-19.7M576.7 120v-8.2M583.3 120v-5.5M590.0 120v-6.4M596.7 120v-8.7M603.3 120v-8.3M610.0 120v-5.4M616.7 120v-5.1M623.3 120v-13.8M630.0 120v-7.1M636.7 120v-4.6M643.3 120v-5.4M650.0 120v-4.4M656.7 120v-7.8M663.3 120v-8.9M670.0 120v-12.4M676.7 120v-6.9M683.3 120v-24.0M690.0 120v-8.4M696.7 120v-4.1M703.3 120v-5.0M710.0 120v-5.1M716.7 120v-6.1M723.3 120v-10.5M730.0 120v-4.4M736.7 120v-4.3M743.3 120v-12.1M750.0 120v-6.7M756.7 120v-4.4M763.3 120v-3.0M770.0 120v-21.2M776.7 120v-11.4M783.3 120v-5.0M790.0 120v-9.0M796.7 120v-7.4M803.3 120v-4.4M810.0 120v-5.6M816.7 120v-3.7M823.3 120v-5.0M830.0 120v-17.4M836.7 120v-3.1M843.3 120v-4.0M850.0 120v-3.2M856.7 120v-3.2M863.3 120v-2.5M870.0 120v-2.2M876.7 120v-3.7M883.3 120v-6.9M890.0 120v-6.6M896.7 120v-1.9M903.3 120v-1.6M910.0 120v-1.8M916.7 120v-2.9M923.3 120v-1.0M930.0 120v-1.4M936.7 120v-3.5M150.0 152v-0.8M163.3 152v-0.7M270.0 152v-6.0M276.7 152v-3.9M283.3 152v-3.8M290.0 152v-11.3M296.7 152v-8.4M303.3 152v-5.6M310.0 152v-24.0M316.7 152v-5.6M323.3 152v-6.0M330.0 152v-7.1M336.7 152v-12.0M343.3 152v-6.8M350.0 152v-2.0M356.7 152v-11.4M363.3 152v-3.0M370.0 152v-4.3M376.7 152v-3.8M383.3 152v-6.7M390.0 152v-4.7M396.7 152v-5.3M403.3 152v-6.1M410.0 152v-7.6M416.7 152v-10.8M423.3 152v-1.6M430.0 152v-3.2M436.7 152v-11.1M443.3 152v-2.8M450.0 152v-6.8M456.7 152v-6.3M463.3 152v-13.3M470.0 152v-6.2M476.7 152v-7.4M483.3 152v-9.7M490.0 152v-5.1M496.7 152v-16.5M503.3 152v-6.3M510.0 152v-15.7M516.7 152v-12.5M523.3 152v-12.3M530.0 152v-4.5M536.7 152v-9.0M543.3 152v-12.5M550.0 152v-4.0M556.7 152v-8.1M563.3 152v-24.0M570.0 152v-8.0M576.7 152v-7.0M583.3 152v-2.6M590.0 152v-4.6M596.7 152v-5.9M603.3 152v-4.5M610.0 152v-3.9M616.7 152v-8.9M623.3 152v-11.9M630.0 152v-8.8M636.7 152v-8.6M643.3 152v-4.6M650.0 152v-12.1M656.7 152v-7.4M663.3 152v-8.7M670.0 152v-10.2M676.7 152v-5.5M683.3 152v-8.0M690.0 152v-16.4M696.7 152v-5.9M703.3 152v-9.1M710.0 152v-14.4M716.7 152v-3.3M723.3 152v-20.5M730.0 152v-23.2M736.7 152v-19.3M743.3 152v-19.6M750.0 152v-20.7M756.7 152v-20.2M763.3 152v-6.4M770.0 152v-15.5M776.7 152v-3.3M783.3 152v-10.9M790.0 152v-6.9M796.7 152v-5.8M803.3 152v-4.5M810.0 152v-11.6M816.7 152v-3.7M823.3 152v-4.3M830.0 152v-8.9M836.7 152v-2.8M843.3 152v-6.4M850.0 152v-7.8M856.7 152v-5.6M863.3 152v-3.4M870.0 152v-3.7M876.7 152v-8.6M883.3 152v-2.0M896.7 152v-2.4M903.3 152v-4.6M910.0 152v-1.8M916.7 152v-6.2M923.3 152v-2.0M930.0 152v-3.8M936.7 152v-3.5M943.3 152v-7.5M950.0 152v-6.6M956.7 152v-2.6M3.3 184v-1.6M70.0 184v-1.2M236.7 184v-1.7M303.3 184v-1.1M350.0 184v-11.5M356.7 184v-10.9M363.3 184v-7.6M370.0 184v-5.0M376.7 184v-6.8M383.3 184v-5.5M390.0 184v-24.0M396.7 184v-5.3M403.3 184v-21.3M410.0 184v-20.7M416.7 184v-22.1M423.3 184v-19.8M430.0 184v-19.8M436.7 184v-20.1M443.3 184v-10.2M450.0 184v-5.4M456.7 184v-3.1M463.3 184v-5.5M470.0 184v-7.4M476.7 184v-10.1M483.3 184v-5.9M490.0 184v-5.5M496.7 184v-2.5M503.3 184v-13.7M510.0 184v-19.3M516.7 184v-17.0M523.3 184v-8.6M530.0 184v-7.7M536.7 184v-2.4M543.3 184v-3.9M550.0 184v-8.6M556.7 184v-5.9M563.3 184v-10.2M570.0 184v-5.3M576.7 184v-6.9M583.3 184v-3.0M590.0 184v-3.6M596.7 184v-6.9M603.3 184v-5.2M610.0 184v-5.2M616.7 184v-8.3M623.3 184v-12.2M630.0 184v-14.2M636.7 184v-2.9M643.3 184v-5.0M650.0 184v-4.5M656.7 184v-4.3M663.3 184v-10.4M670.0 184v-3.5M676.7 184v-14.3M683.3 184v-2.8M690.0 184v-24.0M696.7 184v-4.9M703.3 184v-4.7M710.0 184v-9.6M716.7 184v-5.8M723.3 184v-3.5M730.0 184v-7.4M736.7 184v-9.6M743.3 184v-5.9M750.0 184v-3.7M756.7 184v-6.4M763.3 184v-8.3M770.0 184v-13.9M776.7 184v-4.3M783.3 184v-4.9M790.0 184v-11.5M796.7 184v-2.7M803.3 184v-12.8M810.0 184v-2.5M816.7 184v-3.1M823.3 184v-3.8M830.0 184v-18.3M836.7 184v-13.1M843.3 184v-4.9M850.0 184v-4.1M856.7 184v-6.2M863.3 184v-3.5M870.0 184v-4.1M876.7 184v-3.7M883.3 184v-1.7M890.0 184v-4.2M896.7 184v-2.8M903.3 184v-3.0M910.0 184v-3.4M916.7 184v-5.3M923.3 184v-1.5M930.0 184v-2.2M936.7 184v-2.5M943.3 184v-3.6M950.0 184v-1.9M956.7 184v-2.7M63.3 216v-1.9M110.0 216v-1.5M116.7 216v-1.2M143.3 216v-1.8M163.3 216v-1.4M196.7 216v-1.5M356.7 216v-0.8M363.3 216v-5.2M370.0 216v-18.3M376.7 216v-12.3M383.3 216v-13.6M390.0 216v-14.3M396.7 216v-12.5M403.3 216v-9.5M410.0 216v-7.8M416.7 216v-10.7M423.3 216v-15.0M430.0 216v-6.4M436.7 216v-3.2M443.3 216v-4.6M450.0 216v-5.6M456.7 216v-13.3M463.3 216v-6.5M470.0 216v-14.3M476.7 216v-13.1M483.3 216v-12.3M490.0 216v-9.1M496.7 216v-3.6M503.3 216v-5.9M510.0 216v-15.2M516.7 216v-10.3M523.3 216v-24.0M530.0 216v-6.2M536.7 216v-8.7M543.3 216v-16.2M550.0 216v-9.3M556.7 216v-22.5M563.3 216v-4.6M570.0 216v-4.2M576.7 216v-4.4M583.3 216v-5.4M590.0 216v-4.1M596.7 216v-5.8M603.3 216v-12.7M610.0 216v-6.4M616.7 216v-6.1M623.3 216v-4.5M630.0 216v-11.2M636.7 216v-8.8M643.3 216v-6.1M650.0 216v-7.1M656.7 216v-6.3M663.3 216v-3.4M670.0 216v-2.1M676.7 216v-24.0M683.3 216v-16.5M690.0 216v-4.1M696.7 216v-5.1M703.3 216v-7.1M710.0 216v-3.4M716.7 216v-7.2M723.3 216v-3.6M730.0 216v-24.0M736.7 216v-7.3M743.3 216v-4.8M750.0 216v-5.9M756.7 216v-9.1M763.3 216v-24.0M770.0 216v-2.4M776.7 216v-7.8M783.3 216v-7.3M790.0 216v-4.7M796.7 216v-7.5M803.3 216v-6.3M810.0 216v-3.3M816.7 216v-5.0M823.3 216v-8.1M830.0 216v-3.3M836.7 216v-4.5M843.3 216v-3.9M850.0 216v-5.7M856.7 216v-4.7M863.3 216v-6.8M870.0 216v-3.0M876.7 216v-2.3M883.3 216v-8.8M890.0 216v-4.0M896.7 216v-5.2M903.3 216v-2.3M910.0 216v-7.3M916.7 216v-0.7M923.3 216v-6.8"/></svg>
+      <div class="actogram-axis" aria-hidden="true">
+        <span style="left:0%">Midnight</span><span style="left:25%">6 am</span><span style="left:50%">Noon</span><span style="left:75%">6 pm</span><span style="left:100%">Midnight</span>
+      </div>
+      <figcaption>An actogram: one week of wrist-worn activity, one row per day. Rest-activity rhythms like these are the raw material of my wearable research. Illustrative data.</figcaption>
+    </figure>
+
+    <div class="block">
+      <h2 class="block-title">Two lines of work</h2>
+      <div class="streams-overview">
+        <div>
+          <h3>Wearables that measure</h3>
+          <p class="sub">Wearable, population, and clinical data science</p>
+          <p class="desc">Using accelerometer and Fitbit data, national surveys such as NHANES and NSCH, the NIH All of Us Research Program, and pediatric electronic health records to find activity, sleep, and circadian patterns linked to depression in autism.</p>
+        </div>
+        <div>
+          <h3>Wearables that intervene</h3>
+          <p class="sub">Immersive VR and XR exercise</p>
+          <p class="desc">Designing VR exergames in which a virtual coach creates social presence, and testing whether they ease depressive symptoms in autistic young adults, along with heart rate variability and simulator sickness.</p>
+        </div>
+      </div>
+      <a class="more-link" href="#research">Read about my research</a>
+    </div>
+
+    <div class="block">
+      <h2 class="block-title">Recent news</h2>
+      <ul class="news">
+        <li><time datetime="2026">2026</time><p>Three new papers: a sole-author study in <em>Suicide and Life-Threatening Behavior</em>, plus two accepted papers in press, on heart rate variability and simulator sickness during VR exercise (<em>Research in Autism</em>) and on physical activity and adolescent mental health across 45 countries (<em>Mental Health and Physical Activity</em>).</p></li>
+        <li><time datetime="2026">2026</time><p>Presented wearable-derived sleep and activity rhythms and depressive symptoms in adults with and without autism at SLEEP 2026 in Baltimore and the Lurie Autism Institute Annual Symposium.</p></li>
+        <li><time datetime="2026-03">Mar 2026</time><p>Invited talk on immersive virtual reality, physical activity, and mental health in autism at the World Autism Awareness Day Symposium, East China Normal University, Shanghai.</p></li>
+        <li><time datetime="2026-02">Feb 2026</time><p>Joined Children's Hospital of Philadelphia as a Postdoctoral Research Fellow and the Annenberg Extended Reality Lab at Penn as an affiliated researcher.</p></li>
+        <li><time datetime="2025-12">Dec 2025</time><p>Completed my Ph.D. in Kinesiology at Michigan State University.</p></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2 class="block-title">In the media</h2>
+      <a class="media-feature" href="https://www.wkar.org/wkar-news/2025-10-21/watch-from-the-ring-to-the-msu-classroom-how-vr-technology-is-helping-with-autism-spectrum-disorder" target="_blank" rel="noopener">
+        <p class="src">WKAR Public Media, October 21, 2025</p>
+        <p class="hl">From the ring to the MSU classroom: How VR technology is helping with autism spectrum disorder</p>
+        <p class="go">Watch the story</p>
+      </a>
+    </div>
+  </div>
 </section>
 
-<section id="publications" class="fade-in">
-    <span class="section-label">02</span>
-    <h2>Publications</h2>
-    <div class="pub-year-group">
-        <div class="pub-year">2026</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.3390/soc16040118" target="_blank">Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport</a></div>
-                <div class="pub-authors">Ciaccioni S, <strong>Lee Y</strong>, Capranica L, Urban A, May R, Massini S, Guidotti F.</div>
-                <div class="pub-journal">Societies, 16(4), 118</div>
-            </div>
-            <span class="pub-badge badge-co">Co-Author</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.1111/sltb.70134" target="_blank">Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization-suicidal ideation association in Korean adolescents</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>.</div>
-                <div class="pub-journal">Suicide and Life-Threatening Behavior, 56, e70134</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
-        </div>
+<!-- ============ ABOUT ============ -->
+<section class="page" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="page-head">
+      <h1 class="page-title" id="about-title" tabindex="-1">About</h1>
     </div>
-    <div class="pub-year-group">
-        <div class="pub-year">2025</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1567978" target="_blank">Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>, Guidotti F, Capranica L, Pesce C, Benzing V, Hauck J, Ciaccioni S.</div>
-                <div class="pub-journal">Frontiers in Psychology, 16, 1567978</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.1371/journal.pone.0301949" target="_blank">Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>, Capranica L, Pesce C, Guidotti F, Benzing V, Hauck J, Ciaccioni S.</div>
-                <div class="pub-journal">PLoS ONE, 20(2), e0301949</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.3389/fpubh.2025.1588706" target="_blank">Analysis of sleep duration, energy intakes, physical activity, and metabolic syndrome based on the presence or absence of obesity and hypertension in working Korean adults</a></div>
-                <div class="pub-authors">Sung E*, <strong>Lee Y*</strong>, Lee S, Park J. (*co-first authors)</div>
-                <div class="pub-journal">Frontiers in Public Health, 13, 1588706</div>
-            </div>
-            <span class="pub-badge badge-first">Co-1st</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1587672" target="_blank">Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners</a></div>
-                <div class="pub-authors">Ciaccioni S, <strong>Lee Y</strong>, Guidotti F, Stankovic N, Pocscco E, Izzicupo P, Capranica L.</div>
-                <div class="pub-journal">Frontiers in Psychology, 16, 1587672</div>
-            </div>
-            <span class="pub-badge badge-co">Co-Author</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2025.0003" target="_blank">The role of late eating in circadian disruption and depression: A review of emotional health impacts</a></div>
-                <div class="pub-authors">Kim Y, Kim E, <strong>Lee Y</strong>, Park J.</div>
-                <div class="pub-journal">Physical Activity and Nutrition, 29(1), 18-24</div>
-            </div>
-            <span class="pub-badge badge-co">Co-Author</span>
-        </div>
+    <p class="bio">Youngjun Lee, Ph.D., is a Postdoctoral Research Fellow in the Division of Gastroenterology, Hepatology and Nutrition at Children's Hospital of Philadelphia and an affiliated postdoctoral researcher in the Annenberg Extended Reality Lab at the University of Pennsylvania. His research asks how physical activity can protect the mental health of autistic people, using wearable technology in two ways: wearable-derived, population, and electronic health record data to identify activity, sleep, and circadian markers of depression, and immersive VR and XR exercise to deliver activity people want to do. He earned his Ph.D. in Kinesiology from Michigan State University, where his dissertation tested an immersive virtual reality boxing program for autistic young adults, and his M.S. and B.Ed. in Physical Education from Korea University.</p>
+
+    <div class="block">
+      <h2 class="block-title">Positions</h2>
+      <ul class="timeline">
+        <li><span class="when">2026 – present</span><div><p class="what">Postdoctoral Research Fellow</p><p class="where">Children's Hospital of Philadelphia</p><p class="detail">Department of Pediatrics, Division of Gastroenterology, Hepatology and Nutrition. Mentor: Jonathan A. Mitchell, Ph.D.</p></div></li>
+        <li><span class="when">2026 – present</span><div><p class="what">Affiliated Postdoctoral Researcher</p><p class="where">University of Pennsylvania</p><p class="detail">Annenberg School for Communication, Annenberg Extended Reality Lab</p></div></li>
+      </ul>
     </div>
-    <div class="pub-year-group">
-        <div class="pub-year">2024</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.3389/fpubh.2024.1396598" target="_blank">Sugary snack restriction enhances body composition improvement in overweight women engaging in non-face-to-face walking during COVID-19</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>, Kim N, Go S, Kim J, Park J.</div>
-                <div class="pub-journal">Frontiers in Public Health, 12, 1396598</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
-        </div>
+
+    <div class="block">
+      <h2 class="block-title">Education</h2>
+      <ul class="timeline">
+        <li><span class="when">2025</span><div><p class="what">Ph.D., Kinesiology</p><p class="where">Michigan State University</p><p class="detail">Physical Activity in Youth Disabilities Lab. Advisor: Janet Hauck, Ph.D. Dissertation: <a href="https://www.proquest.com/docview/3278169726" target="_blank" rel="noopener"><em>Immersive Virtual Reality Exercise to Improve Depressive Symptoms in Young Adults with Autism Spectrum Disorder</em></a></p></div></li>
+        <li><span class="when">2022</span><div><p class="what">M.S., Physical Education</p><p class="where">Korea University</p><p class="detail">Exercise Nutrition Biochemistry Lab. Advisor: Jonghoon Park, Ph.D. Thesis: <em>Effect of Physical Activity and Nutritional Behavioral Change on Metabolic Syndrome in Overweight Young Women of Single-person Households</em></p></div></li>
+        <li><span class="when">2020</span><div><p class="what">B.Ed., Physical Education</p><p class="where">Korea University</p></div></li>
+      </ul>
     </div>
-    <div class="pub-year-group">
-        <div class="pub-year">2023</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://paahjournal.com/articles/10.5334/paah.305" target="_blank">Sex-specific physical activity levels and energy intake in US young adults with depression: NHANES 2017-2020 pre-pandemic data</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>, Hauck J, Brooks D.</div>
-                <div class="pub-journal">Physical Activity and Health, 7(1), 332-344</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
+
+    <div class="block">
+      <h2 class="block-title">Funding and awards</h2>
+      <div class="two-col">
+        <div>
+          <h3 class="subhead">Research funding</h3>
+          <ul class="plain-list">
+            <li class="has-meta"><span>Summer Research Fellowship, Michigan State University</span> <span class="row-meta">2025, $7,000</span></li>
+            <li class="has-meta"><span>Future of Work Graduate Student Funding, Michigan State University (PI)</span> <span class="row-meta">2025, $3,000</span></li>
+            <li class="has-meta"><span>Hard Cost Practicum/Dissertation Funding, Michigan State University (PI)</span> <span class="row-meta">2024, $1,763</span></li>
+            <li class="has-meta"><span>Summer Research Fellowship, Michigan State University</span> <span class="row-meta">2024, $7,000</span></li>
+            <li class="has-meta"><span>Summer Research Development Fellowship, Michigan State University</span> <span class="row-meta">2023, $7,000</span></li>
+            <li class="has-meta"><span>Summer Research Development Fellowship, Michigan State University</span> <span class="row-meta">2022, $6,000</span></li>
+          </ul>
         </div>
+        <div>
+          <h3 class="subhead">Fellowships and scholarships</h3>
+          <ul class="plain-list">
+            <li class="has-meta"><span>KIN Endowed Fellowship, Michigan State University</span> <span class="row-meta">2025, $1,500</span></li>
+            <li class="has-meta"><span>Dr. Kenneth Hardin Graduate Student Endowed Scholarship, Michigan State University</span> <span class="row-meta">2025, $1,500</span></li>
+            <li class="has-meta"><span>David Cho Scholarship Award, Michigan State University</span> <span class="row-meta">2025, $1,000</span></li>
+            <li class="has-meta"><span>Henry J. and Betty Montoye Endowed Scholarship, Michigan State University</span> <span class="row-meta">2024, $2,325</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="pub-year-group">
-        <div class="pub-year">2022</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.21203/rs.3.rs-923728/v1" target="_blank">Household-specific physical activity levels and energy intakes according to the presence of metabolic syndrome in Korean young adults: KNHANES 2016-2018</a></div>
-                <div class="pub-authors"><strong>Lee Y</strong>, Park Y, Lee J, Sung E, Lee H, Park J.</div>
-                <div class="pub-journal">BMC Public Health, 22, 476</div>
-            </div>
-            <span class="pub-badge badge-first">1st Author</span>
-        </div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2022.0011" target="_blank">Analysis of energy intakes, physical activities and metabolic syndrome according to the income level in Korean elderly people: KNHANES 2016-2018</a></div>
-                <div class="pub-authors">Sung E, Lee S, <strong>Lee Y</strong>, Lee S, Park J.</div>
-                <div class="pub-journal">Physical Activity and Nutrition, 26(2), 28-35</div>
-            </div>
-            <span class="pub-badge badge-co">Co-Author</span>
-        </div>
+
+    <div class="block" id="contact">
+      <h2 class="block-title">Contact</h2>
+      <div class="contact-grid">
+        <div><p class="k">Email</p><p class="v"><a href="mailto:leey14@chop.edu">leey14@chop.edu</a></p><p class="v">+1 (517) 220-8178</p></div>
+        <div><p class="k">Office</p><p class="v">Children's Hospital of Philadelphia<br>Department of Pediatrics<br>Philadelphia, PA</p></div>
+        <div><p class="k">Profiles</p><p class="v"><a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">Google Scholar</a><br><a href="https://orcid.org/0009-0001-3915-1389" target="_blank" rel="noopener">ORCID 0009-0001-3915-1389</a><br><a href="https://www.linkedin.com/in/youngjun-lee-3b960024a/" target="_blank" rel="noopener">LinkedIn</a><br><a href="assets/CV_YoungjunLee.pdf" target="_blank" rel="noopener">Curriculum vitae (PDF)</a></p></div>
+      </div>
     </div>
-    <div class="pub-year-group">
-        <div class="pub-year">2021</div>
-        <div class="pub-item">
-            <div>
-                <div class="pub-title"><a href="https://doi.org/10.20463/pan.2021.0020" target="_blank">Comparative analysis of energy intake and physical activity according to household type and presence of metabolic syndrome in middle-aged men: KNHANES 2016-2018</a></div>
-                <div class="pub-authors">Park Y, Lee J, <strong>Lee Y</strong>, Park J.</div>
-                <div class="pub-journal">Physical Activity and Nutrition, 25(4), 1-9</div>
-            </div>
-            <span class="pub-badge badge-co">Co-Author</span>
-        </div>
-    </div>
-    <p class="pub-note">Full list including manuscripts under review available on <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">Google Scholar</a></p>
+  </div>
 </section>
 
-<section id="experience" class="fade-in">
-    <span class="section-label">03</span>
-    <h2>Professional Experience</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-period">2026 - Present</div>
-            <div class="timeline-role">Postdoctoral Research Fellow</div>
-            <div class="timeline-org">Children's Hospital of Philadelphia (CHOP)</div>
-            <div class="timeline-detail">Department of Pediatrics, Division of Gastroenterology, Hepatology and Nutrition</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-period">2026 - Present</div>
-            <div class="timeline-role">Affiliated Postdoctoral Researcher</div>
-            <div class="timeline-org">University of Pennsylvania</div>
-            <div class="timeline-detail">Annenberg School for Communication, Annenberg Extended Reality Lab</div>
-        </div>
+<!-- ============ RESEARCH ============ -->
+<section class="page" id="research" aria-labelledby="research-title">
+  <div class="wrap">
+    <div class="page-head">
+      <h1 class="page-title" id="research-title" tabindex="-1">Research</h1>
     </div>
+    <div class="lead-text">
+      <p>Depression is one of the most common co-occurring conditions for autistic people, and physical activity is one of the most accessible ways to protect mental health. Yet most exercise programs are not built around autistic people's sensory, social, and motivational needs, and we still know little about which everyday activity, sleep, and circadian patterns signal rising risk.</p>
+      <p>Wearable technology lets me work on both sides of that gap. Wearables that measure, such as wrist-worn accelerometers and Fitbits, analyzed alongside population surveys and electronic health records, show who is active and who is struggling. Wearables that intervene, immersive VR and XR headsets, can turn exercise into something autistic people want to do. I built and tested a VR boxing program during my Ph.D. at Michigan State University, and as a postdoctoral fellow at Children's Hospital of Philadelphia I now analyze wearable, survey, and pediatric health record data at scale.</p>
+    </div>
+    <div class="goal">
+      <p class="goal-label">My ultimate goal</p>
+      <p class="goal-text">To make physical activity an accessible, evidence-based path to better mental health for every autistic person.</p>
+    </div>
+    <div class="scholar-strip">
+      <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+        Google Scholar profile
+      </a>
+      <p class="gs-line" data-gs-line hidden></p>
+    </div>
+
+    <div class="block">
+      <article class="stream" id="measure">
+        <div>
+          <h2>Wearables that measure</h2>
+          <p class="stream-tagline">Wearable, population, and clinical data science</p>
+        </div>
+        <div class="stream-body">
+          <p>I combine device-measured behavior with large population and clinical datasets to identify who is at risk of depression and which activity, sleep, and circadian patterns go with it, comparing autistic and non-autistic people across childhood, adolescence, and adulthood.</p>
+          <div class="facets">
+            <div><h3>Wearable-derived data</h3><p>Fitbit, GENEActiv, and ActiGraph data on physical activity, sleep, and rest-activity rhythms, including the NIH All of Us Research Program.</p></div>
+            <div><h3>Population epidemiology</h3><p>NHANES, NSCH, HBSC, KYRBS, and KNHANES, spanning U.S., Korean, and cross-national samples.</p></div>
+            <div><h3>Electronic health records</h3><p>Pediatric wellness-visit records at CHOP, used to study physical activity and depression over time in autistic youth.</p></div>
+          </div>
+          <p class="work-label">Selected work</p>
+          <ul class="work">
+            <li><span class="t">Wearable-derived sleep and physical activity levels and rhythms and depressive symptoms in adults with and without autism spectrum disorder.</span> SLEEP 2026 (APSS), Baltimore; Lurie Autism Institute Annual Symposium, 2026.</li>
+            <li><span class="t">Physical activity and adolescent mental health across 45 countries: The moderating role of country-level perceived health.</span> <em>Mental Health and Physical Activity</em>, in press.</li>
+            <li><span class="t">Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents.</span> <em>Suicide and Life-Threatening Behavior</em>, 2026. <a href="https://doi.org/10.1111/sltb.70134" target="_blank" rel="noopener">DOI</a></li>
+            <li><span class="t">Sex-specific physical activity levels and energy intake in US young adults with depression: NHANES 2017–2020 pre-pandemic data.</span> <em>Physical Activity and Health</em>, 2023. <a href="https://doi.org/10.5334/paah.305" target="_blank" rel="noopener">DOI</a></li>
+            <li><span class="t">Wearable-based detection and prediction of depression in autistic individuals using physical activity and sleep data: A scoping review.</span> OSF preregistration, 2026. <a href="https://doi.org/10.17605/OSF.IO/97DEK" target="_blank" rel="noopener">DOI</a></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="stream" id="intervene">
+        <div>
+          <h2>Wearables that intervene</h2>
+          <p class="stream-tagline">Immersive VR and XR exercise</p>
+        </div>
+        <div class="stream-body">
+          <p>Head-mounted VR and XR displays are wearables too. I design immersive exergames that lower the sensory and social demands of gyms and team sports, using a virtual coach to create social presence, and test whether they ease depressive symptoms in autistic young adults. My dissertation trial delivered a VR boxing program and tracked depressive symptoms and heart rate variability.</p>
+          <div class="facets">
+            <div><h3>Virtual coaching</h3><p>Coach-induced social presence as a way to sustain engagement and support mood.</p></div>
+            <div><h3>Physiology</h3><p>Heart rate variability as a marker of who responds to, and who tolerates, VR exercise.</p></div>
+            <div><h3>Usability and safety</h3><p>Simulator sickness, interest, and engagement among autistic and non-autistic users.</p></div>
+          </div>
+          <p class="work-label">Selected work</p>
+          <ul class="work">
+            <li><span class="t">Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in young adults with autism spectrum disorder: A proof-of-principle study.</span> <em>Research in Autism</em>, in press.</li>
+            <li><span class="t">Immersive virtual reality exercise to improve depressive symptoms in young adults with autism spectrum disorder.</span> Doctoral dissertation, Michigan State University, 2025. <a href="https://www.proquest.com/docview/3278169726" target="_blank" rel="noopener">ProQuest</a></li>
+            <li><span class="t">Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials.</span> <em>Frontiers in Psychology</em>, 2025. <a href="https://doi.org/10.3389/fpsyg.2025.1567978" target="_blank" rel="noopener">DOI</a></li>
+            <li><span class="t">Bridging the gap: Immersive virtual reality as a new pathway for physical activity and mental health in autism.</span> Invited talk, East China Normal University, Shanghai, 2026.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="block rule-top">
+      <h2 class="block-title">Data and methods</h2>
+      <dl class="toolkit">
+        <dt>Datasets</dt><dd>NIH All of Us Research Program, NHANES, National Survey of Children's Health (NSCH), Health Behaviour in School-aged Children (HBSC), Korea Youth Risk Behavior Survey (KYRBS), KNHANES, pediatric electronic health records</dd>
+        <dt>Devices</dt><dd>Fitbit, GENEActiv, ActiGraph, Meta Quest</dd>
+        <dt>Measures</dt><dd>Physical activity, sleep, and circadian rhythm metrics; heart rate variability (RMSSD, SDNN, LF/HF); blood biomarkers</dd>
+        <dt>Study designs</dt><dd>Randomized controlled trials, preregistered secondary data analyses, cross-sectional and longitudinal epidemiology, systematic and scoping reviews following PRISMA</dd>
+        <dt>Tools</dt><dd>R, SPSS</dd>
+      </dl>
+    </div>
+  </div>
 </section>
 
-<section id="education" class="fade-in">
-    <span class="section-label">04</span>
-    <h2>Education</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-period">2025</div>
-            <div class="timeline-role">Ph.D. in Kinesiology</div>
-            <div class="timeline-org">Michigan State University</div>
-            <div class="timeline-detail">Dissertation: <a href="https://www.proquest.com/docview/3278169726" target="_blank"><em>Immersive Virtual Reality Exercise to Improve Depressive Symptoms in Young Adults with Autism Spectrum Disorder</em></a></div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-period">2022</div>
-            <div class="timeline-role">M.S. in Physical Education</div>
-            <div class="timeline-org">Korea University</div>
-            <div class="timeline-detail">Exercise Nutrition Biochemistry Lab</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-period">2020</div>
-            <div class="timeline-role">B.Ed. in Physical Education</div>
-            <div class="timeline-org">Korea University</div>
-        </div>
+<!-- ============ PUBLICATIONS ============ -->
+<section class="page" id="publications" aria-labelledby="pubs-title">
+  <div class="wrap">
+    <div class="page-head">
+      <h1 class="page-title" id="pubs-title" tabindex="-1">Publications</h1>
     </div>
+    <div class="pub-summary no-filter" id="pub-summary">
+      <p>14 peer-reviewed articles, including 2 in press; 9 as first, co-first, or sole author.</p>
+      <div class="filter" role="group" aria-label="Filter publications">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="first" aria-pressed="false">First author</button>
+      </div>
+      <p class="gs-line" data-gs-line hidden></p>
+    </div>
+
+    <div id="pub-list">
+      <div class="year-group">
+        <h2 class="year small">In press</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title">Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in young adults with autism spectrum disorder: A proof-of-principle study</h3>
+            <p class="pub-authors"><b>Lee Y.</b></p>
+            <p class="pub-meta"><span><cite>Research in Autism</cite></span><span class="press-tag">In press</span><span class="role-tag">Sole author</span></p>
+          </article>
+          <article class="pub" data-first>
+            <h3 class="pub-title">Physical activity and adolescent mental health across 45 countries: The moderating role of country-level perceived health</h3>
+            <p class="pub-authors"><b>Lee Y</b>, Ciaccioni S, Stodden D, Hauck J, Lima RR, Pesce C.</p>
+            <p class="pub-meta"><span><cite>Mental Health and Physical Activity</cite></span><span class="press-tag">In press</span><span class="role-tag">First author</span></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2026</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.1111/sltb.70134" target="_blank" rel="noopener">Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents</a></h3>
+            <p class="pub-authors"><b>Lee Y.</b></p>
+            <p class="pub-meta"><span><cite>Suicide and Life-Threatening Behavior</cite>, 56, e70134</span><span class="role-tag">Sole author</span><a class="doi" href="https://doi.org/10.1111/sltb.70134" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub">
+            <h3 class="pub-title"><a href="https://doi.org/10.3390/soc16040118" target="_blank" rel="noopener">Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport</a></h3>
+            <p class="pub-authors">Ciaccioni S, <b>Lee Y</b>, Capranica L, Urban A, May R, Massini S, Guidotti F.</p>
+            <p class="pub-meta"><span><cite>Societies</cite>, 16(4), 118</span><a class="doi" href="https://doi.org/10.3390/soc16040118" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2025</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1567978" target="_blank" rel="noopener">Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials</a></h3>
+            <p class="pub-authors"><b>Lee Y</b>, Guidotti F, Capranica L, Pesce C, Benzing V, Hauck J, Ciaccioni S.</p>
+            <p class="pub-meta"><span><cite>Frontiers in Psychology</cite>, 16, 1567978</span><span class="role-tag">First author</span><a class="doi" href="https://doi.org/10.3389/fpsyg.2025.1567978" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.1371/journal.pone.0301949" target="_blank" rel="noopener">Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review</a></h3>
+            <p class="pub-authors"><b>Lee Y</b>, Capranica L, Pesce C, Guidotti F, Benzing V, Hauck J, Ciaccioni S.</p>
+            <p class="pub-meta"><span><cite>PLoS ONE</cite>, 20(2), e0301949</span><span class="role-tag">First author</span><a class="doi" href="https://doi.org/10.1371/journal.pone.0301949" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.3389/fpubh.2025.1588706" target="_blank" rel="noopener">Analysis of sleep duration, energy intakes, physical activity, and metabolic syndrome based on the presence or absence of obesity and hypertension in working Korean adults</a></h3>
+            <p class="pub-authors">Sung E*, <b>Lee Y*</b>, Lee S, Park J. *Co-first authors.</p>
+            <p class="pub-meta"><span><cite>Frontiers in Public Health</cite>, 13, 1588706</span><span class="role-tag">Co-first author</span><a class="doi" href="https://doi.org/10.3389/fpubh.2025.1588706" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub">
+            <h3 class="pub-title"><a href="https://doi.org/10.3389/fpsyg.2025.1587672" target="_blank" rel="noopener">Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners</a></h3>
+            <p class="pub-authors">Ciaccioni S, <b>Lee Y</b>, Guidotti F, Stankovic N, Pocecco E, Izzicupo P, Capranica L.</p>
+            <p class="pub-meta"><span><cite>Frontiers in Psychology</cite>, 16, 1587672</span><a class="doi" href="https://doi.org/10.3389/fpsyg.2025.1587672" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub">
+            <h3 class="pub-title"><a href="https://doi.org/10.20463/pan.2025.0003" target="_blank" rel="noopener">The role of late eating in circadian disruption and depression: A review of emotional health impacts</a></h3>
+            <p class="pub-authors">Kim Y, Kim E, <b>Lee Y</b>, Park J.</p>
+            <p class="pub-meta"><span><cite>Physical Activity and Nutrition</cite>, 29(1), 18–24</span><a class="doi" href="https://doi.org/10.20463/pan.2025.0003" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2024</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.3389/fpubh.2024.1396598" target="_blank" rel="noopener">Sugary snack restriction enhances body composition improvement in overweight women engaging in non-face-to-face walking during COVID-19</a></h3>
+            <p class="pub-authors"><b>Lee Y</b>, Kim N, Go S, Kim J, Park J.</p>
+            <p class="pub-meta"><span><cite>Frontiers in Public Health</cite>, 12, 1396598</span><span class="role-tag">First author</span><a class="doi" href="https://doi.org/10.3389/fpubh.2024.1396598" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2023</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.5334/paah.305" target="_blank" rel="noopener">Sex-specific physical activity levels and energy intake in US young adults with depression: National Health and Nutrition Examination Survey 2017–2020 pre-pandemic data</a></h3>
+            <p class="pub-authors"><b>Lee Y</b>, Hauck J, Brooks D.</p>
+            <p class="pub-meta"><span><cite>Physical Activity and Health</cite>, 7(1), 332–344</span><span class="role-tag">First author</span><a class="doi" href="https://doi.org/10.5334/paah.305" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2022</h2>
+        <div>
+          <article class="pub" data-first>
+            <h3 class="pub-title"><a href="https://doi.org/10.1186/s12889-022-12852-3" target="_blank" rel="noopener">Household-specific physical activity levels and energy intakes according to the presence of metabolic syndrome in Korean young adults: Korean National Health and Nutrition Examination Survey 2016–2018</a></h3>
+            <p class="pub-authors"><b>Lee Y</b>, Park Y, Lee J, Sung E, Lee H, Park J.</p>
+            <p class="pub-meta"><span><cite>BMC Public Health</cite>, 22, 476</span><span class="role-tag">First author</span><a class="doi" href="https://doi.org/10.1186/s12889-022-12852-3" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+          <article class="pub">
+            <h3 class="pub-title"><a href="https://doi.org/10.20463/pan.2022.0011" target="_blank" rel="noopener">Analysis of energy intakes, physical activities and metabolic syndrome according to the income level in Korean elderly people: Korean National Health and Nutrition Examination Survey 2016–2018</a></h3>
+            <p class="pub-authors">Sung E, Lee S, <b>Lee Y</b>, Lee S, Park J.</p>
+            <p class="pub-meta"><span><cite>Physical Activity and Nutrition</cite>, 26(2), 28–35</span><a class="doi" href="https://doi.org/10.20463/pan.2022.0011" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <h2 class="year">2021</h2>
+        <div>
+          <article class="pub">
+            <h3 class="pub-title"><a href="https://doi.org/10.20463/pan.2021.0020" target="_blank" rel="noopener">Comparative analysis of energy intake and physical activity according to household type and presence of metabolic syndrome in middle-aged men based on data from the 7th Korea National Health and Nutrition Examination Survey (KNHANES) (2016–2018)</a></h3>
+            <p class="pub-authors">Park Y, Lee J, <b>Lee Y</b>, Park J.</p>
+            <p class="pub-meta"><span><cite>Physical Activity and Nutrition</cite>, 25(4), 1–9</span><a class="doi" href="https://doi.org/10.20463/pan.2021.0020" target="_blank" rel="noopener">DOI</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
+    <p class="pub-foot">Citation counts update automatically from my <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a>. For preprints and manuscripts under review, see Google Scholar or my <a href="assets/CV_YoungjunLee.pdf" target="_blank" rel="noopener">CV</a>.</p>
+  </div>
 </section>
 
-<section id="grants" class="fade-in">
-    <span class="section-label">05</span>
-    <h2>Grants &amp; Awards</h2>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin-bottom:1rem;">Research Funding</h3>
-    <ul class="grants-list">
-        <li class="grant-item"><div><div class="grant-name">Summer Research Fellowship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$7,000</div></li>
-        <li class="grant-item"><div><div class="grant-name">Future of Work Graduate Student Funding</div><div class="grant-meta">Michigan State University, PI, 2025</div></div><div class="grant-amount">$3,000</div></li>
-        <li class="grant-item"><div><div class="grant-name">Hard Cost Practicum/Dissertation Funding</div><div class="grant-meta">Michigan State University, PI, 2024</div></div><div class="grant-amount">$1,763</div></li>
-        <li class="grant-item"><div><div class="grant-name">Summer Research Fellowship</div><div class="grant-meta">Michigan State University, 2024</div></div><div class="grant-amount">$7,000</div></li>
-        <li class="grant-item"><div><div class="grant-name">Summer Research Development Fellowship</div><div class="grant-meta">Michigan State University, 2023</div></div><div class="grant-amount">$7,000</div></li>
-        <li class="grant-item"><div><div class="grant-name">Summer Research Development Fellowship</div><div class="grant-meta">Michigan State University, 2022</div></div><div class="grant-amount">$6,000</div></li>
-    </ul>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:2rem 0 1rem;">Scholarships &amp; Awards</h3>
-    <ul class="grants-list">
-        <li class="grant-item"><div><div class="grant-name">KIN Endowed Fellowship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,500</div></li>
-        <li class="grant-item"><div><div class="grant-name">Inclusive Teaching Grant</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,400</div></li>
-        <li class="grant-item"><div><div class="grant-name">Dr. Kenneth Hardin Graduate Student Endowed Scholarship</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,500</div></li>
-        <li class="grant-item"><div><div class="grant-name">David Cho Scholarship Award</div><div class="grant-meta">Michigan State University, 2025</div></div><div class="grant-amount">$1,000</div></li>
-        <li class="grant-item"><div><div class="grant-name">Henry J. and Betty Montoye Endowed Scholarship</div><div class="grant-meta">Michigan State University, 2024</div></div><div class="grant-amount">$2,325</div></li>
-    </ul>
+<!-- ============ TEACHING ============ -->
+<section class="page" id="teaching" aria-labelledby="teaching-title">
+  <div class="wrap">
+    <div class="page-head">
+      <h1 class="page-title" id="teaching-title" tabindex="-1">Teaching</h1>
+      <p class="page-intro">From 2022 to 2025 I taught undergraduate kinesiology at Michigan State University, serving as instructor of record for ten activity and lecture courses and as teaching assistant for the department's internship course.</p>
+    </div>
+    <div class="two-col">
+      <div>
+        <h2 class="subhead">Instructor of record, Michigan State University</h2>
+        <ul class="plain-list">
+          <li><span class="course-code">KIN 173</span> Foundations of Kinesiology</li>
+          <li><span class="course-code">KIN 121</span> The Healthy Lifestyle</li>
+          <li><span class="course-code">KIN 300C</span> Soccer Coaching</li>
+          <li><span class="course-code">KIN 116B</span> Golf</li>
+          <li><span class="course-code">KIN 108R</span> Indoor Soccer</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="subhead spacer-head" aria-hidden="true">Courses, continued</h2>
+        <ul class="plain-list">
+          <li><span class="course-code">KIN 107E</span> Tennis</li>
+          <li><span class="course-code">KIN 103T</span> Distance Running</li>
+          <li><span class="course-code">KIN 103G</span> Power Walking</li>
+          <li><span class="course-code">KIN 103D</span> General Conditioning</li>
+          <li><span class="course-code">KIN 103A</span> Aerobic Exercise</li>
+        </ul>
+      </div>
+    </div>
+    <div class="block two-col">
+      <div>
+        <h2 class="subhead">Teaching assistant, Michigan State University</h2>
+        <ul class="plain-list">
+          <li><span class="course-code">KIN 492</span> Internship in Kinesiology</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="subhead">Teaching grant</h2>
+        <ul class="plain-list">
+          <li class="has-meta"><span>Inclusive Teaching Grant, Michigan State University</span> <span class="row-meta">2025, $1,400</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="block">
+      <h2 class="block-title">Mentoring</h2>
+      <p class="callout-line">I mentored 18 undergraduate students through a research journal club in the Physical Activity in Youth Disabilities Lab at Michigan State University, introducing them to reading, critiquing, and presenting research on physical activity and disability.</p>
+    </div>
+  </div>
 </section>
 
-<section id="teaching" class="fade-in">
-    <span class="section-label">06</span>
-    <h2>Teaching</h2>
-    <p style="font-size:0.95rem;color:var(--muted);margin-bottom:1.2rem;">Graduate Teaching Assistant, Michigan State University, Department of Kinesiology</p>
-    <div class="teaching-grid">
-        <div class="teaching-chip"><span class="code">KIN 492</span> Internship in Kinesiology</div>
-        <div class="teaching-chip"><span class="code">KIN 300C</span> Soccer Coaching</div>
-        <div class="teaching-chip"><span class="code">KIN 173</span> Foundations of Kinesiology</div>
-        <div class="teaching-chip"><span class="code">KIN 121</span> The Healthy Lifestyle</div>
-        <div class="teaching-chip"><span class="code">KIN 116B</span> Golf</div>
-        <div class="teaching-chip"><span class="code">KIN 108R</span> Indoor Soccer</div>
-        <div class="teaching-chip"><span class="code">KIN 107E</span> Tennis</div>
-        <div class="teaching-chip"><span class="code">KIN 103T</span> Distance Running</div>
-        <div class="teaching-chip"><span class="code">KIN 103G</span> Power Walking</div>
-        <div class="teaching-chip"><span class="code">KIN 103D</span> General Conditioning</div>
-        <div class="teaching-chip"><span class="code">KIN 103A</span> Aerobic Exercise</div>
+<!-- ============ SERVICE ============ -->
+<section class="page" id="service" aria-labelledby="service-title">
+  <div class="wrap">
+    <div class="page-head">
+      <h1 class="page-title" id="service-title" tabindex="-1">Service</h1>
     </div>
+    <h2 class="subhead">Journal peer review</h2>
+    <div class="two-col">
+      <ul class="plain-list">
+        <li class="has-meta"><span>American Journal of Preventive Medicine</span> <span class="row-meta">2026 –</span></li>
+        <li class="has-meta"><span>Games for Health Journal</span> <span class="row-meta">2026 –</span></li>
+        <li class="has-meta"><span>BMC Sports Science</span> <span class="row-meta">2026 –</span></li>
+        <li class="has-meta"><span>Sports Sciences for Health</span> <span class="row-meta">2026 –</span></li>
+        <li class="has-meta"><span>Frontiers in Psychology</span> <span class="row-meta">2026 –</span></li>
+        <li class="has-meta"><span>Journal of Applied Research in Intellectual Disabilities</span> <span class="row-meta">2025 –</span></li>
+      </ul>
+      <ul class="plain-list">
+        <li class="has-meta"><span>Mental Health and Physical Activity</span> <span class="row-meta">2025 –</span></li>
+        <li class="has-meta"><span>BMJ Open</span> <span class="row-meta">2025 –</span></li>
+        <li class="has-meta"><span>Applied Psychology: Health and Well-Being</span> <span class="row-meta">2025 –</span></li>
+        <li class="has-meta"><span>Frontiers in Psychiatry</span> <span class="row-meta">2025 –</span></li>
+        <li class="has-meta"><span>Journal of Physical Activity and Health</span> <span class="row-meta">2024 –</span></li>
+        <li class="has-meta"><span>Journal for Advancing Sport Psychology in Research</span> <span class="row-meta">2024 –</span></li>
+      </ul>
+    </div>
+    <div class="block two-col">
+      <div>
+        <h2 class="subhead">Professional memberships</h2>
+        <ul class="plain-list">
+          <li class="has-meta"><span>Associated Professional Sleep Societies</span> <span class="row-meta">2026 –</span></li>
+          <li class="has-meta"><span>North American Federation of Adapted Physical Activity</span> <span class="row-meta">2024 –</span></li>
+          <li class="has-meta"><span>North American Society for the Psychology of Sport and Physical Activity</span> <span class="row-meta">2023 –</span></li>
+          <li class="has-meta"><span>Korean Society of Exercise Nutrition</span> <span class="row-meta">2021 –</span></li>
+          <li class="has-meta"><span>Korean Alliance for Health, Physical Education, Recreation, and Dance</span> <span class="row-meta">2021 –</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="subhead">Leadership</h2>
+        <ul class="plain-list">
+          <li class="has-meta"><span>Student Ambassador, NASPSPA Annual Conference, Toronto</span> <span class="row-meta">2023</span></li>
+          <li class="has-meta"><span>Editorial Director, Korean Society of Exercise Nutrition, Seoul</span> <span class="row-meta">2022</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="service" class="fade-in">
-    <span class="section-label">07</span>
-    <h2>Professional Service</h2>
-    <div class="service-group">
-        <h3>Journal Peer Review</h3>
-        <div class="service-item"><span class="year">2026-</span> BMC Sports Science</div>
-        <div class="service-item"><span class="year">2026-</span> Sports Sciences for Health</div>
-        <div class="service-item"><span class="year">2026-</span> Frontiers in Psychology</div>
-        <div class="service-item"><span class="year">2025-</span> Journal of Applied Research in Intellectual Disabilities</div>
-        <div class="service-item"><span class="year">2025-</span> Mental Health and Physical Activity</div>
-        <div class="service-item"><span class="year">2025-</span> BMJ Open</div>
-        <div class="service-item"><span class="year">2025-</span> Applied Psychology: Health and Well-Being</div>
-        <div class="service-item"><span class="year">2025-</span> Frontiers in Psychiatry</div>
-        <div class="service-item"><span class="year">2024-</span> Journal of Physical Activity and Health</div>
-        <div class="service-item"><span class="year">2024-</span> Journal for Advancing Sport Psychology In Research</div>
-    </div>
-    <div class="service-group">
-        <h3>Professional Memberships</h3>
-        <div class="service-item"><span class="year">2024-</span> North American Federation of Adapted Physical Activity</div>
-        <div class="service-item"><span class="year">2023-</span> North American Society for the Psychology of Sport and Physical Activity</div>
-        <div class="service-item"><span class="year">2021-</span> Korean Society Exercise Nutrition</div>
-        <div class="service-item"><span class="year">2021-</span> Korean Alliance for Health, Physical Education, Recreation, and Dance</div>
-    </div>
-</section>
+</main>
 
-<section id="media" class="fade-in">
-    <span class="section-label">08</span>
-    <h2>Media &amp; Press</h2>
-    <div class="media-item">
-        <span class="date">Oct 21, 2025</span>
-        <p style="margin-top:0.3rem;">
-            <strong>WKAR Public Media</strong> -
-            <a href="https://www.wkar.org/wkar-news/2025-10-21/watch-from-the-ring-to-the-msu-classroom-how-vr-technology-is-helping-with-autism-spectrum-disorder" target="_blank">
-                From the ring to the MSU classroom: How VR technology is helping with autism spectrum disorder
-            </a>
-        </p>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="fname">Youngjun Lee, Ph.D.</p>
+        <p>Postdoctoral Research Fellow, Children's Hospital of Philadelphia<br>Affiliated Postdoctoral Researcher, Annenberg Extended Reality Lab, University of Pennsylvania</p>
+        <p><a href="mailto:leey14@chop.edu">leey14@chop.edu</a></p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="assets/CV_YoungjunLee.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="https://orcid.org/0009-0001-3915-1389" target="_blank" rel="noopener">ORCID</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="https://www.linkedin.com/in/youngjun-lee-3b960024a/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="#service">Service</a></li>
+      </ul>
     </div>
-</section>
-
-<section id="contact" class="fade-in">
-    <span class="section-label">09</span>
-    <h2>Contact</h2>
-    <div class="contact-grid">
-        <div class="contact-card">
-            <div class="label">Email</div>
-            <div class="value"><a href="mailto:leey14@chop.edu">leey14@chop.edu</a></div>
-        </div>
-        <div class="contact-card">
-            <div class="label">Phone</div>
-            <div class="value">+1 (517) 220-8178</div>
-        </div>
-        <div class="contact-card">
-            <div class="label">Office</div>
-            <div class="value">Children's Hospital of Philadelphia<br>Department of Pediatrics<br>Philadelphia, PA</div>
-        </div>
-        <div class="contact-card">
-            <div class="label">Profiles</div>
-            <div class="value">
-                <a href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank">Google Scholar</a> ·
-                <a href="https://orcid.org/0009-0001-3915-1389" target="_blank">ORCID</a>
-            </div>
-        </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Youngjun Lee</span>
+      <span>Last updated October 2026</span>
     </div>
-</section>
-
-<footer>
-    &copy; 2026 Youngjun Lee. Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>.
+  </div>
 </footer>
 
 <script>
-    var nav = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 20) { nav.classList.add('scrolled'); }
-        else { nav.classList.remove('scrolled'); }
+(function () {
+  var header = document.querySelector('.site-header');
+  var nav = document.getElementById('site-nav');
+  var menuBtn = document.querySelector('.menu-btn');
+
+  function onScroll() {
+    if (window.scrollY > 8) { header.classList.add('is-scrolled'); }
+    else { header.classList.remove('is-scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function closeMenu() {
+    nav.classList.remove('is-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* Page routing. Every page stays visible until this finishes,
+     so if anything here fails the site still shows all content. */
+  var pages = Array.prototype.slice.call(document.querySelectorAll('main > .page'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-nav a[href^="#"]'));
+  var names = { home: '', about: 'About', research: 'Research', publications: 'Publications', teaching: 'Teaching', service: 'Service' };
+
+  function resolve(hash) {
+    var id = (hash || '').replace(/^#/, '');
+    var el = id ? document.getElementById(id) : null;
+    var page = null;
+    while (el && !page) {
+      if (el.classList && el.classList.contains('page')) { page = el; }
+      else { el = el.parentNode; }
+    }
+    if (!page) { return { page: 'home', target: null, key: 'home' }; }
+    return { page: page.id, target: page.id === id ? null : document.getElementById(id), key: id };
+  }
+
+  function show(hash, moveFocus) {
+    var r = resolve(hash);
+    pages.forEach(function (p) {
+      if (p.id === r.page) { p.classList.add('is-active'); }
+      else { p.classList.remove('is-active'); }
     });
-    document.querySelectorAll('.nav-links a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.remove('open');
+    navLinks.forEach(function (a) {
+      var key = a.getAttribute('href').slice(1);
+      if (key === r.key || (key === r.page && r.key !== 'contact')) { a.setAttribute('aria-current', 'page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+    document.title = names[r.page] ? names[r.page] + ' | Youngjun Lee' : 'Youngjun Lee, Ph.D. | Autism, Depression, Physical Activity, Wearables, VR/XR';
+    if (r.target) { r.target.scrollIntoView(); } else { window.scrollTo(0, 0); }
+    if (moveFocus) {
+      var h = document.querySelector('#' + r.page + ' h1');
+      if (h && h.focus) { h.focus({ preventScroll: true }); }
+    }
+  }
+
+  window.addEventListener('hashchange', function () {
+    closeMenu();
+    show(location.hash, true);
+  });
+  show(location.hash, false);
+  document.documentElement.classList.add('routed');
+
+  /* Publication filter */
+  var summary = document.getElementById('pub-summary');
+  var list = document.getElementById('pub-list');
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-filter]'));
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var firstOnly = btn.getAttribute('data-filter') === 'first';
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      Array.prototype.forEach.call(list.querySelectorAll('.year-group'), function (group) {
+        var visible = 0;
+        Array.prototype.forEach.call(group.querySelectorAll('.pub'), function (pub) {
+          var keep = !firstOnly || pub.hasAttribute('data-first');
+          pub.hidden = !keep;
+          if (keep) { visible++; }
         });
+        group.hidden = visible === 0;
+      });
     });
+  });
+  summary.classList.remove('no-filter');
+})();
 </script>
 
+<script>
+/* Google Scholar sync.
+   A GitHub Action (.github/workflows/google-scholar.yml) refreshes scholar.json
+   on the google-scholar-data branch every day. If the file is missing or
+   unreachable, the page simply keeps its static content. */
+(function () {
+  var GS_DATA = 'https://raw.githubusercontent.com/leeyou72/leeyou72.github.io/google-scholar-data/scholar.json';
+  var GS_PROFILE = 'https://scholar.google.com/citations?hl=en&user=6WHUjNYAAAAJ';
+  if (!window.fetch) { return; }
+
+  function norm(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+  function num(n) { n = Number(n); return isFinite(n) ? n.toLocaleString('en-US') : '0'; }
+
+  fetch(GS_DATA, { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) { throw new Error('no data'); } return r.json(); })
+    .then(function (gs) {
+      if (!gs || typeof gs.citations !== 'number') { return; }
+      var when = '';
+      if (gs.updated) {
+        var d = new Date(gs.updated + 'T12:00:00');
+        if (!isNaN(d)) { when = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+      }
+      var line = '<b>' + num(gs.citations) + '</b> citations, h-index <b>' + num(gs.h_index) +
+                 '</b>, i10-index <b>' + num(gs.i10_index) + '</b> on Google Scholar' +
+                 (when ? ', updated ' + when + '.' : '.');
+      Array.prototype.forEach.call(document.querySelectorAll('[data-gs-line]'), function (el) {
+        el.innerHTML = line;
+        el.hidden = false;
+      });
+
+      /* Same title, or one is a truncated version of the other (Scholar sometimes cuts long titles). */
+      function sameTitle(a, b) {
+        if (!a || !b) { return false; }
+        if (a === b) { return true; }
+        var s = a.length < b.length ? a : b, l = a.length < b.length ? b : a;
+        return s.length >= 40 && l.indexOf(s) === 0;
+      }
+      var entries = (gs.publications || []).map(function (p) { return { key: norm(p.title), p: p, used: false }; });
+      Array.prototype.forEach.call(document.querySelectorAll('#pub-list .pub'), function (pub) {
+        var key = norm(pub.querySelector('.pub-title').textContent);
+        var hit = null;
+        entries.forEach(function (e) {
+          if (!hit && !e.used && sameTitle(e.key, key)) { hit = e.p; e.used = true; }
+        });
+        if (hit && Number(hit.cited_by) > 0) {
+          var a = document.createElement('a');
+          a.className = 'cited';
+          a.href = /^https:\/\/scholar\.google\.com\//.test(hit.url || '') ? hit.url : GS_PROFILE;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = 'Cited by ' + num(hit.cited_by);
+          pub.querySelector('.pub-meta').appendChild(a);
+        }
+      });
+    })
+    .catch(function () { /* keep static content */ });
+})();
+</script>
 </body>
 </html>

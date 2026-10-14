@@ -1,0 +1,107 @@
+# Google Scholar sync for leeyou72.github.io
+#
+# Save this file in the repository at:  .github/workflows/google-scholar.yml
+#
+# Once a day it reads the public Google Scholar profile, writes the totals
+# (citations, h-index, i10-index) and per-paper "cited by" counts to
+# scholar.json, and stores that file on a separate branch named
+# "google-scholar-data". The homepage reads it from there, so the main
+# branch and the site files are never touched.
+#
+# Google Scholar has no official API, so this uses the open-source
+# "scholarly" library. If Google refuses a request on a given day, the run
+# ends with a warning and the site keeps showing the last good numbers.
+
+name: Google Scholar sync
+
+on:
+  schedule:
+    - cron: "23 10 * * *"   # every day at 10:23 UTC (6:23 am in Philadelphia)
+  workflow_dispatch:         # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install scholarly
+        # bibtexparser 2.x removed a module scholarly still imports, so stay on 1.x
+        run: pip install --quiet scholarly "bibtexparser<2"
+
+      - name: Read the Google Scholar profile
+        id: fetch
+        env:
+          SCHOLAR_ID: 6WHUjNYAAAAJ
+        run: |
+          python - <<'PY'
+          import datetime, json, os, sys, time
+          from scholarly import scholarly
+
+          sid = os.environ["SCHOLAR_ID"]
+          author = None
+          for attempt in range(3):
+              try:
+                  author = scholarly.search_author_id(sid)
+                  author = scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+                  break
+              except Exception as err:
+                  print(f"Attempt {attempt + 1} failed: {err}")
+                  time.sleep(30 * (attempt + 1))
+
+          if not author or not author.get("publications"):
+              print("::warning::Google Scholar did not respond; keeping the previous data.")
+              sys.exit(0)
+
+          pubs = []
+          for p in author["publications"]:
+              bib = p.get("bib", {})
+              pid = p.get("author_pub_id", "")
+              pubs.append({
+                  "title": bib.get("title", ""),
+                  "year": str(bib.get("pub_year", "")),
+                  "venue": bib.get("citation", ""),
+                  "cited_by": int(p.get("num_citations", 0) or 0),
+                  "url": (f"https://scholar.google.com/citations?view_op=view_citation&hl=en&user={sid}"
+                          f"&citation_for_view={pid}") if pid else "",
+              })
+
+          data = {
+              "updated": datetime.date.today().isoformat(),
+              "profile": f"https://scholar.google.com/citations?hl=en&user={sid}",
+              "citations": int(author.get("citedby", 0) or 0),
+              "citations_5y": int(author.get("citedby5y", 0) or 0),
+              "h_index": int(author.get("hindex", 0) or 0),
+              "h_index_5y": int(author.get("hindex5y", 0) or 0),
+              "i10_index": int(author.get("i10index", 0) or 0),
+              "i10_index_5y": int(author.get("i10index5y", 0) or 0),
+              "cites_per_year": {str(k): int(v) for k, v in (author.get("cites_per_year") or {}).items()},
+              "publications": sorted(pubs, key=lambda x: (x["year"], x["title"]), reverse=True),
+          }
+          os.makedirs("out", exist_ok=True)
+          with open("out/scholar.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=1)
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("ok=true\n")
+          print(f"Saved {len(pubs)} publications, {data['citations']} citations, h-index {data['h_index']}.")
+          PY
+
+      - name: Publish to the google-scholar-data branch
+        if: steps.fetch.outputs.ok == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd out
+          git init --quiet
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --quiet -b google-scholar-data
+          git add scholar.json
+          git commit --quiet -m "Update Google Scholar data"
+          git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" google-scholar-data
