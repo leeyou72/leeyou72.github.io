@@ -221,8 +221,98 @@ main > .page[id] { scroll-margin-top: 68px; }
 .footer-links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; align-content: start; font-size: 0.95rem; }
 .footer-base { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; color: #93A09C; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
+/* Research map (interactive network of published work) */
+.rm { --rm-life: #A0621A; --rm-mental: #2A5D8F; --rm-dis: #17656F; --rm-tech: #6B4FA0; --rm-tension: #B5432E; }
+.rm-intro { color: var(--ink-2); max-width: 66ch; }
+.rm-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin-top: 18px; font-size: 0.88rem; color: var(--muted); }
+.rm-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.rm-legend svg { flex: none; }
+.rm-stage { position: relative; left: 50%; transform: translateX(-50%); width: min(1360px, calc(100vw - 2 * var(--gutter))); margin-top: 16px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1240px) { .rm-stage { grid-template-columns: minmax(0, 1fr) 330px; } }
+.rm-canvas { background: #fff; border: 1px solid var(--rule); border-radius: 10px; overflow-x: auto; min-width: 0; }
+#rm-net { display: block; width: 100%; min-width: 840px; height: auto; user-select: none; -webkit-user-select: none; }
+.rm-swipe { display: none; margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
+@media (max-width: 900px) { .rm-swipe { display: block; } }
+.rm-panel { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; align-self: start; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+@media (min-width: 1240px) { .rm-panel { position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow: auto; } }
+.rm-panel h3 { font-size: 1.2rem; line-height: 1.3; font-weight: 600; }
+.rm-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.rm-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.rm-src { font-size: 0.9rem; color: var(--muted); }
+.rm-src cite { font-style: italic; }
+.rm-kv { display: flex; flex-direction: column; gap: 4px; }
+.rm-kv > span { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.rm-kv p, .rm-kv li { font-size: 0.93rem; line-height: 1.55; color: var(--ink-2); }
+.rm-kv ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.rm-kv ul.rm-plain { list-style: none; padding: 0; gap: 8px; }
+.rm-role p { color: var(--ink); }
+.rm-hint { font-size: 0.88rem; color: var(--muted); }
+.rm-chip { font: 600 0.78rem var(--sans); font-variant-numeric: tabular-nums; min-width: 1.9em; border: 1.5px solid var(--c, var(--muted)); color: var(--c, var(--ink-2)); background: #fff; border-radius: 5px; padding: 0 5px; line-height: 1.55; cursor: pointer; vertical-align: 1px; }
+.rm-chip:hover { background: var(--c, var(--muted)); color: #fff; }
+.rm-chip.rm-t { --c: var(--rm-tension); }
+.rm-cchip { font: 600 0.86rem var(--sans); border: 1.5px solid var(--ink); color: var(--ink); background: #fff; border-radius: 6px; padding: 1px 9px; cursor: pointer; }
+.rm-cchip:hover { background: var(--ink); color: var(--paper); }
+.rm-vs { display: flex; flex-direction: column; gap: 8px; }
+.rm-vs div { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 10px; font-size: 0.93rem; color: var(--ink-2); }
+.rm-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.rm-tcard { border-top: 2px solid var(--rm-tension); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.rm-tcard .rm-neq { font-size: 0.85rem; font-weight: 600; color: var(--rm-tension); font-variant-numeric: tabular-nums; }
+.rm-tcard h4 { font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; font-weight: 600; margin: 0; }
+.rm-tcard p { font-size: 0.93rem; color: var(--ink-2); }
+.rm-link { align-self: flex-start; font: 500 0.9rem var(--sans); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.rm-link:hover { color: var(--accent-ink); }
+#rm-net text { font-family: var(--sans); }
+#rm-net .rm-colh { font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; }
+#rm-net .rm-yr { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.rm-sep { stroke: #EEF1EF; stroke-width: 1; }
+.rm-vsep { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 5; }
+.rm-e path { fill: none; }
+.rm-sup path { stroke: var(--ink-2); stroke-opacity: 0.14; stroke-width: 1.2; }
+.rm-sup.hi path { stroke: var(--c); stroke-opacity: 0.85; stroke-width: 2.2; }
+.rm-lin path { stroke: var(--ink-2); stroke-opacity: 0.6; stroke-width: 1.7; marker-end: url(#rm-ar); }
+.rm-lin.rm-undir path { marker-end: none; stroke-dasharray: 1 4; stroke-linecap: round; stroke-width: 2.4; }
+.rm-lin.hi path { stroke: var(--ink); stroke-opacity: 1; stroke-width: 2.6; marker-end: url(#rm-arH); }
+.rm-lin.rm-undir.hi path { marker-end: none; }
+.rm-ten path { stroke: var(--rm-tension); stroke-dasharray: 6 4; stroke-width: 2.2; }
+.rm-ten.hi path { stroke-width: 3; }
+.rm-tg { cursor: pointer; outline: none; }
+.rm-tg circle { fill: #fff; stroke: var(--rm-tension); stroke-width: 1.8; }
+#rm-net .rm-tg text { fill: var(--rm-tension); font-size: 14px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+.rm-tg:focus-visible circle { stroke-width: 3.2; }
+.rm-k path { stroke: var(--ink); stroke-opacity: 0.28; stroke-width: 2; }
+.rm-k.hi path { stroke-opacity: 0.85; stroke-width: 2.6; }
+#rm-ar path { fill: var(--ink-2); }
+#rm-arH path { fill: var(--ink); }
+.rm-node { cursor: pointer; outline: none; }
+.rm-node .focus { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; }
+.rm-node:focus-visible .focus { opacity: 1; }
+.rm-p .core { stroke-width: 2.6; }
+.rm-p .ring2 { fill: none; stroke-width: 2.2; stroke-dasharray: 3 3; }
+.rm-p .halo { opacity: 0; }
+.rm-p.sel .halo { opacity: 0.2; }
+.rm-p.sel .core { stroke-width: 4; }
+#rm-net .rm-p .pid { font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+#rm-net .rm-lab { font-size: 13px; font-weight: 500; fill: var(--ink-2); paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+#rm-net .rm-p.hi .rm-lab { fill: var(--ink); font-weight: 600; }
+.rm-cbox { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+.rm-c.hi .rm-cbox, .rm-c.sel .rm-cbox { stroke-width: 3; }
+#rm-net .rm-c .ct { font-family: var(--serif); font-size: 15.5px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
+#rm-net .rm-c .cs { font-size: 12px; fill: var(--muted); text-anchor: middle; }
+.rm-thbox { fill: var(--night); }
+#rm-net .rm-th .t0 { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; fill: #fff; opacity: 0.7; text-anchor: middle; }
+#rm-net .rm-th .t1 { font-family: var(--serif); font-size: 21px; font-weight: 500; fill: #fff; text-anchor: middle; }
+#rm-net .rm-th .t2 { font-size: 13px; fill: #fff; opacity: 0.85; text-anchor: middle; }
+#rm-net .rm-el { display: none; font-size: 12px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 6px; stroke-linejoin: round; pointer-events: none; }
+#rm-net .rm-el.t { fill: var(--rm-tension); }
+#rm-net .rm-el.hi { display: block; }
+.rm-e.dim, .rm-tg.dim { opacity: 0.13; }
+.rm-node.dim { opacity: 0.28; }
+.rm-e, .rm-node, .rm-tg { transition: opacity .16s ease; }
+@media (prefers-reduced-motion: reduce) { .rm-e, .rm-node, .rm-tg { transition: none; } }
+
 /* Responsive */
 @media (max-width: 900px) {
+  .rm-trio { grid-template-columns: 1fr; }
   .menu-btn { display: inline-flex; }
   .site-nav { position: absolute; left: 0; right: 0; top: 68px; background: var(--paper); border-bottom: 1px solid var(--rule); display: none; }
   .site-nav.is-open { display: block; }
@@ -346,6 +436,7 @@ main > .page[id] { scroll-margin-top: 68px; }
         </div>
       </div>
       <a class="more-link" href="#research">Read about my research</a>
+      <a class="more-link" href="#research-map" style="margin-left:24px">See how my published work connects</a>
     </div>
 
     <div class="block">
@@ -460,6 +551,10 @@ main > .page[id] { scroll-margin-top: 68px; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
         Google Scholar profile
       </a>
+      <a class="btn" href="#research-map">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><circle cx="19" cy="15" r="2.5"/><path d="M6.4 15.9L10.6 8.1M14.3 7.2l3.2 5.8M7.4 17.5l9.1-1.8"/></svg>
+        How my papers connect
+      </a>
       <p class="gs-line" data-gs-line hidden></p>
     </div>
 
@@ -507,6 +602,30 @@ main > .page[id] { scroll-margin-top: 68px; }
           </ul>
         </div>
       </article>
+    </div>
+
+    <div class="block rule-top rm" id="research-map">
+      <h2 class="block-title">How my published work fits together</h2>
+      <p class="rm-intro">My fifteen published and in-press papers, read as one argument. Papers build upward from 2021 to 2026, each supports one or more of five claims, and the claims meet in a single thesis. Select a paper, a claim, or a <span style="color:#B5432E;font-weight:600">≠</span> mark to trace its connections.</p>
+      <div class="rm-legend" aria-hidden="true">
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="#38423F"/></svg>First, co-first, or sole author</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Co-author</span>
+        <span><svg width="20" height="20"><circle cx="10" cy="10" r="5" fill="#38423F"/><circle cx="10" cy="10" r="8.5" fill="none" stroke="#5D6864" stroke-width="1.6" stroke-dasharray="2 2"/></svg>Bridges two lines of work</span>
+        <span><svg width="30" height="10"><line x1="1" y1="5" x2="22" y2="5" stroke="#38423F" stroke-width="1.8"/><path d="M21 1 L29 5 L21 9 z" fill="#38423F"/></svg>Led to the next paper</span>
+        <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#38423F" stroke-width="2.4" stroke-dasharray="1 4" stroke-linecap="round"/></svg>Companion paper</span>
+        <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#5D6864" stroke-width="1.4" opacity=".6"/></svg>Supports a claim</span>
+        <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#B5432E" stroke-width="2.2" stroke-dasharray="6 4"/></svg>Findings disagree</span>
+        <span>Numbers follow publication order.</span>
+      </div>
+      <div class="rm-stage">
+        <div>
+          <div class="rm-canvas"><svg id="rm-net" viewBox="0 0 1100 1012" role="img" aria-label="Network of 15 papers, five claims, and one thesis"></svg></div>
+          <p class="rm-swipe">Swipe sideways to see the whole map.</p>
+        </div>
+        <aside class="rm-panel" id="rm-panel" aria-live="polite"></aside>
+      </div>
+      <h3 class="subhead later">Where the findings disagree</h3>
+      <div class="rm-trio" id="rm-tensions"></div>
     </div>
 
     <div class="block rule-top">
@@ -908,6 +1027,374 @@ main > .page[id] { scroll-margin-top: 68px; }
     });
   });
   summary.classList.remove('no-filter');
+})();
+</script>
+
+<script>
+/* Research map: an interactive network of the published papers.
+   Layout is fixed (viewBox units); papers rise from 2021 (bottom) to 2026 (top),
+   feed five claims, and the claims feed one thesis. */
+(function () {
+  var svg = document.getElementById('rm-net');
+  var panel = document.getElementById('rm-panel');
+  if (!svg || !panel) { return; }
+  var NS = 'http://www.w3.org/2000/svg';
+  var SC = { life: 'var(--rm-life)', mental: 'var(--rm-mental)', dis: 'var(--rm-dis)', tech: 'var(--rm-tech)' };
+
+  var PAPERS = {
+    P1: { yr: '2021', x: 190, y: 945, s: 'life', lead: false, lab: 'b', short: ['Midlife men', 'household × MetS'], role: 'Third author', doi: '10.20463/pan.2021.0020', journal: 'Physical Activity and Nutrition',
+      title: 'Comparative analysis of energy intake and physical activity according to household type and presence of metabolic syndrome in middle-aged men (KNHANES 2016–2018)',
+      data: 'KNHANES 2016–2018 · men aged 40–59 · N = 2,266',
+      find: ['Men in single-person households with metabolic syndrome had higher triglycerides and glucose.', 'Any activity level above inactive was linked to lower odds of metabolic syndrome (OR 0.57–0.65).'],
+      net: 'The starting template: social context × activity domain × energy intake → health.' },
+    P2: { yr: '2022', x: 260, y: 860, s: 'life', lead: false, lab: 'b', short: ['Older adults', 'income × MetS'], role: 'Third author', doi: '10.20463/pan.2022.0011', journal: 'Physical Activity and Nutrition',
+      title: 'Analysis of energy intakes, physical activities and metabolic syndrome according to the income level in Korean elderly people',
+      data: 'KNHANES 2016–2018 · adults 65+ in the top and bottom income quartiles · N = 2,139',
+      find: ['Older adults with metabolic syndrome ate less and moved less regardless of income (362 vs 621 MET-min/week).', 'Income × metabolic syndrome interaction appeared only for fasting glucose.'],
+      net: 'The same template, with income in place of household type.' },
+    P3: { yr: '2022', x: 120, y: 860, s: 'life', lead: true, lab: 'b', short: ['Young adults', 'household × MetS'], role: 'First author', doi: '10.1186/s12889-022-12852-3', journal: 'BMC Public Health',
+      title: 'Household-specific physical activity levels and energy intakes according to the presence of metabolic syndrome in Korean young adults',
+      data: 'KNHANES 2016–2018 · adults aged 20–39 · N = 3,974',
+      find: ['Very active vs inactive: metabolic syndrome OR 0.55 (0.39–0.77).', 'Single-person households with metabolic syndrome were less active (785 vs 1,418 MET-min/week); multi-person households with it ate more.'],
+      net: 'My first first-authored paper and the hub of the map. Its template moves to depression (4), sleep (8), and a trial (5).' },
+    P4: { yr: '2023', x: 420, y: 740, s: 'mental', lead: true, lab: 'b', short: ['US young adults', 'depression, sex × PA'], role: 'First and corresponding author', doi: '10.5334/paah.305', journal: 'Physical Activity and Health',
+      title: 'Sex-specific physical activity levels and energy intake in US young adults with depression: NHANES 2017–2020 pre-pandemic data',
+      data: 'NHANES 2017–March 2020 · ages 18–24 · N = 750 (80 with depression)',
+      find: ['Total activity did not differ by depression.', 'Vigorous recreational activity was far lower with depression (547 vs 1,558 MET-min/week), in both sexes.'],
+      net: 'The turn from metabolic to mental health, and the first sign that the form of activity matters more than the amount.' },
+    P5: { yr: '2024', x: 930, y: 760, s: 'tech', s2: 'life', lead: true, lab: 'b', short: ['Remote walking', '+ sugar limit RCT'], role: 'First author', doi: '10.3389/fpubh.2024.1396598', journal: 'Frontiers in Public Health',
+      title: 'Sugary snack restriction enhances body composition improvement in overweight women engaging in non-face-to-face walking during COVID-19',
+      data: '8-week randomized trial · overweight women aged 20–39 · 21 analyzed',
+      find: ['Remote brisk walking, four times a week, monitored by smartwatch and messenger.', 'Adding sugary-snack restriction nearly doubled weight loss (−3.3 vs −1.8 kg), with no added benefit for glucose or insulin.'],
+      net: 'From observing to intervening, and a first test of wearable-supported remote delivery. My master’s thesis.' },
+    P6: { yr: '2025', x: 305, y: 625, s: 'life', s2: 'mental', lead: false, lab: 'b', short: ['Late-night eating', '→ circadian → mood'], role: 'Third author', doi: '10.20463/pan.2025.0003', journal: 'Physical Activity and Nutrition',
+      title: 'Role of late-night eating in circadian disruption and depression: A review of emotional health impacts',
+      data: 'Narrative review',
+      find: ['Late-night eating misaligns the circadian clock, delaying melatonin and disrupting hormonal and inflammatory signals linked to mood disorders.'],
+      net: 'The mechanistic bridge from diet and sleep to depression.' },
+    P7: { yr: '2025', x: 785, y: 632, s: 'dis', lead: false, lab: 'b', short: ['Combat sports', 'health & inclusion'], role: 'Second author', doi: '10.3389/fpsyg.2025.1587672', journal: 'Frontiers in Psychology',
+      title: 'Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners. An opinion paper',
+      data: 'Opinion paper with a SWOT analysis',
+      find: ['Argues for moving combat sports from elite performance toward health and inclusion.', 'Names VR and technology among seven research priorities.'],
+      net: 'Sets the inclusion agenda and anticipates the VR work (14).' },
+    P8: { yr: '2025', x: 140, y: 575, s: 'life', lead: true, lab: 'r', short: ['Working adults', 'sleep · diet · PA'], role: 'Co-first author', doi: '10.3389/fpubh.2025.1588706', journal: 'Frontiers in Public Health',
+      title: 'Analysis of sleep duration, energy intakes, physical activity, and metabolic syndrome based on the presence or absence of obesity and hypertension in working Korean adults',
+      data: 'KNHANES 2016–2018 · working adults aged 20–59 · N = 6,503',
+      find: ['Adults with both obesity and hypertension had the shortest weekend sleep (449 min), the highest energy intake (2,422 kcal), and less vigorous occupational activity.'],
+      net: 'Adds sleep as the third behavior in the template.' },
+    P9: { yr: '2025', x: 595, y: 630, s: 'dis', lead: true, lab: 'b', short: ['Combat sports', 'review protocol'], role: 'First author', doi: '10.1371/journal.pone.0301949', journal: 'PLoS ONE',
+      title: 'Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review',
+      data: 'PROSPERO-registered protocol · ages 5–18 with any disability · six Olympic combat sports',
+      find: ['Planned frequentist and Bayesian meta-analysis, GRADE, and implementation moderators (CFIR).'],
+      net: 'Shifts the population to disabled and autistic youth and formalizes the question.' },
+    P10: { yr: '2025', x: 690, y: 560, s: 'dis', lead: true, lab: 'r', short: ['Combat sports ×', 'disability review'], role: 'First author', doi: '10.3389/fpsyg.2025.1567978', journal: 'Frontiers in Psychology',
+      title: 'Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials',
+      data: '12 controlled trials (7 RCTs) · N = 436 · mean age 11.4 · 6 trials in autism',
+      find: ['Gains in communication, social interaction, emotion regulation, and executive function, and fewer stereotyped behaviors, mostly in autism.', 'No consistent rise in aggression; the evidence base is small.'],
+      net: 'Shows promise and scarcity at once, and grounds my VR boxing dissertation.' },
+    P11: { yr: '2026', x: 700, y: 385, s: 'dis', lead: false, lab: 'r', short: ['Grassroots sport', 'crisis umbrella review'], role: 'Second author', doi: '10.3390/soc16040118', journal: 'Societies',
+      title: 'Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport',
+      data: 'Umbrella review of 15 reviews · AMSTAR 2 quality mostly low or critically low',
+      find: ['Shared resilience mechanisms: adaptable delivery, safe and inclusive settings, cultural tailoring, social support, and supportive governance.', 'Disability is underrepresented in the evidence.'],
+      net: 'Widens context to crises and confirms the disability evidence gap.' },
+    P12: { yr: '2026', x: 370, y: 370, s: 'mental', lead: true, lab: 'l', short: ['Violence × PA type', '→ suicidal ideation'], role: 'Sole author', doi: '10.1111/sltb.70134', journal: 'Suicide and Life-Threatening Behavior',
+      title: 'Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents',
+      data: 'KYRBS 2021–2024 · grades 7–12 · N = 214,218',
+      find: ['Violence victimization and serious suicidal ideation: OR 3.43.', 'Aerobic activity moderated in an inverted U (a stronger link at 1–3 days a week, weaker at 4 or more); dichotomizing muscle-strengthening activity flipped the sign.'],
+      net: 'Puts context (violence) and form (type, dose) in one model, and argues for modeling activity continuously and by type.' },
+    P13: { yr: '2026', x: 500, y: 370, s: 'mental', lead: true, lab: 'r', short: ['45 countries', 'PA dose × wellbeing'], role: 'First author', doi: '10.1016/j.mhpa.2026.100826', journal: 'Mental Health and Physical Activity',
+      title: 'Physical activity and adolescent mental health across 45 countries: Exploring the role of country-level perceived health',
+      data: 'HBSC 2017/18 · ages 11, 13, 15 · 45 countries · N = 217,384',
+      find: ['A clear dose-response: 5–7 vs 0 active days, life satisfaction +0.92.', 'Country-level perceived health did not moderate the link; sex and age did.'],
+      net: 'The international baseline for dose-response, and the first sign that macro context moderates weakly.' },
+    P14: { yr: 'In press', x: 930, y: 405, s: 'tech', s2: 'dis', lead: true, lab: 'r', short: ['VR exercise', 'HRV × sickness'], role: 'Sole author', journal: 'Research in Autism',
+      title: 'Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in young adults with autism spectrum disorder: A proof-of-principle study',
+      data: 'Six autistic young adults completing VR exercise · Meta Quest 3 · eight sessions',
+      find: ['Lower resting heart rate variability predicted persistent simulator sickness (r = −.91).', 'Recommends HRV-informed graded exposure rather than exclusion.'],
+      net: 'Explains individual differences in technology-delivered exercise with physiology. The first paper from my VR boxing dissertation.' },
+    P15: { yr: 'In press', x: 555, y: 452, s: 'mental', s2: 'dis', lead: true, lab: 'b', short: ['Autistic children', 'adversity × PA'], role: 'Sole author', journal: 'Journal of Autism and Developmental Disorders',
+      title: 'Socioeconomic hardship and cumulative adverse experiences in relation to anxiety and depression in autistic children: Exploring the role of physical activity',
+      data: 'NSCH 2021–2024 · autistic children aged 6–17 · N = 5,750',
+      find: ['Active days were unrelated to anxiety (p = .233) or depression severity (p = .525); hardship, adversity, and all interactions were null.', 'Physical activity alone is not enough under adversity; family-centered, trauma-informed, structural supports are needed.'],
+      net: 'An unexpected null that opened my next line of work: autistic and non-autistic comparisons, measurement, and structured sport.' }
+  };
+
+  var CLAIMS = [
+    { id: 'C3', x: 155, name: 'Behaviors cluster', sub: 'activity × diet × sleep',
+      stmt: 'Physical activity works inside a system of diet, sleep, and circadian timing.',
+      ev: [['P1', 'Higher energy intake was linked to hypertension (OR 1.36).'], ['P2', 'Older adults with metabolic syndrome ate less and moved less.'], ['P3', 'Metabolic syndrome tracked intake overall, and low activity in single-person households.'], ['P5', 'Walking plus sugar restriction beat walking alone (−3.3 vs −1.8 kg).'], ['P8', 'Short sleep, high intake, and low activity clustered together.'], ['P6', 'Late-night eating disrupts circadian timing and mood.'], ['P4', 'Depression came with lower energy and protein intake.']],
+      limit: 'Mostly cross-sectional, so which behavior shifts first is still open.' },
+    { id: 'C2', x: 355, name: 'Context shifts the link', sub: 'household, income, adversity',
+      stmt: 'The same activity relates to health differently by household, income, victimization, country, and adversity.',
+      ev: [['P1', 'Single-person households with metabolic syndrome had worse lipids and glucose.'], ['P3', 'Low activity in one-person homes, overeating in larger ones.'], ['P2', 'Low income meant less intake and less activity.'], ['P4', 'Activity and diet patterns in depression differed by sex.'], ['P12', 'Activity type and dose moderated the violence–suicidal ideation link.'], ['P13', 'Country-level health did not moderate; sex and age did.'], ['P15', 'Hardship and adversity did not moderate.'], ['P11', 'Sport’s resilience mechanisms under crisis.']],
+      limit: 'Pattern: macro context (country, household finances) moderated weakly, while individual factors (sex, age, victimization) kept showing up.' },
+    { id: 'C1', x: 555, name: 'Form over amount', sub: 'domain · type · dose · sport',
+      stmt: 'Associations show up in the domain, type, dose, and structure of activity more than in its total.',
+      ev: [['P4', 'Total activity did not differ by depression; vigorous recreational activity did.'], ['P12', 'Aerobic activity moderated in an inverted U; dichotomizing flipped the sign.'], ['P13', 'A clear dose-response across 45 countries.'], ['P3', 'Very active young adults had about half the odds of metabolic syndrome.'], ['P8', 'Vigorous occupational activity was lower with obesity plus hypertension.'], ['P10', 'Structured combat sports improved social and emotional outcomes.']],
+      limit: 'In paper 15, a count of active days captured nothing. An amount-only measure may miss form.' },
+    { id: 'C4', x: 755, name: 'The need–evidence gap', sub: 'autism and disability',
+      stmt: 'Autistic and disabled young people may gain the most from activity, yet sit furthest from the evidence and from access.',
+      ev: [['P9', 'Registered a review of combat sports for disabled youth.'], ['P10', 'Only 12 controlled trials (N = 436); benefits came mostly from autism studies.'], ['P11', 'Disability was underrepresented in crisis-management evidence.'], ['P7', 'Called for combat sports to center health and inclusion.'], ['P15', 'Active days were unrelated to anxiety and depression in autistic children.'], ['P14', 'Responses to VR exercise varied widely among autistic adults.']],
+      limit: 'Most evidence is small and low quality. Large autistic and non-autistic comparisons in the same data are needed.' },
+    { id: 'C5', x: 955, name: 'Delivery shapes access', sub: 'remote · VR · physiology',
+      stmt: 'Remote and immersive technology lowers barriers, but has to fit each person’s physiological tolerance.',
+      ev: [['P5', 'Remote, smartwatch-monitored walking worked during the pandemic.'], ['P14', 'Low resting HRV predicted persistent VR sickness; graded exposure, not exclusion.'], ['P7', 'Named VR and technology as a research priority.'], ['P10', 'Combat-sport evidence became the basis for VR boxing.'], ['P11', 'Adaptable delivery was a shared resilience mechanism.']],
+      limit: 'Paper 14 is a six-person proof of principle. It generates hypotheses rather than effect estimates.' }
+  ];
+  var CL = {};
+  CLAIMS.forEach(function (c) { CL[c.id] = c; });
+
+  var TENSIONS = [
+    { id: 'T1', a: 'P13', b: 'P15', lp: [546, 423, 'start'], label: 'youth in general ≠ autistic children',
+      title: 'A link that holds for youth in general but vanishes in autistic children',
+      A: 'Across 45 countries, more active days meant higher life satisfaction and fewer symptoms.',
+      B: 'In 5,750 autistic children, active days were unrelated to anxiety or depression.',
+      q: 'Does activity work differently for autistic children, or does a parent-reported count of active days miss how they move? Comparing autistic and non-autistic youth in the same data can tell these apart.' },
+    { id: 'T2', a: 'P10', b: 'P15', lp: [638, 512, 'start'], label: 'structured sport ≠ activity days',
+      title: 'Structured sport helps; counting active days does not',
+      A: 'Structured combat-sport programs improved social and emotional outcomes in autistic children.',
+      B: 'Everyday active days showed no association with anxiety or depression.',
+      q: 'The benefit may come from structure, such as rules, coaches, and peers, more than from volume.' },
+    { id: 'T3', a: 'P12', b: 'P13', lp: [435, 340], label: 'more is better? ≠ inverted U',
+      title: 'An exception to “more is better”',
+      A: 'In adolescents overall, activity and mental health followed a steady dose-response.',
+      B: 'Among victimized adolescents, 1–3 aerobic days a week strengthened the link with suicidal ideation, and 4 or more weakened it.',
+      q: 'The shape of the dose-response can change with context, so activity should be modeled continuously and by type.' }
+  ];
+
+  var LINEAGE = [
+    { id: 'L1', a: 'P1', b: 'P3', bend: 0.45, lp: [168, 950, 'end'], label: 'applied to young adults', desc: 'The household × metabolic syndrome template, applied to adults aged 20–39.' },
+    { id: 'L2', a: 'P1', b: 'P2', bend: -0.45, lp: [215, 935, 'start'], label: 'household → income', desc: 'Same template, with income as the context and older adults as the population.' },
+    { id: 'L3', a: 'P3', b: 'P8', bend: 0, label: 'adds sleep', desc: 'Sleep duration joins activity and intake.' },
+    { id: 'L4', a: 'P3', b: 'P4', bend: 0, label: 'MetS → depression', desc: 'The same measures and design moved to US NHANES, with depression as the outcome.' },
+    { id: 'L5', a: 'P3', b: 'P5', cubic: [[220, 812], [700, 812]], lp: [720, 782], label: 'observe → intervene', desc: 'The activity and diet problem found in single-person households, tested as a remote trial.' },
+    { id: 'L6', a: 'P8', b: 'P6', bend: 0.25, undir: true, label: 'sleep & meal timing', desc: 'Companion papers from the same lab: sleep and meal timing, linked to metabolic health (8) and to depression (6).' },
+    { id: 'L7', a: 'P6', b: 'P4', bend: -0.2, undir: true, lp: [400, 655, 'start'], label: 'diet & mood', desc: 'The low intake seen with depression (4), given a circadian mechanism (6).' },
+    { id: 'L8', a: 'P4', b: 'P12', bend: 0, lp: [392, 585, 'end'], label: 'amount → type', desc: 'The vigorous-activity signal, split into aerobic vs muscle-strengthening and linear vs nonlinear.' },
+    { id: 'L9', a: 'P4', b: 'P13', bend: 0, lp: [470, 585, 'start'], label: '1 country → 45', desc: 'From one country’s young adults to multilevel models across 45 countries, with sex differences retested.' },
+    { id: 'L10', a: 'P12', b: 'P15', bend: 0, lp: [432, 452], label: 'adversity × PA', desc: 'The victimization × activity moderation design, carried to hardship and adversity in autistic children.' },
+    { id: 'L11', a: 'P9', b: 'P10', bend: 0, label: 'protocol → review', desc: 'The registered protocol, completed as a systematic review.' },
+    { id: 'L12', a: 'P10', b: 'P7', bend: 0.2, label: 'evidence → agenda', desc: 'Evidence on disabled youth, turned into a health and inclusion agenda for combat sports.' },
+    { id: 'L13', a: 'P10', b: 'P11', bend: 0, lp: [700, 478, 'end'], label: '→ umbrella review', desc: 'The same international team and review methods, applied to crisis management and equity.' },
+    { id: 'L14', a: 'P10', b: 'P14', bend: -0.12, label: 'boxing → VR boxing', desc: 'Combat-sport evidence in autistic youth became the basis for a VR boxing program.' },
+    { id: 'L15', a: 'P7', b: 'P14', bend: 0, label: 'VR agenda → test', desc: 'The VR priority named in paper 7, tested with autistic young adults.' },
+    { id: 'L16', a: 'P5', b: 'P14', bend: 0, label: 'remote → immersive', desc: 'From smartwatch-monitored remote walking to immersive VR with heart rate variability.' }
+  ];
+
+  var SUPPORT = [];
+  CLAIMS.forEach(function (c) { c.ev.forEach(function (e) { SUPPORT.push({ id: 'S-' + e[0] + '-' + c.id, p: e[0], c: c.id }); }); });
+
+  var TH = { x: 555, y: 20, w: 680, h: 88 };
+  var CY = 167, CH = 76, CW = 194;
+
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) { e.setAttribute(k, attrs[k]); } if (parent) { parent.appendChild(e); } return e; }
+  function txt(parent, attrs, s) { var t = el('text', attrs, parent); t.textContent = s; return t; }
+  function num(id) { return id.slice(1); }
+
+  var defs = el('defs', {}, svg);
+  ['rm-ar', 'rm-arH'].forEach(function (id) {
+    var m = el('marker', { id: id, viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '9', markerHeight: '9', markerUnits: 'userSpaceOnUse', orient: 'auto' }, defs);
+    el('path', { d: 'M0,0 L10,5 L0,10 z' }, m);
+  });
+  var G = {};
+  ['bands', 'sup', 'k', 'lin', 'ten', 'nodes', 'labels'].forEach(function (n) { G[n] = el('g', {}, svg); });
+
+  var COLS = [{ s: 'life', name: 'Lifestyle & metabolic health', x0: 55 }, { s: 'mental', name: 'Mental health epidemiology', x0: 305 }, { s: 'dis', name: 'Disability & inclusive sport', x0: 555 }, { s: 'tech', name: 'Intervention & delivery', x0: 805 }];
+  var ROWS = [{ t: '2026', y: 315 }, { t: '2025', y: 490 }, { t: '2023–24', y: 690 }, { t: '2021–22', y: 812 }];
+  COLS.forEach(function (c) {
+    txt(G.bands, { x: c.x0 + 10, y: 300, 'class': 'rm-colh', fill: SC[c.s] }, c.name);
+    el('rect', { x: c.x0 + 10, y: 306, width: 28, height: 3, rx: 1.5, fill: SC[c.s] }, G.bands);
+  });
+  [305, 555, 805].forEach(function (x) { el('line', { x1: x, y1: 315, x2: x, y2: 1005, 'class': 'rm-vsep' }, G.bands); });
+  ROWS.forEach(function (r) { el('line', { x1: 6, y1: r.y, x2: 1055, y2: r.y, 'class': 'rm-sep' }, G.bands); txt(G.bands, { x: 6, y: r.y + 20, 'class': 'rm-yr' }, r.t); });
+
+  function rOf(id) { return PAPERS[id].s2 ? 23 : 19; }
+  function trim(p, to, d) { var dx = to[0] - p[0], dy = to[1] - p[1], L = Math.hypot(dx, dy) || 1; return [p[0] + dx / L * d, p[1] + dy / L * d]; }
+  function geom(e) {
+    var A = PAPERS[e.a], B = PAPERS[e.b], a = [A.x, A.y], b = [B.x, B.y], s, t;
+    if (e.cubic) {
+      var c1 = e.cubic[0], c2 = e.cubic[1];
+      s = trim(a, c1, rOf(e.a)); t = trim(b, c2, rOf(e.b) + (e.undir ? 0 : 2));
+      return { d: 'M' + s + ' C' + c1 + ' ' + c2 + ' ' + t, mid: [(a[0] + 3 * c1[0] + 3 * c2[0] + b[0]) / 8, (a[1] + 3 * c1[1] + 3 * c2[1] + b[1]) / 8] };
+    }
+    var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), k = e.bend || 0;
+    var c = [(a[0] + b[0]) / 2 - dy * k, (a[1] + b[1]) / 2 + dx * k];
+    s = trim(a, c, rOf(e.a)); t = trim(b, c, rOf(e.b) + (e.undir ? 0 : 2));
+    return { d: 'M' + s + ' Q' + c + ' ' + t, mid: [0.25 * a[0] + 0.5 * c[0] + 0.25 * b[0], 0.25 * a[1] + 0.5 * c[1] + 0.25 * b[1]] };
+  }
+  function edgeLabel(id, mid, s, cls, lp) {
+    var at = lp ? { x: lp[0], y: lp[1], style: 'text-anchor:' + (lp[2] || 'middle') } : { x: mid[0], y: mid[1] - 8, style: 'text-anchor:middle' };
+    at['class'] = 'rm-el ' + cls; at['data-edge'] = id;
+    return txt(G.labels, at, s);
+  }
+
+  SUPPORT.forEach(function (s) {
+    var P = PAPERS[s.p], C = CL[s.c];
+    var y0 = P.y - rOf(s.p) + 2, y1 = CY + CH, ex = C.x + Math.max(-72, Math.min(72, (P.x - C.x) * 0.2));
+    var g = el('g', { 'class': 'rm-e rm-sup', 'data-edge': s.id, style: '--c:' + SC[P.s] }, G.sup);
+    el('path', { d: 'M' + P.x + ',' + y0 + ' C' + P.x + ',' + (y0 - (y0 - y1) * 0.55) + ' ' + ex + ',' + (y1 + (y0 - y1) * 0.35) + ' ' + ex + ',' + y1 }, g);
+  });
+  CLAIMS.forEach(function (c) {
+    var tx = TH.x + (c.x - TH.x) * 0.45;
+    var g = el('g', { 'class': 'rm-e rm-k', 'data-edge': 'K-' + c.id }, G.k);
+    el('path', { d: 'M' + c.x + ',' + CY + ' C' + c.x + ',' + (CY - 30) + ' ' + tx + ',' + (TH.y + TH.h + 26) + ' ' + tx + ',' + (TH.y + TH.h) }, g);
+  });
+  LINEAGE.forEach(function (e) {
+    var g0 = geom(e), g = el('g', { 'class': 'rm-e rm-lin' + (e.undir ? ' rm-undir' : ''), 'data-edge': e.id }, G.lin);
+    el('path', { d: g0.d }, g);
+    edgeLabel(e.id, g0.mid, e.label, 'l', e.lp);
+  });
+  TENSIONS.forEach(function (t) {
+    var g0 = geom({ a: t.a, b: t.b, bend: 0, undir: true }), g = el('g', { 'class': 'rm-e rm-ten', 'data-edge': t.id }, G.ten);
+    el('path', { d: g0.d }, g);
+    var gg = el('g', { 'class': 'rm-tg', 'data-edge': t.id, 'data-go': t.id, tabindex: '0', role: 'button', 'aria-label': 'Findings disagree: ' + t.title, transform: 'translate(' + g0.mid[0] + ',' + g0.mid[1] + ')' }, G.ten);
+    el('circle', { r: 10 }, gg); txt(gg, { y: 1 }, '≠');
+    edgeLabel(t.id, g0.mid, t.label, 't', t.lp);
+  });
+
+  (function () {
+    var g = el('g', { 'class': 'rm-node rm-th', 'data-node': 'TH', 'data-go': 'TH', tabindex: '0', role: 'button', 'aria-label': 'Thesis' }, G.nodes);
+    el('rect', { x: TH.x - TH.w / 2, y: TH.y, width: TH.w, height: TH.h, rx: 12, 'class': 'rm-thbox' }, g);
+    el('rect', { x: TH.x - TH.w / 2 - 4, y: TH.y - 4, width: TH.w + 8, height: TH.h + 8, rx: 15, 'class': 'focus' }, g);
+    txt(g, { x: TH.x, y: TH.y + 24, 'class': 't0' }, 'THESIS');
+    txt(g, { x: TH.x, y: TH.y + 53, 'class': 't1' }, 'The mental health benefit of physical activity is conditional');
+    txt(g, { x: TH.x, y: TH.y + 76, 'class': 't2' }, 'Who is active, where, in what form, and how it is delivered decide whether it helps');
+  })();
+  CLAIMS.forEach(function (c) {
+    var g = el('g', { 'class': 'rm-node rm-c', 'data-node': c.id, 'data-go': c.id, tabindex: '0', role: 'button', 'aria-label': 'Claim: ' + c.name }, G.nodes);
+    el('rect', { x: c.x - CW / 2, y: CY, width: CW, height: CH, rx: 10, 'class': 'rm-cbox' }, g);
+    el('rect', { x: c.x - CW / 2 - 4, y: CY - 4, width: CW + 8, height: CH + 8, rx: 13, 'class': 'focus' }, g);
+    txt(g, { x: c.x, y: CY + 32, 'class': 'ct' }, c.name);
+    txt(g, { x: c.x, y: CY + 54, 'class': 'cs' }, c.sub);
+  });
+  Object.keys(PAPERS).forEach(function (id) {
+    var p = PAPERS[id];
+    var g = el('g', { 'class': 'rm-node rm-p', 'data-node': id, 'data-go': id, tabindex: '0', role: 'button', 'aria-label': 'Paper ' + num(id) + ': ' + p.title, transform: 'translate(' + p.x + ',' + p.y + ')' }, G.nodes);
+    el('circle', { r: 30, 'class': 'halo', fill: SC[p.s] }, g);
+    if (p.s2) { el('circle', { r: 22.5, 'class': 'ring2', stroke: SC[p.s2] }, g); }
+    el('circle', { r: 17, 'class': 'core', fill: p.lead ? SC[p.s] : '#fff', stroke: SC[p.s] }, g);
+    el('circle', { r: p.s2 ? 27 : 22, 'class': 'focus' }, g);
+    txt(g, { 'class': 'pid', fill: p.lead ? '#fff' : SC[p.s] }, num(id));
+    var off = p.s2 ? 6 : 0, pos;
+    if (p.lab === 'r') { pos = { x: 24 + off, a: 'start', y1: -3, y2: 13 }; }
+    else if (p.lab === 'l') { pos = { x: -24 - off, a: 'end', y1: -3, y2: 13 }; }
+    else { pos = { x: 0, a: 'middle', y1: 36 + off, y2: 52 + off }; }
+    txt(g, { 'class': 'rm-lab', x: pos.x, y: pos.y1, 'text-anchor': pos.a }, p.short[0]);
+    txt(g, { 'class': 'rm-lab', x: pos.x, y: pos.y2, 'text-anchor': pos.a }, p.short[1]);
+  });
+
+  /* State and highlighting */
+  var state = { sel: null, hover: null };
+  function focusOf(id) {
+    var nodes = {}, edges = {};
+    if (id === 'TH') { nodes.TH = 1; CLAIMS.forEach(function (c) { nodes[c.id] = 1; edges['K-' + c.id] = 1; }); }
+    else if (id.charAt(0) === 'P') {
+      nodes[id] = 1;
+      LINEAGE.concat(TENSIONS).forEach(function (e) { if (e.a === id || e.b === id) { edges[e.id] = 1; nodes[e.a] = 1; nodes[e.b] = 1; } });
+      SUPPORT.forEach(function (s) { if (s.p === id) { edges[s.id] = 1; nodes[s.c] = 1; } });
+    } else if (id.charAt(0) === 'C') {
+      nodes[id] = 1; nodes.TH = 1; edges['K-' + id] = 1;
+      SUPPORT.forEach(function (s) { if (s.c === id) { edges[s.id] = 1; nodes[s.p] = 1; } });
+    } else {
+      TENSIONS.forEach(function (t) { if (t.id === id) { nodes[t.a] = 1; nodes[t.b] = 1; edges[t.id] = 1; } });
+    }
+    return { nodes: nodes, edges: edges };
+  }
+  function apply() {
+    var key = state.hover || state.sel, f = key ? focusOf(key) : null;
+    Array.prototype.forEach.call(svg.querySelectorAll('[data-node]'), function (n) {
+      var id = n.getAttribute('data-node');
+      n.classList.toggle('dim', !!f && !f.nodes[id]);
+      n.classList.toggle('hi', !!f && !!f.nodes[id]);
+      n.classList.toggle('sel', id === state.sel);
+    });
+    Array.prototype.forEach.call(svg.querySelectorAll('[data-edge]'), function (e) {
+      var on = !!f && !!f.edges[e.getAttribute('data-edge')];
+      e.classList.toggle('dim', !!f && !on);
+      e.classList.toggle('hi', on);
+    });
+  }
+
+  /* Detail panel */
+  function pchip(id) { return '<button type="button" class="rm-chip" data-go="' + id + '" style="--c:' + SC[PAPERS[id].s] + '" aria-label="Paper ' + num(id) + '">' + num(id) + '</button>'; }
+  function cchip(id) { return '<button type="button" class="rm-cchip" data-go="' + id + '">' + CL[id].name + '</button>'; }
+  function tchip(id) { return '<button type="button" class="rm-chip rm-t" data-go="' + id + '">≠</button>'; }
+  function paperPanel(id) {
+    var p = PAPERS[id], links = [];
+    LINEAGE.forEach(function (e) {
+      if (e.b === id) { links.push('<li>' + pchip(e.a) + (e.undir ? ' — ' : ' → ') + 'this paper. ' + e.desc + '</li>'); }
+      if (e.a === id) { links.push('<li>This paper' + (e.undir ? ' — ' : ' → ') + pchip(e.b) + '. ' + e.desc + '</li>'); }
+    });
+    TENSIONS.forEach(function (t) { if (t.a === id || t.b === id) { links.push('<li>' + tchip(t.id) + ' ' + pchip(t.a === id ? t.b : t.a) + ' ' + t.title + '</li>'); } });
+    var claims = CLAIMS.filter(function (c) { return c.ev.some(function (e) { return e[0] === id; }); });
+    var src = '<cite>' + p.journal + '</cite>' + (p.doi ? ' · <a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">DOI</a>' : ' · in press');
+    return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + SC[p.s] + '"></span>Paper ' + num(id) + ' · ' + p.yr + ' · ' + p.role + '</p>' +
+      '<h3>' + p.title + '</h3><p class="rm-src">' + src + '</p>' +
+      '<div class="rm-kv"><span>Data</span><p>' + p.data + '</p></div>' +
+      '<div class="rm-kv"><span>Key findings</span><ul>' + p.find.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="rm-kv rm-role"><span>Role in the network</span><p>' + p.net + '</p></div>' +
+      (links.length ? '<div class="rm-kv"><span>Connections</span><ul class="rm-plain">' + links.join('') + '</ul></div>' : '') +
+      '<div class="rm-kv"><span>Supports</span><p>' + claims.map(function (c) { return cchip(c.id); }).join(' ') + '</p></div>';
+  }
+  function claimPanel(id) {
+    var c = CL[id];
+    return '<p class="rm-eyebrow">Claim · ' + c.ev.length + ' papers</p><h3>' + c.name + '</h3><p class="rm-src" style="color:var(--ink-2)">' + c.stmt + '</p>' +
+      '<div class="rm-kv"><span>Evidence</span><ul class="rm-plain">' + c.ev.map(function (e) { return '<li>' + pchip(e[0]) + ' ' + e[1] + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="rm-kv"><span>Limits</span><p>' + c.limit + '</p></div>';
+  }
+  function tensionPanel(id) {
+    var t = TENSIONS.filter(function (x) { return x.id === id; })[0];
+    return '<p class="rm-eyebrow" style="color:var(--rm-tension)">Findings disagree · ' + num(t.a) + ' ≠ ' + num(t.b) + '</p><h3>' + t.title + '</h3>' +
+      '<div class="rm-vs"><div>' + pchip(t.a) + ' ' + t.A + '</div><div>' + pchip(t.b) + ' ' + t.B + '</div></div>' +
+      '<div class="rm-kv rm-role"><span>Open question</span><p>' + t.q + '</p></div>';
+  }
+  function thesisPanel() {
+    return '<p class="rm-eyebrow">Thesis</p><h3>The mental health benefit of physical activity is conditional</h3>' +
+      '<p class="rm-src" style="color:var(--ink-2)">Who is active, in what context, in what form, and through what delivery decide whether activity helps. Autistic and disabled young people, who may gain the most, are where the evidence is thinnest, which is why my work converges on them and on technology that fits each person.</p>' +
+      '<div class="rm-kv"><span>Five claims</span><ul class="rm-plain">' + CLAIMS.map(function (c) { return '<li>' + cchip(c.id) + ' ' + c.stmt + '</li>'; }).join('') + '</ul></div>' +
+      '<p class="rm-hint">Select a node or a ≠ mark to trace its connections. Select empty space to return here.</p>';
+  }
+  function render() {
+    var id = state.sel;
+    panel.innerHTML = !id || id === 'TH' ? thesisPanel() : id.charAt(0) === 'P' ? paperPanel(id) : id.charAt(0) === 'C' ? claimPanel(id) : tensionPanel(id);
+  }
+
+  /* Interaction. mode: 'map' toggles, 'panel' sets, 'outside' sets and scrolls to the map */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function select(id, mode) {
+    state.sel = (mode === 'map' && state.sel === id) ? null : id;
+    state.hover = null;
+    render(); apply();
+    if (mode === 'outside') { svg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+  }
+  svg.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go]');
+    if (t) { select(t.getAttribute('data-go'), 'map'); } else { state.sel = null; render(); apply(); }
+  });
+  svg.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') { return; }
+    var t = e.target.closest('[data-go]');
+    if (t) { e.preventDefault(); select(t.getAttribute('data-go'), 'map'); }
+  });
+  svg.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') { return; }
+    var t = e.target.closest('[data-go]'), id = t ? t.getAttribute('data-go') : null;
+    if (id !== state.hover) { state.hover = id; apply(); }
+  });
+  svg.addEventListener('pointerleave', function () { if (state.hover) { state.hover = null; apply(); } });
+  var block = document.getElementById('research-map');
+  block.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go]');
+    if (!t || svg.contains(t)) { return; }
+    select(t.getAttribute('data-go'), panel.contains(t) ? 'panel' : 'outside');
+  });
+
+  document.getElementById('rm-tensions').innerHTML = TENSIONS.map(function (t) {
+    return '<article class="rm-tcard"><span class="rm-neq">Paper ' + num(t.a) + ' ≠ paper ' + num(t.b) + '</span><h4>' + t.title + '</h4><p>' + t.q + '</p>' +
+      '<button type="button" class="rm-link" data-go="' + t.id + '">Show on the map</button></article>';
+  }).join('');
+
+  render(); apply();
 })();
 </script>
 
