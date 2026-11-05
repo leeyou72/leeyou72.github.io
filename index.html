@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Youngjun Lee, Ph.D. | Autism, Depression, Physical Activity, Sport, Virtual Reality</title>
-<meta name="description" content="Youngjun Lee, Ph.D., Postdoctoral Research Fellow at Children's Hospital of Philadelphia and affiliated researcher at the Annenberg Extended Reality Lab, University of Pennsylvania. Physical activity, sport, sleep, and mental health in children and youth, with a focus on autism and developmental disabilities, and immersive virtual reality exercise.">
-<meta name="keywords" content="autism, developmental disabilities, depression, anxiety, suicidal behavior, physical activity, sport participation, sleep, children, adolescents, epidemiology, longitudinal cohort, electronic health records, virtual reality, exergames">
+<title>Youngjun Lee, Ph.D. | Physical Activity and Mental Health in Autism, VR/XR, Wearables</title>
+<meta name="description" content="Youngjun Lee, Ph.D., Postdoctoral Research Fellow at Children's Hospital of Philadelphia and affiliated researcher at the Annenberg Extended Reality Lab, University of Pennsylvania. Making physical activity work for the mental health of autistic people, through epidemiology, wearable measurement, and immersive VR/XR exercise personalized with heart rate variability and an AI virtual coach.">
+<meta name="keywords" content="autism, depression, mental health, physical activity, sport, virtual reality, extended reality, VR, XR, exergames, wearable devices, accelerometry, Fitbit, heart rate variability, AI virtual coach, personalized exercise, epidemiology, NIH All of Us">
 <meta property="og:title" content="Youngjun Lee, Ph.D.">
-<meta property="og:description" content="Physical activity, sport, sleep, and mental health in autistic youth: population and cohort epidemiology and virtual reality exercise.">
+<meta property="og:description" content="Making physical activity work for the mental health of autistic people: epidemiology, wearables, and VR/XR exercise with an AI virtual coach.">
 <meta property="og:image" content="https://leeyou72.github.io/photo.png">
 <meta property="og:url" content="https://leeyou72.github.io/">
 <meta property="og:type" content="website">
@@ -115,6 +115,22 @@ main > .page[id] { scroll-margin-top: 68px; }
 .streams-overview .sub { margin-top: 4px; font-size: 0.95rem; color: var(--accent-ink); font-weight: 600; }
 .streams-overview p.desc { margin-top: 12px; color: var(--ink-2); max-width: 52ch; }
 .more-link { display: inline-block; margin-top: 22px; font-weight: 500; }
+.path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.path li { padding: 22px 24px 4px 0; min-width: 0; }
+.path li + li { padding-left: 24px; border-left: 1px solid var(--rule); }
+.path .n { font-family: var(--serif); font-size: 2rem; line-height: 1; color: var(--accent); font-variant-numeric: lining-nums; }
+.path h3 { margin-top: 12px; font-size: 1.22rem; line-height: 1.25; font-weight: 600; text-wrap: balance; }
+.path li p:last-child { margin-top: 8px; color: var(--ink-2); font-size: 0.96rem; }
+@media (max-width: 900px) {
+  .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .path li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .path li:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 640px) {
+  .path { grid-template-columns: 1fr; }
+  .path li, .path li + li { padding: 18px 0; border-left: 0; }
+  .path li + li { border-top: 1px solid var(--rule); }
+}
 
 /* News */
 .news { list-style: none; margin: 0; padding: 0; max-width: 820px; }
@@ -381,10 +397,10 @@ main > .page[id] { scroll-margin-top: 68px; }
   <div class="wrap">
     <div class="hero">
       <div>
-        <h1 class="statement" id="home-title" tabindex="-1">I study how physical activity can protect the mental health of autistic youth.</h1>
-        <p class="lede">With national surveys, birth cohorts, and pediatric health records, I track how activity, sport, and sleep relate to depression, anxiety, and suicidal behavior from childhood to early adulthood. I also build virtual reality exercise programs for autistic young adults.</p>
+        <h1 class="statement" id="home-title" tabindex="-1">Making physical activity work for the mental health of autistic people.</h1>
+        <p class="lede">Autistic people are often shut out of traditional exercise and sport, and even when they take part, they may not gain the same mental health benefits as their peers. I study why, and I am building a different approach: immersive VR and XR exercise, personalized in real time with heart rate and heart rate variability from wearable sensors, and guided by an AI-driven virtual coach.</p>
         <ul class="keywords" aria-label="Research keywords">
-          <li>Autism</li><li>Developmental disabilities</li><li>Depression</li><li>Physical activity</li><li>Sport</li><li>Sleep</li><li>Epidemiology</li><li>Virtual reality</li>
+          <li>Autism</li><li>Depression</li><li>Physical activity</li><li>VR / XR</li><li>Wearable sensors</li><li>Heart rate variability</li><li>AI virtual coaching</li><li>Epidemiology</li>
         </ul>
         <div class="signature">
           <p class="name">Youngjun Lee, Ph.D.</p>
@@ -418,23 +434,17 @@ main > .page[id] { scroll-margin-top: 68px; }
       <div class="actogram-axis" aria-hidden="true">
         <span style="left:0%">Midnight</span><span style="left:25%">6 am</span><span style="left:50%">Noon</span><span style="left:75%">6 pm</span><span style="left:100%">Midnight</span>
       </div>
-      <figcaption>An actogram shows one week of daily activity and rest, one row per day. Illustrative data.</figcaption>
+      <figcaption>An actogram: one week of wrist-worn activity, one row per day. Wearable data like these show how autistic people actually move, beyond what a survey can capture. Illustrative data.</figcaption>
     </figure>
 
     <div class="block">
-      <h2 class="block-title">Two lines of work</h2>
-      <div class="streams-overview">
-        <div>
-          <h3>Physical activity and mental health across development</h3>
-          <p class="sub">Population, cohort, and clinical epidemiology</p>
-          <p class="desc">Following physical activity, sport participation, and sleep from early childhood to early adulthood, and testing when they protect against depression, anxiety, and suicidal behavior in autistic and non-autistic youth.</p>
-        </div>
-        <div>
-          <h3>Virtual reality exercise</h3>
-          <p class="sub">Digital behavioral health interventions</p>
-          <p class="desc">Designing immersive VR exergames with virtual coaches for autistic young adults, and testing their effects on depressive symptoms, engagement, and retention in pilot randomized trials.</p>
-        </div>
-      </div>
+      <h2 class="block-title">How my research has developed</h2>
+      <ol class="path">
+        <li><p class="n">1</p><h3>Physical activity and mental health</h3><p>I began with national datasets in Korea and the United States, linking physical activity, diet, and sleep to metabolic and mental health in the general population.</p></li>
+        <li><p class="n">2</p><h3>Barriers for autistic people</h3><p>During my Ph.D., my focus moved to disability, and above all to autism. Autistic people are often excluded from traditional exercise and sport, so they miss its benefits.</p></li>
+        <li><p class="n">3</p><h3>A gap in the benefit</h3><p>Removing barriers is not enough. Even when autistic people are active, they may not gain the same mental health benefit as their non-autistic peers.</p></li>
+        <li><p class="n">4</p><h3>A different approach</h3><p>Immersive VR and XR exercise, activity measured with wearables rather than surveys alone, and real-time heart rate, HRV, and an AI virtual coach to personalize each session.</p></li>
+      </ol>
       <a class="more-link" href="#research">Read about my research</a>
       <a class="more-link" href="#research-map" style="margin-left:24px">See how my published work connects</a>
     </div>
@@ -472,7 +482,7 @@ main > .page[id] { scroll-margin-top: 68px; }
     <div class="page-head">
       <h1 class="page-title" id="about-title" tabindex="-1">About</h1>
     </div>
-    <p class="bio">Youngjun Lee, Ph.D., is a Postdoctoral Research Fellow in the Division of Gastroenterology, Hepatology and Nutrition at Children's Hospital of Philadelphia and an affiliated postdoctoral researcher in the Annenberg Extended Reality Lab at the University of Pennsylvania. His research examines how physical activity, sport, and sleep relate to depression, anxiety, and suicidal behavior in children and youth, with a focus on autism and developmental disabilities. He works with national surveys, longitudinal cohorts, and pediatric health records, and designs immersive virtual reality exercise programs for autistic young adults. He earned his Ph.D. in Kinesiology from Michigan State University, where his dissertation tested a virtual reality boxing program for autistic young adults, and his master's and bachelor's degrees in physical education from Korea University.</p>
+    <p class="bio">Youngjun Lee, Ph.D., is a Postdoctoral Research Fellow in the Division of Gastroenterology, Hepatology and Nutrition at Children's Hospital of Philadelphia and an affiliated postdoctoral researcher in the Annenberg Extended Reality Lab at the University of Pennsylvania. His research aims to make physical activity work for the mental health of autistic people. Using national surveys, cohorts, health records, and wearable data, he studies who benefits from physical activity and why autistic people may benefit less. He also develops immersive VR and XR exercise, working toward sessions that are personalized in real time with heart rate and heart rate variability and guided by an AI virtual coach. He earned his Ph.D. in Kinesiology from Michigan State University, where his dissertation tested a virtual reality boxing program for autistic young adults, and his master's and bachelor's degrees in physical education from Korea University.</p>
 
     <div class="block">
       <h2 class="block-title">Positions</h2>
@@ -539,12 +549,13 @@ main > .page[id] { scroll-margin-top: 68px; }
       <h1 class="page-title" id="research-title" tabindex="-1">Research</h1>
     </div>
     <div class="lead-text">
-      <p>Depression is one of the most common co-occurring conditions for autistic people, and it often begins in adolescence. Physical activity and sport are among the most accessible ways to protect mental health, but we still know little about when, and for whom, they protect autistic young people. Most exercise programs are also not built around autistic people's sensory, social, and motivational needs.</p>
-      <p>My research takes on both problems. With national surveys, birth cohorts, and pediatric health records, I follow physical activity, sport, sleep, and mental health from early childhood to early adulthood. With immersive virtual reality, I design exercise programs that autistic young adults want to keep doing. I built and tested a VR boxing program during my Ph.D. at Michigan State University, and I continue both lines of work at Children's Hospital of Philadelphia and the Annenberg Extended Reality Lab at Penn.</p>
+      <p>My research starts from one question: how can physical activity solve mental health problems? I first explored it in general populations, using national surveys in Korea and the United States to link physical activity, diet, and sleep with metabolic and mental health.</p>
+      <p>During my Ph.D. at Michigan State University, I turned to people with disabilities, and especially to autistic people. They are often excluded from traditional exercise and sport, so they miss out on its benefits. I first saw this as a problem of barriers. But the more I studied, the more it appeared that even when autistic people take part in traditional activity and sport, they may not gain the same mental health benefit as their non-autistic peers.</p>
+      <p>That calls for a different approach. I build immersive VR and XR exercise programs for autistic people. Because surveys capture their activity poorly, I measure activity, sleep, and daily rhythms with wearable devices. And I am working toward exercise that reads heart rate and heart rate variability in real time to personalize each session, with an AI-driven virtual coach that keeps it motivating and enjoyable, so that its mental health benefit is as large as possible.</p>
     </div>
     <div class="goal">
       <p class="goal-label">My ultimate goal</p>
-      <p class="goal-text">To make physical activity an accessible, evidence-based path to better mental health for every autistic person.</p>
+      <p class="goal-text">To make physical activity an accessible, personalized, and evidence-based path to better mental health for every autistic person.</p>
     </div>
     <div class="scholar-strip">
       <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=6WHUjNYAAAAJ" target="_blank" rel="noopener">
@@ -559,17 +570,17 @@ main > .page[id] { scroll-margin-top: 68px; }
     </div>
 
     <div class="block">
-      <article class="stream" id="development">
+      <article class="stream" id="benefit">
         <div>
-          <h2>Physical activity and mental health across development</h2>
+          <h2>Who benefits from physical activity</h2>
           <p class="stream-tagline">Population, cohort, and clinical epidemiology</p>
         </div>
         <div class="stream-body">
-          <p>I study how physical activity, sport participation, and sleep relate to depression, anxiety, and suicidal behavior from early childhood into early adulthood, and how these links differ for autistic and non-autistic youth and for people with developmental disabilities. Much of this work follows the same young people over years and asks what makes activity protective, looking at bullying, adversity, screen time, and caregiver mental health.</p>
+          <p>I use national surveys, birth cohorts, and pediatric health records to test when physical activity and sport protect against depression, anxiety, and suicidal behavior, and whether autistic people gain the same benefit as their non-autistic peers. My recent work suggests that for autistic children, simply being active on more days is not enough.</p>
           <div class="facets">
-            <div><h3>National surveys and cohorts</h3><p>NSCH, NHANES, HBSC, KYRBS, the UK Millennium Cohort Study, and Korean national panels, across U.S., UK, Korean, and cross-national samples.</p></div>
-            <div><h3>Pediatric health records</h3><p>Wellness-visit records at CHOP, linking physical activity screening in primary care to depression in adolescents.</p></div>
-            <div><h3>Measurement and methods</h3><p>Device-measured activity and sleep, multiverse and latent class analyses, and simulation studies of missing data.</p></div>
+            <div><h3>General populations</h3><p>KNHANES, NHANES, HBSC, and KYRBS, linking activity, diet, and sleep to metabolic and mental health in Korea, the U.S., and 45 countries.</p></div>
+            <div><h3>Autism and disability</h3><p>NSCH, the UK Millennium Cohort Study, and CHOP pediatric health records, comparing autistic and non-autistic youth.</p></div>
+            <div><h3>Form and context</h3><p>The type, dose, and structure of activity, including organized sport, and how adversity changes its effects.</p></div>
           </div>
           <p class="work-label">Selected work</p>
           <ul class="work">
@@ -577,26 +588,47 @@ main > .page[id] { scroll-margin-top: 68px; }
             <li><span class="t">Organized sports and psychosocial benefits for adolescents with autism: Evidence from the 2022 National Survey of Children's Health.</span> <em>European Journal of Adapted Physical Activity</em>, in revision.</li>
             <li><span class="t">Physical activity and adolescent mental health across 45 countries: Exploring the role of country-level perceived health.</span> <em>Mental Health and Physical Activity</em>, 2026. <a href="https://doi.org/10.1016/j.mhpa.2026.100826" target="_blank" rel="noopener">DOI</a></li>
             <li><span class="t">Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents.</span> <em>Suicide and Life-Threatening Behavior</em>, 2026. <a href="https://doi.org/10.1111/sltb.70134" target="_blank" rel="noopener">DOI</a></li>
+            <li><span class="t">Sex-specific physical activity levels and energy intake in US young adults with depression: National Health and Nutrition Examination Survey 2017–2020 pre-pandemic data.</span> <em>Physical Activity and Health</em>, 2023. <a href="https://doi.org/10.5334/paah.305" target="_blank" rel="noopener">DOI</a></li>
           </ul>
         </div>
       </article>
 
-      <article class="stream" id="vr">
+      <article class="stream" id="wearables">
         <div>
-          <h2>Virtual reality exercise</h2>
-          <p class="stream-tagline">Digital behavioral health interventions</p>
+          <h2>Measuring activity with wearables</h2>
+          <p class="stream-tagline">Device-measured activity, sleep, and daily rhythms</p>
         </div>
         <div class="stream-body">
-          <p>I design immersive virtual reality exergames that lower the sensory and social demands of gyms and team sports, using virtual coaches to create a sense of social presence. My two pilot randomized trials of VR boxing tested its effects on depressive symptoms and heart rate variability, and my current work focuses on who stays engaged, why, and how the body responds.</p>
+          <p>Surveys and parent reports capture autistic people's activity poorly. I use accelerometer and Fitbit data to measure how much autistic people move and sleep and how regular their daily rhythms are, and test how these patterns relate to depression. At CHOP, this includes Fitbit data from the NIH All of Us Research Program.</p>
           <div class="facets">
-            <div><h3>Virtual coaching</h3><p>Coach-induced social presence as a way to sustain engagement and support mood.</p></div>
-            <div><h3>Engagement and retention</h3><p>Mixed-methods process evaluation of who stays in VR exercise, who leaves, and why.</p></div>
-            <div><h3>Physiology and tolerability</h3><p>Heart rate variability, simulator sickness, and interest among autistic and non-autistic users.</p></div>
+            <div><h3>Device-measured behavior</h3><p>Activity, sleep, and rest-activity rhythms from Fitbit, GENEActiv, and ActiGraph devices.</p></div>
+            <div><h3>Large wearable datasets</h3><p>Fitbit records linked to health data in the NIH All of Us Research Program, comparing adults with and without autism.</p></div>
+            <div><h3>Data quality</h3><p>How missing wear time distorts estimates of activity and its link to depression, studied with simulation.</p></div>
+          </div>
+          <p class="work-label">Selected work</p>
+          <ul class="work">
+            <li><span class="t">Wearable-derived behavioral data for depression-related/internalizing outcomes monitoring in autistic individuals: A scoping review.</span> <em>Review Journal of Autism and Developmental Disorders</em>, in revision.</li>
+            <li><span class="t">Wearable-derived sleep and physical activity levels and rhythms and depressive symptoms in adults with and without autism spectrum disorder.</span> SLEEP 2026, Baltimore, and Lurie Autism Institute Annual Symposium, 2026.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="stream" id="xr">
+        <div>
+          <h2>Adaptive XR exercise with an AI virtual coach</h2>
+          <p class="stream-tagline">Immersive exercise, physiology, and personalization</p>
+        </div>
+        <div class="stream-body">
+          <p>I design immersive VR exergames that lower the sensory and social demands of gyms and team sports. My pilot randomized trials of VR boxing tested effects on depressive symptoms and heart rate variability, and lower resting heart rate variability predicted persistent simulator sickness. Next, I aim to use heart rate and heart rate variability from wearables in real time to adjust each session, and to add an AI-driven virtual coach that responds to each person, so that exercise is more motivating and enjoyable and its mental health benefit larger.</p>
+          <div class="facets">
+            <div><h3>Immersive exercise</h3><p>VR boxing and other exergames built around autistic users' sensory and social needs.</p></div>
+            <div><h3>Real-time physiology</h3><p>Heart rate and heart rate variability to tailor intensity and exposure to each person.</p></div>
+            <div><h3>AI virtual coaching</h3><p>An interactive coach that builds social presence, motivation, and enjoyment.</p></div>
           </div>
           <p class="work-label">Selected work</p>
           <ul class="work">
             <li><span class="t">Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in autistic young adults: A proof-of-principle study.</span> <em>Research in Autism</em>, 2026. <a href="https://doi.org/10.1016/j.reia.2026.203046" target="_blank" rel="noopener">DOI</a></li>
-            <li><span class="t">Effects of a 6-week virtual boxing program on depressive symptoms and heart rate variability in adults: A pilot randomized controlled trial.</span> <em>Sport Sciences for Health</em>, in revision.</li>
+            <li><span class="t">Effects of a 6-week virtual boxing on depressive symptoms and heart rate variability in adults: A pilot randomized controlled trial.</span> <em>Sport Sciences for Health</em>, in revision.</li>
             <li><span class="t">A systematic review of immersive VR exergames for individuals with developmental disabilities.</span> <em>Disability and Rehabilitation: Assistive Technology</em>, in revision.</li>
             <li><span class="t">Immersive virtual reality exercise to improve depressive symptoms in young adults with autism spectrum disorder.</span> Doctoral dissertation, Michigan State University, 2025. <a href="https://www.proquest.com/docview/3278169726" target="_blank" rel="noopener">ProQuest</a></li>
             <li><span class="t">Bridging the gap: Immersive virtual reality as a new pathway for physical activity and mental health in autism.</span> Invited talk, East China Normal University, Shanghai, 2026.</li>
@@ -633,10 +665,11 @@ main > .page[id] { scroll-margin-top: 68px; }
       <h2 class="block-title">Data and methods</h2>
       <dl class="toolkit">
         <dt>Datasets</dt><dd>National Survey of Children's Health (NSCH), NHANES, Health Behaviour in School-aged Children (HBSC), Korea Youth Risk Behavior Survey (KYRBS), KNHANES, UK Millennium Cohort Study, Korean national panel studies, NIH All of Us Research Program, pediatric electronic health records</dd>
-        <dt>Study designs</dt><dd>Longitudinal cohort and panel analyses, multiverse and latent class analyses, simulation studies, pilot randomized controlled trials, mixed-methods process evaluations, systematic and scoping reviews following PRISMA</dd>
-        <dt>Measures</dt><dd>Physical activity, sport participation, and sleep; depression, anxiety, and suicidal behavior; device-measured activity (Fitbit, GENEActiv, ActiGraph); heart rate variability; blood biomarkers</dd>
+        <dt>Devices</dt><dd>Fitbit, GENEActiv, and ActiGraph wearables; Meta Quest 3 headsets</dd>
+        <dt>Measures</dt><dd>Physical activity, sport participation, sleep, and rest-activity rhythms; depression, anxiety, and suicidal behavior; heart rate and heart rate variability (RMSSD, SDNN, LF/HF); blood biomarkers</dd>
+        <dt>Study designs</dt><dd>Pilot randomized controlled trials, longitudinal cohort and panel analyses, multiverse and latent class analyses, simulation studies, mixed-methods process evaluations, systematic and scoping reviews following PRISMA</dd>
         <dt>Open science</dt><dd>Preregistered secondary data analyses and reviews on OSF</dd>
-        <dt>Tools</dt><dd>R, SPSS, Python, Meta Quest</dd>
+        <dt>Tools</dt><dd>R, SPSS, Python</dd>
       </dl>
     </div>
   </div>
@@ -987,7 +1020,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       if (key === r.key || (key === r.page && r.key !== 'contact')) { a.setAttribute('aria-current', 'page'); }
       else { a.removeAttribute('aria-current'); }
     });
-    document.title = names[r.page] ? names[r.page] + ' | Youngjun Lee' : 'Youngjun Lee, Ph.D. | Autism, Depression, Physical Activity, Sport, Virtual Reality';
+    document.title = names[r.page] ? names[r.page] + ' | Youngjun Lee' : 'Youngjun Lee, Ph.D. | Physical Activity and Mental Health in Autism, VR/XR, Wearables';
     if (r.target) { r.target.scrollIntoView(); } else { window.scrollTo(0, 0); }
     if (moveFocus) {
       var h = document.querySelector('#' + r.page + ' h1');
