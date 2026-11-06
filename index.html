@@ -1076,8 +1076,8 @@ main > .page[id] { scroll-margin-top: 68px; }
       text: 'I started from one question: can physical activity solve mental health problems? I first asked it in general populations, using national data from Korea, the United States, and 45 countries. More activity, and the right kind of activity, went with better mental health.' },
     s2: { n: '2', top: 258, h: 134, title: ['Autistic people', 'are left out'], sub: ['The barrier problem', 'My Ph.D. turn to autism'],
       text: 'During my Ph.D. I turned to disability, and above all to autism. Autistic people are often shut out of traditional exercise and sport, and the evidence about them is thin, so they miss its benefits. I first saw this as a problem of barriers.' },
-    s3: { n: '3', top: 438, h: 100, title: ['Taking part', 'is not enough'], sub: ['A gap in the benefit', 'An emerging finding'],
-      text: 'The more I studied, the more it appeared that even when autistic people are active, they may not gain the same mental health benefit as their peers. Across 45 countries, more active days meant better mental health; among autistic children, active days were unrelated to anxiety or depression. A UK cohort study with device-measured activity asks the same question, and ongoing work compares autistic and non-autistic youth directly.' },
+    s3: { n: '3', top: 438, h: 100, title: ['Taking part', 'is not enough'], sub: ['A gap in the benefit?', 'Mixed evidence so far'],
+      text: 'The more I studied, the more it appeared that even when autistic people are active, they may not gain the same mental health benefit as their peers. Across 45 countries, more active days meant better mental health; among autistic children, survey-reported active days were unrelated to anxiety or depression. The evidence is mixed, though. With activity measured by accelerometer in a UK cohort, the gap was not clear, and by age 23 the link with lower distress looked, if anything, stronger for autistic young people. Whether autistic people benefit less, or surveys miss how they move, is the open question, and it is a main reason for step 4b.' },
     s4a: { n: '4a', top: 584, h: 134, title: ['A different way', 'to move'], sub: ['Immersive VR and XR', 'exercise built for autism'],
       text: 'If traditional activity does not deliver the same benefit, the activity itself has to change. I build immersive VR exercise, such as VR boxing, that lowers the sensory and social demands of gyms and team sports. Autistic students want it as much as their peers, and in two pilot trials the mood benefit was similar for autistic and non-autistic adults. What differed was who stayed: nearly half of autistic participants left, most after the first session.' },
     s4b: { n: '4b', top: 764, h: 100, title: ['Measure, don’t', 'just ask'], sub: ['Wearable devices', 'rather than surveys alone'],
@@ -1165,8 +1165,9 @@ main > .page[id] { scroll-margin-top: 68px; }
     PP5: { s: 's3', row: 0, cell: 2, type: 'pre', lead: true, yr: '2026', short: ['Measured activity and', 'later distress (UK)'], meta: 'Preprint · 2026', role: 'Sole author',
       title: 'Adolescent device-measured physical activity and later psychological distress in autistic and non-autistic young people: Longitudinal analysis of the UK Millennium Cohort Study',
       venue: 'SSRN preprint', link: 'https://ssrn.com/abstract=7643884', linkText: 'SSRN',
-      data: 'UK Millennium Cohort Study · accelerometer-measured activity at age 14 · autistic and non-autistic young people followed into adulthood',
-      why: 'Tests the gap with activity measured by a device rather than reported in a survey, joining step 3 with step 4b.' },
+      data: 'UK Millennium Cohort Study · wrist accelerometry at age 14 · 4,345 young people, 146 autistic · Kessler 6 distress at 17 or 23',
+      find: 'In the prespecified analysis, more activity at 14 went with less later distress among non-autistic young people (−0.34 points per SD), with no clear difference by autism status. In post hoc analyses, the link at age 23 was stronger for autistic young people (−2.04 points per SD), a finding that needs replication.',
+      why: 'Measured by a device instead of a survey, the gap in step 3 is not clear. This is the strongest reason for step 4b: surveys may miss how autistic people move.', also: ['Replication in an independent cohort preregistered on OSF'] },
 
     RV3: { s: 's4a', row: 0, cell: 0, type: 'rev', lead: true, short: ['VR exergames:', 'systematic review'], meta: 'In revision', role: 'First author',
       title: 'A systematic review of immersive VR exergames for individuals with developmental disabilities',
@@ -1268,12 +1269,20 @@ main > .page[id] { scroll-margin-top: 68px; }
     { id: 'E10', a: 'PP4', b: 'G6', d: 'M910,693 Q910,712 930,712 L1066,712 Q1086,712 1086,732 L1086,1026 Q1086,1046 1066,1046 L748,1046 Q728,1046 728,1066 L728,1075', label: 'Keep them in: add a coach', lx: 1078, ly: 884, anchor: 'end', desc: 'Nearly half of autistic participants left VR boxing, most after the first session. A coach that adapts and motivates is meant to keep them in.' },
     { id: 'E11', a: 'P14', b: 'G6', d: 'M546,957 C546,1040 640,1090 713,1090', label: 'Real-time adaptation', lx: 538, ly: 1052, anchor: 'end', desc: 'HRV-guided exposure becomes one of the signals the coach adapts to in real time.' }
   ];
-  var TENSION = { id: 'T1', a: 'P13', b: 'P15', d: 'M910,133 C912,100 1086,100 1086,150 L1086,430 C1086,452 980,446 920,463', gx: 1086, gy: 323,
-    label: 'General youth ≠ autistic children', lx: 1072, ly: 327,
+  var TENSIONS = [{ id: 'T1', a: 'P13', b: 'P15', d: 'M910,133 C912,100 1086,100 1086,150 L1086,430 C1086,452 980,446 920,463', gx: 1086, gy: 323,
+    label: 'General youth ≠ autistic children', lx: 1072, ly: 327, anchor: 'end',
     title: 'A link that holds for youth in general but not for autistic children',
     A: 'Across 45 countries, more active days meant higher life satisfaction and fewer symptoms.',
     B: 'Among 5,750 autistic children, active days were unrelated to anxiety or depression.',
-    q: 'This contrast is step 3 of my path. Ongoing studies compare autistic and non-autistic youth in the same data, with device-measured activity where possible, to test whether the gap is real or partly a matter of how activity is measured.' };
+    q: 'This contrast is step 3 of my path. Ongoing studies compare autistic and non-autistic youth in the same data, with device-measured activity where possible, to test whether the gap is real or partly a matter of how activity is measured.' },
+    { id: 'T2', a: 'PP5', b: 'P15', d: 'M728,459 Q819,410 901,463', gx: 817, gy: 436,
+    label: 'Survey ≠ device', lx: 817, ly: 420, anchor: 'middle',
+    title: 'Survey-reported and device-measured activity tell different stories',
+    A: 'Survey (US, NSCH): among 5,750 autistic children, parent-reported active days were unrelated to anxiety or depression.',
+    B: 'Accelerometer (UK Millennium Cohort): activity at 14 went with less later distress, with no clear difference by autism status, and a stronger link at 23 for autistic young people in post hoc analyses.',
+    q: 'The two studies differ in country, age, outcome, and design, so they do not settle the question. But they suggest the gap in step 3 may be partly a gap in measurement, which is why I measure activity with wearables.' }];
+  var TMAP = {};
+  TENSIONS.forEach(function (t) { TMAP[t.id] = t; });
 
   /* Drawing */
   function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) { e.setAttribute(k, attrs[k]); } if (parent) { parent.appendChild(e); } return e; }
@@ -1309,13 +1318,13 @@ main > .page[id] { scroll-margin-top: 68px; }
     el('path', { d: l.d }, g);
     txt(G.labels, { x: l.lx, y: l.ly, 'class': 'rm-el', 'data-edge': l.id, style: 'text-anchor:' + (l.anchor || 'middle') }, l.label);
   });
-  (function () {
-    var t = TENSION, g = el('g', { 'class': 'rm-e rm-ten', 'data-edge': t.id }, G.ten);
+  TENSIONS.forEach(function (t) {
+    var g = el('g', { 'class': 'rm-e rm-ten', 'data-edge': t.id }, G.ten);
     el('path', { d: t.d }, g);
     var gg = el('g', { 'class': 'rm-tg', 'data-edge': t.id, 'data-go': t.id, tabindex: '0', role: 'button', 'aria-label': 'Findings disagree: ' + t.title, transform: 'translate(' + t.gx + ',' + t.gy + ')' }, G.ten);
     el('circle', { r: 10 }, gg); txt(gg, { y: 1 }, '≠');
-    txt(G.labels, { x: t.lx, y: t.ly, 'class': 'rm-el t', 'data-edge': t.id, style: 'text-anchor:end' }, t.label);
-  })();
+    txt(G.labels, { x: t.lx, y: t.ly, 'class': 'rm-el t', 'data-edge': t.id, style: 'text-anchor:' + t.anchor }, t.label);
+  });
 
   ORDER.forEach(function (s) {
     var st = STEPS[s], top = st.top;
@@ -1363,12 +1372,12 @@ main > .page[id] { scroll-margin-top: 68px; }
       FLOWS.forEach(function (f) { if (f.a === id || f.b === id) { add(e, f.id); add(n, f.a); add(n, f.b); } });
       Object.keys(ITEMS).forEach(function (k) { if (ITEMS[k].s === id) { add(n, k); } });
       LINKS.forEach(function (l) { if (ITEMS[l.a].s === id && ITEMS[l.b].s === id) { add(e, l.id); } });
-    } else if (id === 'T1') {
-      add(n, 'P13'); add(n, 'P15'); add(n, 's1'); add(n, 's3'); add(e, 'T1');
+    } else if (TMAP[id]) {
+      var t = TMAP[id]; add(n, t.a); add(n, t.b); add(n, ITEMS[t.a].s); add(n, ITEMS[t.b].s); add(e, id);
     } else if (ITEMS[id]) {
       add(n, id); add(n, ITEMS[id].s);
       LINKS.forEach(function (l) { if (l.a === id || l.b === id) { add(e, l.id); add(n, l.a); add(n, l.b); } });
-      if (id === TENSION.a || id === TENSION.b) { add(e, 'T1'); add(n, TENSION.a); add(n, TENSION.b); }
+      TENSIONS.forEach(function (t) { if (t.a === id || t.b === id) { add(e, t.id); add(n, t.a); add(n, t.b); } });
     }
     return { n: n, e: e };
   }
@@ -1402,9 +1411,9 @@ main > .page[id] { scroll-margin-top: 68px; }
   }
   function overview() {
     return '<p class="rm-eyebrow">Research path</p><h3>Making physical activity work for the mental health of autistic people</h3>' +
-      '<p class="rm-lead">I started from one question, whether physical activity can solve mental health problems, and followed it from general populations to autistic people. Barriers explained only part of the story: even when autistic people are active, the benefit seems smaller. So I am building a different approach. In immersive VR exercise the mood benefit looks similar for autistic and non-autistic adults, but fewer autistic participants stay. Wearables, real-time heart rate and HRV, and an AI virtual coach are how I aim to keep them in.</p>' +
+      '<p class="rm-lead">I started from one question, whether physical activity can solve mental health problems, and followed it from general populations to autistic people. Barriers explained only part of the story: in survey data, being active more often did not go with better mental health for autistic children, although device-measured data are less clear. So I am building a different approach, and measuring it with wearables. In immersive VR exercise the mood benefit looks similar for autistic and non-autistic adults, but fewer autistic participants stay. Real-time heart rate and HRV and an AI virtual coach are how I aim to keep them in.</p>' +
       '<div class="rm-kv"><span>Steps</span><ul class="rm-plain">' + ORDER.map(function (s) { return stepButton(s); }).join('') + '</ul></div>' +
-      '<p class="rm-hint">Select a step, an item, or the red ≠ mark. Select empty space to return here.</p>';
+      '<p class="rm-hint">Select a step, an item, or a red ≠ mark. Select empty space to return here.</p>';
   }
   function stepPanel(s) {
     var st = STEPS[s], items = Object.keys(ITEMS).filter(function (k) { return ITEMS[k].s === s; });
@@ -1420,9 +1429,11 @@ main > .page[id] { scroll-margin-top: 68px; }
       if (l.b === id) { links.push('<li>' + itemButton(l.a).slice(4, -5) + '<p>' + (l.undir ? '' : 'Led to this: ') + l.desc + '</p></li>'); }
       if (l.a === id) { links.push('<li>' + itemButton(l.b).slice(4, -5) + '<p>' + (l.undir ? '' : 'This led to it: ') + l.desc + '</p></li>'); }
     });
-    if (id === TENSION.a || id === TENSION.b) {
-      links.push('<li><button type="button" class="rm-ib" data-go="T1"><span class="rm-mk" style="--c:var(--rm-tension);border-style:dashed"></span><span><b>Findings disagree</b><small>' + TENSION.title + '</small></span></button></li>');
-    }
+    TENSIONS.forEach(function (t) {
+      if (t.a === id || t.b === id) {
+        links.push('<li><button type="button" class="rm-ib" data-go="' + t.id + '"><span class="rm-mk" style="--c:var(--rm-tension);border-style:dashed"></span><span><b>Findings disagree</b><small>' + t.title + '</small></span></button></li>');
+      }
+    });
     var src = it.venue ? '<p class="rm-src">' + it.venue + (it.link ? ' · <a href="' + it.link + '" target="_blank" rel="noopener">' + it.linkText + '</a>' : '') + (it.pre ? ' · <a href="' + it.pre + '" target="_blank" rel="noopener">Preprint</a>' : '') + '</p>' : '';
     return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + sc(it.s) + '"></span>' + it.meta + (it.role ? ' · ' + it.role : '') + '</p>' +
       '<h3>' + it.title + '</h3>' + src +
@@ -1433,8 +1444,8 @@ main > .page[id] { scroll-margin-top: 68px; }
       (links.length ? '<div class="rm-kv"><span>Connections</span><ul class="rm-plain">' + links.join('') + '</ul></div>' : '') +
       '<div class="rm-kv"><span>Part of</span><ul class="rm-plain">' + stepButton(it.s) + '</ul></div>';
   }
-  function tensionPanel() {
-    var t = TENSION;
+  function tensionPanel(id) {
+    var t = TMAP[id];
     return '<p class="rm-eyebrow" style="color:var(--rm-tension)">Findings disagree</p><h3>' + t.title + '</h3>' +
       '<div class="rm-vs"><div>' + t.A + '</div><div>' + t.B + '</div></div>' +
       '<div class="rm-kv rm-role"><span>Why it matters</span><p>' + t.q + '</p></div>' +
@@ -1442,7 +1453,7 @@ main > .page[id] { scroll-margin-top: 68px; }
   }
   function render() {
     var id = state.sel;
-    panel.innerHTML = !id || id === 'TH' ? overview() : STEPS[id] ? stepPanel(id) : id === 'T1' ? tensionPanel() : itemPanel(id);
+    panel.innerHTML = !id || id === 'TH' ? overview() : STEPS[id] ? stepPanel(id) : TMAP[id] ? tensionPanel(id) : itemPanel(id);
   }
 
   /* Interaction. mode: 'map' toggles, 'panel' sets */
