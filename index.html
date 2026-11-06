@@ -274,6 +274,7 @@ main > .page[id] { scroll-margin-top: 68px; }
 .rm-mk.talk { border-radius: 3px; }
 .rm-mk.thesis { border-radius: 3px; background: var(--c); }
 .rm-mk.ghost { border: 2px dotted var(--muted); }
+.rm-mk.pre { background: color-mix(in srgb, var(--c) 22%, #fff); }
 .rm-step-n { flex: none; width: 24px; height: 24px; margin-top: 0; border-radius: 50%; background: var(--c); color: #fff; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
 .rm-vs { display: flex; flex-direction: column; gap: 8px; }
 .rm-vs div { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 10px; font-size: 0.93rem; color: var(--ink-2); }
@@ -639,11 +640,12 @@ main > .page[id] { scroll-margin-top: 68px; }
 
     <div class="block rule-top rm" id="research-map">
       <h2 class="block-title">My research path, as a map</h2>
-      <p class="rm-intro">Each step of my research, from the question I started with to the approach I am building now, with the papers, trials, and talks behind it. Arrows carry the reasoning from one step to the next. Select a step or an item to see what it contributes and how it connects.</p>
+      <p class="rm-intro">Each step of my research, from the question I started with to the approach I am building now, with the papers, preprints, trials, and talks behind it. Arrows carry the reasoning from one step to the next. Select a step or an item to see what it contributes and how it connects.</p>
       <div class="rm-legend" aria-hidden="true">
         <span><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="#38423F"/></svg>Article, first or sole author</span>
         <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Article, co-author</span>
         <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2" stroke-dasharray="3 2.4"/></svg>In revision</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#38423F" fill-opacity=".2" stroke="#38423F" stroke-width="2"/></svg>Preprint</span>
         <span><svg width="16" height="16"><rect x="2" y="2" width="12" height="12" rx="3" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Talk, poster, or dissertation</span>
         <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#5D6864" stroke-width="2" stroke-dasharray="1 3" stroke-linecap="round"/></svg>In progress</span>
         <span><svg width="30" height="10"><line x1="1" y1="5" x2="22" y2="5" stroke="#38423F" stroke-width="1.6" opacity=".6"/><path d="M21 1.5 L28 5 L21 8.5 z" fill="#38423F"/></svg>One study led to another</span>
@@ -652,7 +654,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       </div>
       <div class="rm-stage">
         <div>
-          <div class="rm-canvas"><svg id="rm-net" viewBox="0 0 1100 1236" role="img" aria-label="My research path in seven steps, from physical activity and mental health in general populations to an AI virtual coach for XR exercise, with the work behind each step"></svg></div>
+          <div class="rm-canvas"><svg id="rm-net" viewBox="0 0 1100 1270" role="img" aria-label="My research path in seven steps, from physical activity and mental health in general populations to an AI virtual coach for XR exercise, with the work behind each step"></svg></div>
           <p class="rm-swipe">Swipe sideways to see the whole map.</p>
         </div>
         <aside class="rm-panel" id="rm-panel" aria-live="polite"></aside>
@@ -1075,15 +1077,15 @@ main > .page[id] { scroll-margin-top: 68px; }
     s2: { n: '2', top: 258, h: 134, title: ['Autistic people', 'are left out'], sub: ['The barrier problem', 'My Ph.D. turn to autism'],
       text: 'During my Ph.D. I turned to disability, and above all to autism. Autistic people are often shut out of traditional exercise and sport, and the evidence about them is thin, so they miss its benefits. I first saw this as a problem of barriers.' },
     s3: { n: '3', top: 438, h: 100, title: ['Taking part', 'is not enough'], sub: ['A gap in the benefit', 'An emerging finding'],
-      text: 'The more I studied, the more it appeared that even when autistic people are active, they may not gain the same mental health benefit as their peers. Across 45 countries, more active days meant better mental health; among autistic children, active days were unrelated to anxiety or depression. Ongoing work tests this gap directly by comparing autistic and non-autistic youth.' },
-    s4a: { n: '4a', top: 584, h: 100, title: ['A different way', 'to move'], sub: ['Immersive VR and XR', 'exercise built for autism'],
-      text: 'If traditional activity does not deliver the same benefit, the activity itself has to change. I build immersive VR exercise, such as VR boxing, that lowers the sensory and social demands of gyms and team sports, and I test it with autistic and non-autistic adults.' },
-    s4b: { n: '4b', top: 730, h: 100, title: ['Measure, don’t', 'just ask'], sub: ['Wearable devices', 'rather than surveys alone'],
+      text: 'The more I studied, the more it appeared that even when autistic people are active, they may not gain the same mental health benefit as their peers. Across 45 countries, more active days meant better mental health; among autistic children, active days were unrelated to anxiety or depression. A UK cohort study with device-measured activity asks the same question, and ongoing work compares autistic and non-autistic youth directly.' },
+    s4a: { n: '4a', top: 584, h: 134, title: ['A different way', 'to move'], sub: ['Immersive VR and XR', 'exercise built for autism'],
+      text: 'If traditional activity does not deliver the same benefit, the activity itself has to change. I build immersive VR exercise, such as VR boxing, that lowers the sensory and social demands of gyms and team sports. Autistic students want it as much as their peers, and in two pilot trials the mood benefit was similar for autistic and non-autistic adults. What differed was who stayed: nearly half of autistic participants left, most after the first session.' },
+    s4b: { n: '4b', top: 764, h: 100, title: ['Measure, don’t', 'just ask'], sub: ['Wearable devices', 'rather than surveys alone'],
       text: 'Surveys and parent reports capture autistic people’s activity poorly. I measure activity, sleep, and daily rhythms with wearable devices and test how they relate to depression.' },
-    s5: { n: '5', top: 876, h: 100, title: ['Read the body', 'in real time'], sub: ['Heart rate and HRV', 'to personalize each session'],
-      text: 'Putting VR and wearable sensors together makes it possible to read heart rate and heart rate variability during exercise and adjust intensity and exposure to each person. Resting HRV already predicts who keeps feeling sick in VR.' },
-    s6: { n: '6', top: 1022, h: 100, next: true, title: ['An AI coach that', 'keeps it fun'], sub: ['AI-driven virtual coach', 'Next step'],
-      text: 'The last piece is an interactive AI virtual coach that responds to each person in real time, building motivation, enjoyment, and social presence so that the mental health benefit of exercise is as large as possible.' }
+    s5: { n: '5', top: 910, h: 100, title: ['Read the body', 'in real time'], sub: ['Heart rate and HRV', 'to personalize each session'],
+      text: 'Putting VR and wearable sensors together makes it possible to read heart rate and heart rate variability during exercise and adjust intensity and exposure to each person. Resting HRV already predicts who keeps feeling sick in VR, which points to one way to make the first sessions easier.' },
+    s6: { n: '6', top: 1056, h: 100, next: true, title: ['An AI coach that', 'keeps it fun'], sub: ['AI-driven virtual coach', 'Next step'],
+      text: 'Unequal retention is why this step matters. The last piece is an interactive AI virtual coach that responds to each person in real time, building motivation, enjoyment, and social presence, so that people stay long enough for the mental health benefit to grow.' }
   };
   var ORDER = ['s1', 's2', 's3', 's4a', 's4b', 's5', 's6'];
   function sc(s) { return 'var(--rm-' + s + ')'; }
@@ -1095,7 +1097,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       title: 'Sex-specific physical activity levels and energy intake in US young adults with depression: National Health and Nutrition Examination Survey 2017–2020 pre-pandemic data',
       venue: 'Physical Activity and Health, 7(1), 332–344', link: 'https://doi.org/10.5334/paah.305', linkText: 'DOI',
       data: 'NHANES 2017–March 2020 · ages 18–24 · N = 750',
-      find: 'Total activity did not differ by depression, but vigorous recreational activity was far lower among young adults with depression (547 vs 1,558 MET-min/week).',
+      find: 'Total activity did not differ by depression, but vigorous recreational activity was markedly lower among young adults with depression (p < .001), in both men and women.',
       why: 'My first study of mental health. The type of activity, not the total, tracked depression.', also: ['Poster, NASPSPA 2023, Toronto'] },
     RV2: { s: 's1', row: 0, cell: 1, type: 'rev', lead: true, short: ['Sedentary time and', 'depression in US adults'], meta: 'In revision', role: 'First author',
       title: 'Nonlinear association between sedentary time and depression in the United States: Evidence from the 2021–2023 National Health and Nutrition Examination Survey',
@@ -1138,7 +1140,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       why: 'Disability is missing even from the evidence on inclusion in sport.' },
     RV1: { s: 's2', row: 1, cell: 0, type: 'rev', lead: true, short: ['Organized sport and', 'autistic adolescents'], meta: 'In revision', role: 'First author',
       title: 'Organized sports and psychosocial benefits for adolescents with autism: Evidence from the 2022 National Survey of Children’s Health',
-      venue: 'European Journal of Adapted Physical Activity, in revision',
+      venue: 'European Journal of Adapted Physical Activity, in revision', pre: 'https://doi.org/10.21203/rs.3.rs-7349284/v1',
       data: 'NSCH 2022 · autistic adolescents aged 12–17 · n = 717',
       find: 'About one in four played organized sport. Those who did reported higher flourishing and better overall health.',
       why: 'Access matters: few autistic adolescents get into sport.', also: ['Two posters, World Congress of Sociology of Sport 2025, Seoul'] },
@@ -1160,6 +1162,11 @@ main > .page[id] { scroll-margin-top: 68px; }
       data: 'NSCH 2021–2024 · autistic children aged 6–17 · N = 5,750',
       find: 'Active days were unrelated to anxiety (p = .233) or depression severity (p = .525), and hardship and adversity did not change that.',
       why: 'The finding that turned my question around: being active on more days was not enough.' },
+    PP5: { s: 's3', row: 0, cell: 2, type: 'pre', lead: true, yr: '2026', short: ['Measured activity and', 'later distress (UK)'], meta: 'Preprint · 2026', role: 'Sole author',
+      title: 'Adolescent device-measured physical activity and later psychological distress in autistic and non-autistic young people: Longitudinal analysis of the UK Millennium Cohort Study',
+      venue: 'SSRN preprint', link: 'https://ssrn.com/abstract=7643884', linkText: 'SSRN',
+      data: 'UK Millennium Cohort Study · accelerometer-measured activity at age 14 · autistic and non-autistic young people followed into adulthood',
+      why: 'Tests the gap with activity measured by a device rather than reported in a survey, joining step 3 with step 4b.' },
 
     RV3: { s: 's4a', row: 0, cell: 0, type: 'rev', lead: true, short: ['VR exergames:', 'systematic review'], meta: 'In revision', role: 'First author',
       title: 'A systematic review of immersive VR exergames for individuals with developmental disabilities',
@@ -1175,10 +1182,22 @@ main > .page[id] { scroll-margin-top: 68px; }
       why: 'My first exercise program built for autistic people.', also: ['Oral, NAFAPA 2024, New York', 'Featured by WKAR Public Media, 2025'] },
     RV5: { s: 's4a', row: 0, cell: 2, type: 'rev', lead: true, short: ['VR boxing trial,', 'non-autistic adults'], meta: 'In revision', role: 'First author',
       title: 'Effects of a 6-week virtual boxing on depressive symptoms and heart rate variability in adults: A pilot randomized controlled trial',
-      venue: 'Sport Sciences for Health, in revision',
+      venue: 'Sport Sciences for Health, in revision', pre: 'https://doi.org/10.21203/rs.3.rs-9707388/v1',
       data: 'Pilot randomized trial · young adults aged 18–24 without autism · N = 30',
-      find: 'Depressive symptoms tended to fall more with VR boxing than without exercise, while resting heart rate variability did not change.',
+      find: 'Depressive symptoms fell about 2 PHQ-9 points more with VR boxing than without exercise (g = 0.64, not significant in this pilot), while resting heart rate variability did not change.',
       why: 'The non-autistic comparison trial for the same VR program.' },
+    PP3: { s: 's4a', row: 1, cell: 0, type: 'pre', lead: true, yr: '2026', short: ['Interest in VR boxing,', 'with and without autism'], meta: 'Preprint · 2026', role: 'First author',
+      title: 'Interest in immersive virtual reality boxing exercise among college students with and without autism spectrum disorder',
+      venue: 'Research Square preprint', link: 'https://doi.org/10.21203/rs.3.rs-9246183/v1', linkText: 'Preprint',
+      data: 'Survey of 179 college students · 32% autistic',
+      find: 'About 80% wanted to join a 4-week VR boxing program, and autistic and non-autistic students were equally interested (79.7% vs 79.3%).',
+      why: 'Interest is not the barrier: autistic students want this kind of exercise as much as their peers.' },
+    PP4: { s: 's4a', row: 1, cell: 3, type: 'pre', lead: true, yr: '2026', short: ['Similar mood benefit,', 'unequal retention'], meta: 'Preprint · 2026', role: 'Sole author',
+      title: 'Similar mood benefit, unequal retention: A pooled analysis of two pilot randomized trials of virtual reality boxing in autistic and non-autistic young adults',
+      venue: 'Research Square preprint', link: 'https://doi.org/10.21203/rs.3.rs-11394857/v1', linkText: 'Preprint',
+      data: 'Two pilot randomized trials pooled · 30 non-autistic and 20 autistic young adults',
+      find: 'Depressive symptoms fell by a similar amount with VR boxing in both groups (about 2 PHQ-9 points). But 6 of 11 autistic participants completed the program, against 16 of 16 non-autistic participants, and most who left did so after the first session.',
+      why: 'In VR the mood benefit looks similar; the gap moves to staying in. Getting people through the first sessions is what steps 5 and 6 are for.' },
     L1: { s: 's4a', row: 0, cell: 3, type: 'talk', lead: true, yr: '2026', short: ['Bridging the gap: VR', 'as a new pathway'], meta: 'Invited talk · 2026', role: 'Invited speaker',
       title: 'Bridging the gap: Immersive virtual reality as a new pathway for physical activity and mental health in autism',
       venue: 'World Autism Awareness Day Symposium, East China Normal University, Shanghai, 2026',
@@ -1214,7 +1233,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       title: 'MoodMiles: A gamified exercise application for mental and physical well-being in young adults with all abilities',
       venue: 'HCI International, Gothenburg, 2025',
       why: 'Game design for motivation and enjoyment, built for users of all abilities.' },
-    G6: { s: 's6', row: 0, cell: 1, type: 'ghost', short: ['AI virtual coach', 'for XR exercise'], meta: 'Next',
+    G6: { s: 's6', row: 0, cell: 2, type: 'ghost', short: ['AI virtual coach', 'for XR exercise'], meta: 'Next',
       title: 'An AI virtual coach for XR exercise',
       why: 'An interactive coach, driven by AI and by real-time heart rate and HRV, that adapts each session and builds motivation, enjoyment, and social presence.' }
   };
@@ -1229,11 +1248,11 @@ main > .page[id] { scroll-margin-top: 68px; }
     { id: 'F1', a: 's1', b: 's2', d: 'M170,212 L170,256', lab: 'But autistic people are often left out', lx: 184, ly: 239 },
     { id: 'F2', a: 's2', b: 's3', d: 'M170,392 L170,436', lab: 'Then a harder finding', lx: 184, ly: 419 },
     { id: 'F3', a: 's3', b: 's4a', d: 'M170,538 L170,582', lab: 'So: change the activity', lx: 184, ly: 565 },
-    { id: 'F4', a: 's3', b: 's4b', d: 'M40,488 L30,488 Q20,488 20,498 L20,770 Q20,780 30,780 L38,780', lab: '…and measure what they actually do', lx: 34, ly: 711 },
-    { id: 'F5', a: 's4a', b: 's5', d: 'M300,634 L310,634 Q320,634 320,644 L320,916 Q320,926 310,926 L302,926' },
-    { id: 'F6', a: 's4b', b: 's5', d: 'M170,830 L170,874', lab: 'Bring them together', lx: 184, ly: 857 },
-    { id: 'F7', a: 's5', b: 's6', d: 'M170,976 L170,1020', lab: 'Add a coach that adapts and motivates', lx: 184, ly: 1003 },
-    { id: 'F8', a: 's6', b: 'G', d: 'M170,1122 L170,1158' }
+    { id: 'F4', a: 's3', b: 's4b', d: 'M40,488 L30,488 Q20,488 20,498 L20,804 Q20,814 30,814 L38,814', lab: '…and measure what they actually do', lx: 34, ly: 745 },
+    { id: 'F5', a: 's4a', b: 's5', d: 'M300,634 L310,634 Q320,634 320,644 L320,950 Q320,960 310,960 L302,960' },
+    { id: 'F6', a: 's4b', b: 's5', d: 'M170,864 L170,908', lab: 'Bring them together', lx: 184, ly: 891 },
+    { id: 'F7', a: 's5', b: 's6', d: 'M170,1010 L170,1054', lab: 'Add a coach that adapts and motivates', lx: 184, ly: 1037 },
+    { id: 'F8', a: 's6', b: 'G', d: 'M170,1156 L170,1192' }
   ];
 
   var LINKS = [
@@ -1242,8 +1261,12 @@ main > .page[id] { scroll-margin-top: 68px; }
     { id: 'E3', a: 'P10', b: 'DISS', d: 'M546,307 L546,603', label: 'Combat sport → VR boxing', lx: 554, ly: 455, anchor: 'start', desc: 'Evidence on combat sports for autistic youth became the basis for a VR boxing program.' },
     { id: 'E4', a: 'RV3', b: 'DISS', d: 'M364,605 Q455,545 537,609', label: 'Review → own trial', lx: 455, ly: 571, desc: 'What VR exergames had shown, followed by my own trial.' },
     { id: 'E5', a: 'DISS', b: 'RV5', d: 'M555,609 Q637,545 719,609', undir: true, label: 'Sister trials', lx: 637, ly: 571, desc: 'The same VR boxing program, tested with autistic and non-autistic adults.' },
-    { id: 'E6', a: 'DISS', b: 'P14', d: 'M546,633 L546,895', label: 'Same trial: HRV', lx: 554, ly: 772, anchor: 'start', desc: 'Heart rate variability and simulator sickness, analyzed from the dissertation trial.' },
-    { id: 'E7', a: 'RV4', b: 'CP13', d: 'M364,751 Q546,691 719,755', label: 'Review → data', lx: 452, ly: 720, desc: 'From mapping the field to analyzing wearable data.' }
+    { id: 'E6', a: 'DISS', b: 'P14', d: 'M546,633 L546,929', label: 'Same trial: HRV', lx: 554, ly: 806, anchor: 'start', desc: 'Heart rate variability and simulator sickness, analyzed from the dissertation trial.' },
+    { id: 'E7', a: 'RV4', b: 'CP13', d: 'M364,785 Q546,725 719,789', label: 'Review → data', lx: 452, ly: 754, desc: 'From mapping the field to analyzing wearable data.' },
+    { id: 'E8', a: 'DISS', b: 'PP4', d: 'M556,628 Q700,702 895,684', label: 'Pooled', lx: 650, ly: 712, desc: 'The autism trial, pooled with the non-autistic trial.' },
+    { id: 'E9', a: 'RV5', b: 'PP4', d: 'M728,631 Q728,680 895,680', label: 'Pooled', lx: 800, ly: 668, desc: 'The non-autistic trial, pooled with the autism trial.' },
+    { id: 'E10', a: 'PP4', b: 'G6', d: 'M910,693 Q910,712 930,712 L1066,712 Q1086,712 1086,732 L1086,1026 Q1086,1046 1066,1046 L748,1046 Q728,1046 728,1066 L728,1075', label: 'Keep them in: add a coach', lx: 1078, ly: 884, anchor: 'end', desc: 'Nearly half of autistic participants left VR boxing, most after the first session. A coach that adapts and motivates is meant to keep them in.' },
+    { id: 'E11', a: 'P14', b: 'G6', d: 'M546,957 C546,1040 640,1090 713,1090', label: 'Real-time adaptation', lx: 538, ly: 1052, anchor: 'end', desc: 'HRV-guided exposure becomes one of the signals the coach adapts to in real time.' }
   ];
   var TENSION = { id: 'T1', a: 'P13', b: 'P15', d: 'M910,133 C912,100 1086,100 1086,150 L1086,430 C1086,452 980,446 920,463', gx: 1086, gy: 323,
     label: 'General youth ≠ autistic children', lx: 1072, ly: 327,
@@ -1274,7 +1297,7 @@ main > .page[id] { scroll-margin-top: 68px; }
     txt(g, { x: 44, y: y + 46, 'class': 'm' }, main);
   }
   banner('M', 16, 'Where it starts', 'Physical activity as a way to solve mental health problems');
-  banner('G', 1160, 'My ultimate goal', 'An accessible, personalized, evidence-based path to better mental health for every autistic person');
+  banner('G', 1194, 'My ultimate goal', 'An accessible, personalized, evidence-based path to better mental health for every autistic person');
 
   FLOWS.forEach(function (f) {
     var g = el('g', { 'class': 'rm-e rm-flow', 'data-edge': f.id }, G.flows);
@@ -1314,6 +1337,9 @@ main > .page[id] { scroll-margin-top: 68px; }
     var fill = (it.lead && (it.type === 'pub' || it.type === 'thesis')) ? c : '#fff';
     if (it.type === 'talk' || it.type === 'thesis') {
       el('rect', { x: -12, y: -12, width: 24, height: 24, rx: 5, 'class': 'core', fill: fill, stroke: c }, g);
+    } else if (it.type === 'pre') {
+      el('circle', { r: 13, fill: '#fff' }, g);
+      el('circle', { r: 13, 'class': 'core', fill: c, 'fill-opacity': 0.18, stroke: c }, g);
     } else {
       el('circle', { r: 13, 'class': 'core', fill: fill, stroke: it.type === 'ghost' ? 'var(--muted)' : c }, g);
     }
@@ -1376,7 +1402,7 @@ main > .page[id] { scroll-margin-top: 68px; }
   }
   function overview() {
     return '<p class="rm-eyebrow">Research path</p><h3>Making physical activity work for the mental health of autistic people</h3>' +
-      '<p class="rm-lead">I started from one question, whether physical activity can solve mental health problems, and followed it from general populations to autistic people. Barriers explained only part of the story: even when autistic people are active, the benefit seems smaller. So I am building a different approach: immersive XR exercise, measured with wearables, personalized with real-time heart rate and HRV, and guided by an AI virtual coach.</p>' +
+      '<p class="rm-lead">I started from one question, whether physical activity can solve mental health problems, and followed it from general populations to autistic people. Barriers explained only part of the story: even when autistic people are active, the benefit seems smaller. So I am building a different approach. In immersive VR exercise the mood benefit looks similar for autistic and non-autistic adults, but fewer autistic participants stay. Wearables, real-time heart rate and HRV, and an AI virtual coach are how I aim to keep them in.</p>' +
       '<div class="rm-kv"><span>Steps</span><ul class="rm-plain">' + ORDER.map(function (s) { return stepButton(s); }).join('') + '</ul></div>' +
       '<p class="rm-hint">Select a step, an item, or the red ≠ mark. Select empty space to return here.</p>';
   }
@@ -1397,7 +1423,7 @@ main > .page[id] { scroll-margin-top: 68px; }
     if (id === TENSION.a || id === TENSION.b) {
       links.push('<li><button type="button" class="rm-ib" data-go="T1"><span class="rm-mk" style="--c:var(--rm-tension);border-style:dashed"></span><span><b>Findings disagree</b><small>' + TENSION.title + '</small></span></button></li>');
     }
-    var src = it.venue ? '<p class="rm-src">' + it.venue + (it.link ? ' · <a href="' + it.link + '" target="_blank" rel="noopener">' + it.linkText + '</a>' : '') + '</p>' : '';
+    var src = it.venue ? '<p class="rm-src">' + it.venue + (it.link ? ' · <a href="' + it.link + '" target="_blank" rel="noopener">' + it.linkText + '</a>' : '') + (it.pre ? ' · <a href="' + it.pre + '" target="_blank" rel="noopener">Preprint</a>' : '') + '</p>' : '';
     return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + sc(it.s) + '"></span>' + it.meta + (it.role ? ' · ' + it.role : '') + '</p>' +
       '<h3>' + it.title + '</h3>' + src +
       (it.data ? '<div class="rm-kv"><span>Data</span><p>' + it.data + '</p></div>' : '') +
