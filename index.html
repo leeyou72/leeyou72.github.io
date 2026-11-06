@@ -237,16 +237,16 @@ main > .page[id] { scroll-margin-top: 68px; }
 .footer-links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; align-content: start; font-size: 0.95rem; }
 .footer-base { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; color: #93A09C; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-/* Research map (interactive network of published work) */
-.rm { --rm-life: #A0621A; --rm-mental: #2A5D8F; --rm-dis: #17656F; --rm-tech: #6B4FA0; --rm-tension: #B5432E; }
+/* Research map: my research path as an interactive network */
+.rm { --rm-s1: #2A5D8F; --rm-s2: #17656F; --rm-s3: #A0621A; --rm-s4a: #6B4FA0; --rm-s4b: #3D7A4A; --rm-s5: #A23B5A; --rm-s6: #4A4FA8; --rm-tension: #B5432E; }
 .rm-intro { color: var(--ink-2); max-width: 66ch; }
 .rm-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin-top: 18px; font-size: 0.88rem; color: var(--muted); }
 .rm-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .rm-legend svg { flex: none; }
 .rm-stage { position: relative; left: 50%; transform: translateX(-50%); width: min(1360px, calc(100vw - 2 * var(--gutter))); margin-top: 16px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 1240px) { .rm-stage { grid-template-columns: minmax(0, 1fr) 330px; } }
+@media (min-width: 1240px) { .rm-stage { grid-template-columns: minmax(0, 1fr) 340px; } }
 .rm-canvas { background: #fff; border: 1px solid var(--rule); border-radius: 10px; overflow-x: auto; min-width: 0; }
-#rm-net { display: block; width: 100%; min-width: 840px; height: auto; user-select: none; -webkit-user-select: none; }
+#rm-net { display: block; width: 100%; min-width: 880px; height: auto; user-select: none; -webkit-user-select: none; }
 .rm-swipe { display: none; margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
 @media (max-width: 900px) { .rm-swipe { display: block; } }
 .rm-panel { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; align-self: start; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
@@ -254,40 +254,48 @@ main > .page[id] { scroll-margin-top: 68px; }
 .rm-panel h3 { font-size: 1.2rem; line-height: 1.3; font-weight: 600; }
 .rm-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 .rm-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.rm-lead { font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); }
 .rm-src { font-size: 0.9rem; color: var(--muted); }
 .rm-src cite { font-style: italic; }
 .rm-kv { display: flex; flex-direction: column; gap: 4px; }
 .rm-kv > span { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .rm-kv p, .rm-kv li { font-size: 0.93rem; line-height: 1.55; color: var(--ink-2); }
 .rm-kv ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
-.rm-kv ul.rm-plain { list-style: none; padding: 0; gap: 8px; }
+.rm-kv ul.rm-plain { list-style: none; padding: 0; gap: 6px; }
 .rm-role p { color: var(--ink); }
 .rm-hint { font-size: 0.88rem; color: var(--muted); }
-.rm-chip { font: 600 0.78rem var(--sans); font-variant-numeric: tabular-nums; min-width: 1.9em; border: 1.5px solid var(--c, var(--muted)); color: var(--c, var(--ink-2)); background: #fff; border-radius: 5px; padding: 0 5px; line-height: 1.55; cursor: pointer; vertical-align: 1px; }
-.rm-chip:hover { background: var(--c, var(--muted)); color: #fff; }
-.rm-chip.rm-t { --c: var(--rm-tension); }
-.rm-cchip { font: 600 0.86rem var(--sans); border: 1.5px solid var(--ink); color: var(--ink); background: #fff; border-radius: 6px; padding: 1px 9px; cursor: pointer; }
-.rm-cchip:hover { background: var(--ink); color: var(--paper); }
+.rm-ib { display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; color: var(--ink-2); }
+.rm-ib:hover b, .rm-ib:focus-visible b { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.rm-ib b { display: block; font-weight: 600; color: var(--ink); font-size: 0.93rem; line-height: 1.35; }
+.rm-ib small { display: block; font-size: 0.82rem; color: var(--muted); }
+.rm-mk { flex: none; width: 14px; height: 14px; margin-top: 3px; border: 2px solid var(--c); background: #fff; border-radius: 50%; }
+.rm-mk.lead { background: var(--c); }
+.rm-mk.rev { border-style: dashed; }
+.rm-mk.talk { border-radius: 3px; }
+.rm-mk.thesis { border-radius: 3px; background: var(--c); }
+.rm-mk.ghost { border: 2px dotted var(--muted); }
+.rm-step-n { flex: none; width: 24px; height: 24px; margin-top: 0; border-radius: 50%; background: var(--c); color: #fff; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
 .rm-vs { display: flex; flex-direction: column; gap: 8px; }
 .rm-vs div { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 10px; font-size: 0.93rem; color: var(--ink-2); }
-.rm-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.rm-tcard { border-top: 2px solid var(--rm-tension); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-.rm-tcard .rm-neq { font-size: 0.85rem; font-weight: 600; color: var(--rm-tension); font-variant-numeric: tabular-nums; }
-.rm-tcard h4 { font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; font-weight: 600; margin: 0; }
-.rm-tcard p { font-size: 0.93rem; color: var(--ink-2); }
-.rm-link { align-self: flex-start; font: 500 0.9rem var(--sans); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-.rm-link:hover { color: var(--accent-ink); }
+.rm-roots { margin-top: 18px; font-size: 0.92rem; color: var(--muted); max-width: 72ch; }
 #rm-net text { font-family: var(--sans); }
-#rm-net .rm-colh { font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; }
-#rm-net .rm-yr { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
 .rm-sep { stroke: #EEF1EF; stroke-width: 1; }
-.rm-vsep { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 5; }
+.rm-ban rect { fill: var(--night); }
+#rm-net .rm-ban .e { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; fill: #fff; opacity: 0.7; }
+#rm-net .rm-ban .m { font-family: var(--serif); font-size: 19px; fill: #fff; }
+.rm-box { fill: #fff; stroke: var(--ink-2); stroke-width: 1.3; }
+.rm-card.rm-next .rm-box { stroke-dasharray: 5 4; }
+.rm-card.hi .rm-box, .rm-card.sel .rm-box { stroke: var(--ink); stroke-width: 2.6; }
+#rm-net .rm-card .t { font-family: var(--serif); font-size: 17px; font-weight: 600; fill: var(--ink); }
+#rm-net .rm-card .s { font-size: 12px; fill: var(--muted); }
+#rm-net .rm-card .n { font-size: 11.5px; font-weight: 700; fill: #fff; text-anchor: middle; dominant-baseline: central; }
 .rm-e path { fill: none; }
-.rm-sup path { stroke: var(--ink-2); stroke-opacity: 0.14; stroke-width: 1.2; }
-.rm-sup.hi path { stroke: var(--c); stroke-opacity: 0.85; stroke-width: 2.2; }
-.rm-lin path { stroke: var(--ink-2); stroke-opacity: 0.6; stroke-width: 1.7; marker-end: url(#rm-ar); }
-.rm-lin.rm-undir path { marker-end: none; stroke-dasharray: 1 4; stroke-linecap: round; stroke-width: 2.4; }
-.rm-lin.hi path { stroke: var(--ink); stroke-opacity: 1; stroke-width: 2.6; marker-end: url(#rm-arH); }
+.rm-flow path { stroke: var(--ink-2); stroke-width: 2; marker-end: url(#rm-arF); }
+.rm-flow.hi path { stroke: var(--ink); stroke-width: 2.6; }
+#rm-net .rm-flab { font-family: var(--serif); font-style: italic; font-size: 14px; fill: var(--ink-2); paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+.rm-lin path { stroke: var(--ink-2); stroke-opacity: 0.5; stroke-width: 1.5; marker-end: url(#rm-ar); }
+.rm-lin.rm-undir path { marker-end: none; stroke-dasharray: 1 4; stroke-linecap: round; stroke-width: 2.2; }
+.rm-lin.hi path { stroke: var(--ink); stroke-opacity: 1; stroke-width: 2.4; marker-end: url(#rm-arH); }
 .rm-lin.rm-undir.hi path { marker-end: none; }
 .rm-ten path { stroke: var(--rm-tension); stroke-dasharray: 6 4; stroke-width: 2.2; }
 .rm-ten.hi path { stroke-width: 3; }
@@ -295,40 +303,32 @@ main > .page[id] { scroll-margin-top: 68px; }
 .rm-tg circle { fill: #fff; stroke: var(--rm-tension); stroke-width: 1.8; }
 #rm-net .rm-tg text { fill: var(--rm-tension); font-size: 14px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
 .rm-tg:focus-visible circle { stroke-width: 3.2; }
-.rm-k path { stroke: var(--ink); stroke-opacity: 0.28; stroke-width: 2; }
-.rm-k.hi path { stroke-opacity: 0.85; stroke-width: 2.6; }
 #rm-ar path { fill: var(--ink-2); }
-#rm-arH path { fill: var(--ink); }
-.rm-node { cursor: pointer; outline: none; }
-.rm-node .focus { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; }
-.rm-node:focus-visible .focus { opacity: 1; }
-.rm-p .core { stroke-width: 2.6; }
-.rm-p .ring2 { fill: none; stroke-width: 2.2; stroke-dasharray: 3 3; }
-.rm-p .halo { opacity: 0; }
-.rm-p.sel .halo { opacity: 0.2; }
-.rm-p.sel .core { stroke-width: 4; }
-#rm-net .rm-p .pid { font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
-#rm-net .rm-lab { font-size: 13px; font-weight: 500; fill: var(--ink-2); paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
-#rm-net .rm-p.hi .rm-lab { fill: var(--ink); font-weight: 600; }
-.rm-cbox { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
-.rm-c.hi .rm-cbox, .rm-c.sel .rm-cbox { stroke-width: 3; }
-#rm-net .rm-c .ct { font-family: var(--serif); font-size: 15.5px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
-#rm-net .rm-c .cs { font-size: 12px; fill: var(--muted); text-anchor: middle; }
-.rm-thbox { fill: var(--night); }
-#rm-net .rm-th .t0 { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; fill: #fff; opacity: 0.7; text-anchor: middle; }
-#rm-net .rm-th .t1 { font-family: var(--serif); font-size: 21px; font-weight: 500; fill: #fff; text-anchor: middle; }
-#rm-net .rm-th .t2 { font-size: 13px; fill: #fff; opacity: 0.85; text-anchor: middle; }
+#rm-arH path, #rm-arF path { fill: var(--ink); }
 #rm-net .rm-el { display: none; font-size: 12px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 6px; stroke-linejoin: round; pointer-events: none; }
 #rm-net .rm-el.t { fill: var(--rm-tension); }
 #rm-net .rm-el.hi { display: block; }
-.rm-e.dim, .rm-tg.dim { opacity: 0.13; }
-.rm-node.dim { opacity: 0.28; }
+.rm-node { cursor: pointer; outline: none; }
+.rm-node .focus { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; }
+.rm-node:focus-visible .focus { opacity: 1; }
+.rm-it .halo { opacity: 0; }
+.rm-it.sel .halo { opacity: 0.18; }
+.rm-it .core { stroke-width: 2.4; }
+.rm-it.rev .core { stroke-dasharray: 3.5 3; }
+.rm-it.ghost .core { stroke: var(--muted); stroke-dasharray: 1.5 3.5; stroke-linecap: round; }
+.rm-it.sel .core { stroke-width: 3.6; }
+#rm-net .rm-it .yr { font-size: 10.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+#rm-net .rm-lab { font-size: 12.5px; font-weight: 500; fill: var(--ink-2); paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+#rm-net .rm-meta { font-size: 11px; fill: var(--muted); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+#rm-net .rm-it.hi .rm-lab { fill: var(--ink); font-weight: 600; }
+#rm-net .rm-it.ghost .rm-lab { font-style: italic; }
+.rm-e.dim, .rm-tg.dim { opacity: 0.12; }
+.rm-node.dim { opacity: 0.26; }
 .rm-e, .rm-node, .rm-tg { transition: opacity .16s ease; }
 @media (prefers-reduced-motion: reduce) { .rm-e, .rm-node, .rm-tg { transition: none; } }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .rm-trio { grid-template-columns: 1fr; }
   .menu-btn { display: inline-flex; }
   .site-nav { position: absolute; left: 0; right: 0; top: 68px; background: var(--paper); border-bottom: 1px solid var(--rule); display: none; }
   .site-nav.is-open { display: block; }
@@ -446,7 +446,7 @@ main > .page[id] { scroll-margin-top: 68px; }
         <li><p class="n">4</p><h3>A different approach</h3><p>Immersive VR and XR exercise, activity measured with wearables rather than surveys alone, and real-time heart rate, HRV, and an AI virtual coach to personalize each session.</p></li>
       </ol>
       <a class="more-link" href="#research">Read about my research</a>
-      <a class="more-link" href="#research-map" style="margin-left:24px">See how my published work connects</a>
+      <a class="more-link" href="#research-map" style="margin-left:24px">See my research path as a map</a>
     </div>
 
     <div class="block">
@@ -564,7 +564,7 @@ main > .page[id] { scroll-margin-top: 68px; }
       </a>
       <a class="btn" href="#research-map">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><circle cx="19" cy="15" r="2.5"/><path d="M6.4 15.9L10.6 8.1M14.3 7.2l3.2 5.8M7.4 17.5l9.1-1.8"/></svg>
-        How my papers connect
+        My research path as a map
       </a>
       <p class="gs-line" data-gs-line hidden></p>
     </div>
@@ -638,27 +638,26 @@ main > .page[id] { scroll-margin-top: 68px; }
     </div>
 
     <div class="block rule-top rm" id="research-map">
-      <h2 class="block-title">How my published work fits together</h2>
-      <p class="rm-intro">My fifteen published papers, read as one argument. Papers build upward from 2021 to 2026, each supports one or more of five claims, and the claims meet in a single thesis. Select a paper, a claim, or a <span style="color:#B5432E;font-weight:600">≠</span> mark to trace its connections.</p>
+      <h2 class="block-title">My research path, as a map</h2>
+      <p class="rm-intro">Each step of my research, from the question I started with to the approach I am building now, with the papers, trials, and talks behind it. Arrows carry the reasoning from one step to the next. Select a step or an item to see what it contributes and how it connects.</p>
       <div class="rm-legend" aria-hidden="true">
-        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="#38423F"/></svg>First, co-first, or sole author</span>
-        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Co-author</span>
-        <span><svg width="20" height="20"><circle cx="10" cy="10" r="5" fill="#38423F"/><circle cx="10" cy="10" r="8.5" fill="none" stroke="#5D6864" stroke-width="1.6" stroke-dasharray="2 2"/></svg>Bridges two lines of work</span>
-        <span><svg width="30" height="10"><line x1="1" y1="5" x2="22" y2="5" stroke="#38423F" stroke-width="1.8"/><path d="M21 1 L29 5 L21 9 z" fill="#38423F"/></svg>Led to the next paper</span>
-        <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#38423F" stroke-width="2.4" stroke-dasharray="1 4" stroke-linecap="round"/></svg>Companion paper</span>
-        <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#5D6864" stroke-width="1.4" opacity=".6"/></svg>Supports a claim</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="#38423F"/></svg>Article, first or sole author</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Article, co-author</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#38423F" stroke-width="2" stroke-dasharray="3 2.4"/></svg>In revision</span>
+        <span><svg width="16" height="16"><rect x="2" y="2" width="12" height="12" rx="3" fill="#fff" stroke="#38423F" stroke-width="2"/></svg>Talk, poster, or dissertation</span>
+        <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#5D6864" stroke-width="2" stroke-dasharray="1 3" stroke-linecap="round"/></svg>In progress</span>
+        <span><svg width="30" height="10"><line x1="1" y1="5" x2="22" y2="5" stroke="#38423F" stroke-width="1.6" opacity=".6"/><path d="M21 1.5 L28 5 L21 8.5 z" fill="#38423F"/></svg>One study led to another</span>
         <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#B5432E" stroke-width="2.2" stroke-dasharray="6 4"/></svg>Findings disagree</span>
-        <span>Numbers follow publication order.</span>
+        <span>Numbers in nodes are publication years.</span>
       </div>
       <div class="rm-stage">
         <div>
-          <div class="rm-canvas"><svg id="rm-net" viewBox="0 0 1100 1012" role="img" aria-label="Network of 15 papers, five claims, and one thesis"></svg></div>
+          <div class="rm-canvas"><svg id="rm-net" viewBox="0 0 1100 1236" role="img" aria-label="My research path in seven steps, from physical activity and mental health in general populations to an AI virtual coach for XR exercise, with the work behind each step"></svg></div>
           <p class="rm-swipe">Swipe sideways to see the whole map.</p>
         </div>
         <aside class="rm-panel" id="rm-panel" aria-live="polite"></aside>
       </div>
-      <h3 class="subhead later">Where the findings disagree</h3>
-      <div class="rm-trio" id="rm-tensions"></div>
+      <p class="rm-roots">Not shown: my earlier work on physical activity, diet, sleep, and metabolic health in Korean and US adults (2021–2025), which built the population-data methods this path relies on. It is listed under <a href="#publications">Publications</a>.</p>
     </div>
 
     <div class="block rule-top">
@@ -1059,341 +1058,372 @@ main > .page[id] { scroll-margin-top: 68px; }
 </script>
 
 <script>
-/* Research map: an interactive network of the published papers.
-   Layout is fixed (viewBox units); papers rise from 2021 (bottom) to 2026 (top),
-   feed five claims, and the claims feed one thesis. */
+/* Research map: my research path as an interactive network.
+   Steps run top to bottom along a spine on the left, and the work behind
+   each step sits in that step's band. Arrows between steps carry the
+   reasoning; thin arcs show one study leading to another. Coordinates are
+   viewBox units. */
 (function () {
   var svg = document.getElementById('rm-net');
   var panel = document.getElementById('rm-panel');
   if (!svg || !panel) { return; }
   var NS = 'http://www.w3.org/2000/svg';
-  var SC = { life: 'var(--rm-life)', mental: 'var(--rm-mental)', dis: 'var(--rm-dis)', tech: 'var(--rm-tech)' };
 
-  var PAPERS = {
-    P1: { yr: '2021', x: 190, y: 945, s: 'life', lead: false, lab: 'b', short: ['Midlife men', 'household × MetS'], role: 'Third author', doi: '10.20463/pan.2021.0020', journal: 'Physical Activity and Nutrition',
-      title: 'Comparative analysis of energy intake and physical activity according to household type and presence of metabolic syndrome in middle-aged men (KNHANES 2016–2018)',
-      data: 'KNHANES 2016–2018 · men aged 40–59 · N = 2,266',
-      find: ['Men in single-person households with metabolic syndrome had higher triglycerides and glucose.', 'Any activity level above inactive was linked to lower odds of metabolic syndrome (OR 0.57–0.65).'],
-      net: 'The starting template: social context × activity domain × energy intake → health.' },
-    P2: { yr: '2022', x: 260, y: 860, s: 'life', lead: false, lab: 'b', short: ['Older adults', 'income × MetS'], role: 'Third author', doi: '10.20463/pan.2022.0011', journal: 'Physical Activity and Nutrition',
-      title: 'Analysis of energy intakes, physical activities and metabolic syndrome according to the income level in Korean elderly people',
-      data: 'KNHANES 2016–2018 · adults 65+ in the top and bottom income quartiles · N = 2,139',
-      find: ['Older adults with metabolic syndrome ate less and moved less regardless of income (362 vs 621 MET-min/week).', 'Income × metabolic syndrome interaction appeared only for fasting glucose.'],
-      net: 'The same template, with income in place of household type.' },
-    P3: { yr: '2022', x: 120, y: 860, s: 'life', lead: true, lab: 'b', short: ['Young adults', 'household × MetS'], role: 'First author', doi: '10.1186/s12889-022-12852-3', journal: 'BMC Public Health',
-      title: 'Household-specific physical activity levels and energy intakes according to the presence of metabolic syndrome in Korean young adults',
-      data: 'KNHANES 2016–2018 · adults aged 20–39 · N = 3,974',
-      find: ['Very active vs inactive: metabolic syndrome OR 0.55 (0.39–0.77).', 'Single-person households with metabolic syndrome were less active (785 vs 1,418 MET-min/week); multi-person households with it ate more.'],
-      net: 'My first first-authored paper and the hub of the map. Its template moves to depression (4), sleep (8), and a trial (5).' },
-    P4: { yr: '2023', x: 420, y: 740, s: 'mental', lead: true, lab: 'b', short: ['US young adults', 'depression, sex × PA'], role: 'First and corresponding author', doi: '10.5334/paah.305', journal: 'Physical Activity and Health',
-      title: 'Sex-specific physical activity levels and energy intake in US young adults with depression: NHANES 2017–2020 pre-pandemic data',
-      data: 'NHANES 2017–March 2020 · ages 18–24 · N = 750 (80 with depression)',
-      find: ['Total activity did not differ by depression.', 'Vigorous recreational activity was far lower with depression (547 vs 1,558 MET-min/week), in both sexes.'],
-      net: 'The turn from metabolic to mental health, and the first sign that the form of activity matters more than the amount.' },
-    P5: { yr: '2024', x: 930, y: 760, s: 'tech', s2: 'life', lead: true, lab: 'b', short: ['Remote walking', '+ sugar limit RCT'], role: 'First author', doi: '10.3389/fpubh.2024.1396598', journal: 'Frontiers in Public Health',
-      title: 'Sugary snack restriction enhances body composition improvement in overweight women engaging in non-face-to-face walking during COVID-19',
-      data: '8-week randomized trial · overweight women aged 20–39 · 21 analyzed',
-      find: ['Remote brisk walking, four times a week, monitored by smartwatch and messenger.', 'Adding sugary-snack restriction nearly doubled weight loss (−3.3 vs −1.8 kg), with no added benefit for glucose or insulin.'],
-      net: 'From observing to intervening, and a first test of wearable-supported remote delivery. My master’s thesis.' },
-    P6: { yr: '2025', x: 305, y: 625, s: 'life', s2: 'mental', lead: false, lab: 'b', short: ['Late-night eating', '→ circadian → mood'], role: 'Third author', doi: '10.20463/pan.2025.0003', journal: 'Physical Activity and Nutrition',
-      title: 'Role of late-night eating in circadian disruption and depression: A review of emotional health impacts',
-      data: 'Narrative review',
-      find: ['Late-night eating misaligns the circadian clock, delaying melatonin and disrupting hormonal and inflammatory signals linked to mood disorders.'],
-      net: 'The mechanistic bridge from diet and sleep to depression.' },
-    P7: { yr: '2025', x: 785, y: 632, s: 'dis', lead: false, lab: 'b', short: ['Combat sports', 'health & inclusion'], role: 'Second author', doi: '10.3389/fpsyg.2025.1587672', journal: 'Frontiers in Psychology',
-      title: 'Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners. An opinion paper',
-      data: 'Opinion paper with a SWOT analysis',
-      find: ['Argues for moving combat sports from elite performance toward health and inclusion.', 'Names VR and technology among seven research priorities.'],
-      net: 'Sets the inclusion agenda and anticipates the VR work (14).' },
-    P8: { yr: '2025', x: 140, y: 575, s: 'life', lead: true, lab: 'r', short: ['Working adults', 'sleep · diet · PA'], role: 'Co-first author', doi: '10.3389/fpubh.2025.1588706', journal: 'Frontiers in Public Health',
-      title: 'Analysis of sleep duration, energy intakes, physical activity, and metabolic syndrome based on the presence or absence of obesity and hypertension in working Korean adults',
-      data: 'KNHANES 2016–2018 · working adults aged 20–59 · N = 6,503',
-      find: ['Adults with both obesity and hypertension had the shortest weekend sleep (449 min), the highest energy intake (2,422 kcal), and less vigorous occupational activity.'],
-      net: 'Adds sleep as the third behavior in the template.' },
-    P9: { yr: '2025', x: 595, y: 630, s: 'dis', lead: true, lab: 'b', short: ['Combat sports', 'review protocol'], role: 'First author', doi: '10.1371/journal.pone.0301949', journal: 'PLoS ONE',
-      title: 'Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review',
-      data: 'PROSPERO-registered protocol · ages 5–18 with any disability · six Olympic combat sports',
-      find: ['Planned frequentist and Bayesian meta-analysis, GRADE, and implementation moderators (CFIR).'],
-      net: 'Shifts the population to disabled and autistic youth and formalizes the question.' },
-    P10: { yr: '2025', x: 690, y: 560, s: 'dis', lead: true, lab: 'r', short: ['Combat sports ×', 'disability review'], role: 'First author', doi: '10.3389/fpsyg.2025.1567978', journal: 'Frontiers in Psychology',
-      title: 'Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials',
-      data: '12 controlled trials (7 RCTs) · N = 436 · mean age 11.4 · 6 trials in autism',
-      find: ['Gains in communication, social interaction, emotion regulation, and executive function, and fewer stereotyped behaviors, mostly in autism.', 'No consistent rise in aggression; the evidence base is small.'],
-      net: 'Shows promise and scarcity at once, and grounds my VR boxing dissertation.' },
-    P11: { yr: '2026', x: 700, y: 385, s: 'dis', lead: false, lab: 'r', short: ['Grassroots sport', 'crisis umbrella review'], role: 'Second author', doi: '10.3390/soc16040118', journal: 'Societies',
-      title: 'Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport',
-      data: 'Umbrella review of 15 reviews · AMSTAR 2 quality mostly low or critically low',
-      find: ['Shared resilience mechanisms: adaptable delivery, safe and inclusive settings, cultural tailoring, social support, and supportive governance.', 'Disability is underrepresented in the evidence.'],
-      net: 'Widens context to crises and confirms the disability evidence gap.' },
-    P12: { yr: '2026', x: 370, y: 370, s: 'mental', lead: true, lab: 'l', short: ['Violence × PA type', '→ suicidal ideation'], role: 'Sole author', doi: '10.1111/sltb.70134', journal: 'Suicide and Life-Threatening Behavior',
-      title: 'Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents',
-      data: 'KYRBS 2021–2024 · grades 7–12 · N = 214,218',
-      find: ['Violence victimization and serious suicidal ideation: OR 3.43.', 'Aerobic activity moderated in an inverted U (a stronger link at 1–3 days a week, weaker at 4 or more); dichotomizing muscle-strengthening activity flipped the sign.'],
-      net: 'Puts context (violence) and form (type, dose) in one model, and argues for modeling activity continuously and by type.' },
-    P13: { yr: '2026', x: 500, y: 370, s: 'mental', lead: true, lab: 'r', short: ['45 countries', 'PA dose × wellbeing'], role: 'First author', doi: '10.1016/j.mhpa.2026.100826', journal: 'Mental Health and Physical Activity',
-      title: 'Physical activity and adolescent mental health across 45 countries: Exploring the role of country-level perceived health',
-      data: 'HBSC 2017/18 · ages 11, 13, 15 · 45 countries · N = 217,384',
-      find: ['A clear dose-response: 5–7 vs 0 active days, life satisfaction +0.92.', 'Country-level perceived health did not moderate the link; sex and age did.'],
-      net: 'The international baseline for dose-response, and the first sign that macro context moderates weakly.' },
-    P14: { yr: '2026', x: 930, y: 405, s: 'tech', s2: 'dis', lead: true, lab: 'r', short: ['VR exercise', 'HRV × sickness'], role: 'Sole author', doi: '10.1016/j.reia.2026.203046', journal: 'Research in Autism',
-      title: 'Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in autistic young adults: A proof-of-principle study',
-      data: 'Six autistic young adults completing VR exercise · Meta Quest 3 · eight sessions',
-      find: ['Lower resting heart rate variability predicted persistent simulator sickness (r = −.91).', 'Recommends HRV-informed graded exposure rather than exclusion.'],
-      net: 'Explains individual differences in technology-delivered exercise with physiology. The first paper from my VR boxing dissertation.' },
-    P15: { yr: '2026', x: 555, y: 452, s: 'mental', s2: 'dis', lead: true, lab: 'b', short: ['Autistic children', 'adversity × PA'], role: 'Sole author', doi: '10.1007/s10803-026-07607-7', journal: 'Journal of Autism and Developmental Disorders',
-      title: 'Socioeconomic hardship and cumulative adverse experiences in relation to anxiety and depression in autistic children: Exploring the role of physical activity',
-      data: 'NSCH 2021–2024 · autistic children aged 6–17 · N = 5,750',
-      find: ['Active days were unrelated to anxiety (p = .233) or depression severity (p = .525); hardship, adversity, and all interactions were null.', 'Physical activity alone is not enough under adversity; family-centered, trauma-informed, structural supports are needed.'],
-      net: 'An unexpected null that opened my next line of work: autistic and non-autistic comparisons, measurement, and structured sport.' }
+  var STEPS = {
+    s1: { n: '1', top: 112, h: 100, title: ['Activity protects', 'mental health'], sub: ['General populations', 'Korea, US, and 45 countries'],
+      text: 'I started from one question: can physical activity solve mental health problems? I first asked it in general populations, using national data from Korea, the United States, and 45 countries. More activity, and the right kind of activity, went with better mental health.' },
+    s2: { n: '2', top: 258, h: 134, title: ['Autistic people', 'are left out'], sub: ['The barrier problem', 'My Ph.D. turn to autism'],
+      text: 'During my Ph.D. I turned to disability, and above all to autism. Autistic people are often shut out of traditional exercise and sport, and the evidence about them is thin, so they miss its benefits. I first saw this as a problem of barriers.' },
+    s3: { n: '3', top: 438, h: 100, title: ['Taking part', 'is not enough'], sub: ['A gap in the benefit', 'An emerging finding'],
+      text: 'The more I studied, the more it appeared that even when autistic people are active, they may not gain the same mental health benefit as their peers. Across 45 countries, more active days meant better mental health; among autistic children, active days were unrelated to anxiety or depression. Ongoing work tests this gap directly by comparing autistic and non-autistic youth.' },
+    s4a: { n: '4a', top: 584, h: 100, title: ['A different way', 'to move'], sub: ['Immersive VR and XR', 'exercise built for autism'],
+      text: 'If traditional activity does not deliver the same benefit, the activity itself has to change. I build immersive VR exercise, such as VR boxing, that lowers the sensory and social demands of gyms and team sports, and I test it with autistic and non-autistic adults.' },
+    s4b: { n: '4b', top: 730, h: 100, title: ['Measure, don’t', 'just ask'], sub: ['Wearable devices', 'rather than surveys alone'],
+      text: 'Surveys and parent reports capture autistic people’s activity poorly. I measure activity, sleep, and daily rhythms with wearable devices and test how they relate to depression.' },
+    s5: { n: '5', top: 876, h: 100, title: ['Read the body', 'in real time'], sub: ['Heart rate and HRV', 'to personalize each session'],
+      text: 'Putting VR and wearable sensors together makes it possible to read heart rate and heart rate variability during exercise and adjust intensity and exposure to each person. Resting HRV already predicts who keeps feeling sick in VR.' },
+    s6: { n: '6', top: 1022, h: 100, next: true, title: ['An AI coach that', 'keeps it fun'], sub: ['AI-driven virtual coach', 'Next step'],
+      text: 'The last piece is an interactive AI virtual coach that responds to each person in real time, building motivation, enjoyment, and social presence so that the mental health benefit of exercise is as large as possible.' }
   };
+  var ORDER = ['s1', 's2', 's3', 's4a', 's4b', 's5', 's6'];
+  function sc(s) { return 'var(--rm-' + s + ')'; }
+  function stepName(s) { return STEPS[s].title.join(' ').replace('  ', ' '); }
 
-  var CLAIMS = [
-    { id: 'C3', x: 155, name: 'Behaviors cluster', sub: 'activity × diet × sleep',
-      stmt: 'Physical activity works inside a system of diet, sleep, and circadian timing.',
-      ev: [['P1', 'Higher energy intake was linked to hypertension (OR 1.36).'], ['P2', 'Older adults with metabolic syndrome ate less and moved less.'], ['P3', 'Metabolic syndrome tracked intake overall, and low activity in single-person households.'], ['P5', 'Walking plus sugar restriction beat walking alone (−3.3 vs −1.8 kg).'], ['P8', 'Short sleep, high intake, and low activity clustered together.'], ['P6', 'Late-night eating disrupts circadian timing and mood.'], ['P4', 'Depression came with lower energy and protein intake.']],
-      limit: 'Mostly cross-sectional, so which behavior shifts first is still open.' },
-    { id: 'C2', x: 355, name: 'Context shifts the link', sub: 'household, income, adversity',
-      stmt: 'The same activity relates to health differently by household, income, victimization, country, and adversity.',
-      ev: [['P1', 'Single-person households with metabolic syndrome had worse lipids and glucose.'], ['P3', 'Low activity in one-person homes, overeating in larger ones.'], ['P2', 'Low income meant less intake and less activity.'], ['P4', 'Activity and diet patterns in depression differed by sex.'], ['P12', 'Activity type and dose moderated the violence–suicidal ideation link.'], ['P13', 'Country-level health did not moderate; sex and age did.'], ['P15', 'Hardship and adversity did not moderate.'], ['P11', 'Sport’s resilience mechanisms under crisis.']],
-      limit: 'Pattern: macro context (country, household finances) moderated weakly, while individual factors (sex, age, victimization) kept showing up.' },
-    { id: 'C1', x: 555, name: 'Form over amount', sub: 'domain · type · dose · sport',
-      stmt: 'Associations show up in the domain, type, dose, and structure of activity more than in its total.',
-      ev: [['P4', 'Total activity did not differ by depression; vigorous recreational activity did.'], ['P12', 'Aerobic activity moderated in an inverted U; dichotomizing flipped the sign.'], ['P13', 'A clear dose-response across 45 countries.'], ['P3', 'Very active young adults had about half the odds of metabolic syndrome.'], ['P8', 'Vigorous occupational activity was lower with obesity plus hypertension.'], ['P10', 'Structured combat sports improved social and emotional outcomes.']],
-      limit: 'In paper 15, a count of active days captured nothing. An amount-only measure may miss form.' },
-    { id: 'C4', x: 755, name: 'The need–evidence gap', sub: 'autism and disability',
-      stmt: 'Autistic and disabled young people may gain the most from activity, yet sit furthest from the evidence and from access.',
-      ev: [['P9', 'Registered a review of combat sports for disabled youth.'], ['P10', 'Only 12 controlled trials (N = 436); benefits came mostly from autism studies.'], ['P11', 'Disability was underrepresented in crisis-management evidence.'], ['P7', 'Called for combat sports to center health and inclusion.'], ['P15', 'Active days were unrelated to anxiety and depression in autistic children.'], ['P14', 'Responses to VR exercise varied widely among autistic adults.']],
-      limit: 'Most evidence is small and low quality. Large autistic and non-autistic comparisons in the same data are needed.' },
-    { id: 'C5', x: 955, name: 'Delivery shapes access', sub: 'remote · VR · physiology',
-      stmt: 'Remote and immersive technology lowers barriers, but has to fit each person’s physiological tolerance.',
-      ev: [['P5', 'Remote, smartwatch-monitored walking worked during the pandemic.'], ['P14', 'Low resting HRV predicted persistent VR sickness; graded exposure, not exclusion.'], ['P7', 'Named VR and technology as a research priority.'], ['P10', 'Combat-sport evidence became the basis for VR boxing.'], ['P11', 'Adaptable delivery was a shared resilience mechanism.']],
-      limit: 'Paper 14 is a six-person proof of principle. It generates hypotheses rather than effect estimates.' }
+  /* Work behind each step. type: pub (article), rev (in revision), talk (poster, oral, or invited talk), thesis, ghost (in progress) */
+  var ITEMS = {
+    P4: { s: 's1', row: 0, cell: 0, type: 'pub', lead: true, yr: '2023', short: ['Vigorous activity and', 'depression in US adults'], meta: 'Article · 2023', role: 'First and corresponding author',
+      title: 'Sex-specific physical activity levels and energy intake in US young adults with depression: National Health and Nutrition Examination Survey 2017–2020 pre-pandemic data',
+      venue: 'Physical Activity and Health, 7(1), 332–344', link: 'https://doi.org/10.5334/paah.305', linkText: 'DOI',
+      data: 'NHANES 2017–March 2020 · ages 18–24 · N = 750',
+      find: 'Total activity did not differ by depression, but vigorous recreational activity was far lower among young adults with depression (547 vs 1,558 MET-min/week).',
+      why: 'My first study of mental health. The type of activity, not the total, tracked depression.', also: ['Poster, NASPSPA 2023, Toronto'] },
+    RV2: { s: 's1', row: 0, cell: 1, type: 'rev', lead: true, short: ['Sedentary time and', 'depression in US adults'], meta: 'In revision', role: 'First author',
+      title: 'Nonlinear association between sedentary time and depression in the United States: Evidence from the 2021–2023 National Health and Nutrition Examination Survey',
+      venue: 'Mental Health and Physical Activity, in revision', data: 'NHANES 2021–2023',
+      why: 'Extends the general-population line from activity to sedentary time, and asks whether the link with depression is linear.' },
+    P12: { s: 's1', row: 0, cell: 2, type: 'pub', lead: true, yr: '2026', short: ['Activity type, violence', 'and suicidal ideation'], meta: 'Article · 2026', role: 'Sole author',
+      title: 'Differential moderation by aerobic and muscle-strengthening physical activity of the violence victimization–suicidal ideation association in Korean adolescents',
+      venue: 'Suicide and Life-Threatening Behavior, 56, e70134', link: 'https://doi.org/10.1111/sltb.70134', linkText: 'DOI',
+      data: 'KYRBS 2021–2024 · grades 7–12 · N = 214,218',
+      find: 'Aerobic and muscle-strengthening activity changed the link between violence victimization and suicidal ideation in different ways, and splitting activity into yes or no could reverse the result.',
+      why: 'Activity has to be studied by type and dose, not as a single yes or no.' },
+    P13: { s: 's1', row: 0, cell: 3, type: 'pub', lead: true, yr: '2026', short: ['Activity and wellbeing', 'across 45 countries'], meta: 'Article · 2026', role: 'First author',
+      title: 'Physical activity and adolescent mental health across 45 countries: Exploring the role of country-level perceived health',
+      venue: 'Mental Health and Physical Activity, 31, 100826', link: 'https://doi.org/10.1016/j.mhpa.2026.100826', linkText: 'DOI',
+      data: 'HBSC 2017/18 · ages 11, 13, and 15 · 45 countries · N = 217,384',
+      find: 'A clear dose-response: adolescents active on 5–7 days a week reported higher life satisfaction (+0.92) and fewer symptoms than inactive peers.',
+      why: 'The general-population benchmark. Autistic children did not show the same pattern (see the red line).' },
+
+    P9: { s: 's2', row: 0, cell: 0, type: 'pub', lead: true, yr: '2025', short: ['Combat sports and', 'disability: protocol'], meta: 'Article · 2025', role: 'First author',
+      title: 'Olympic combat sports and mental health in children and adolescents with disability: A protocol paper for systematic review',
+      venue: 'PLoS ONE, 20(2), e0301949', link: 'https://doi.org/10.1371/journal.pone.0301949', linkText: 'DOI',
+      data: 'Registered protocol (PROSPERO) · ages 5–18 with any disability · six Olympic combat sports',
+      why: 'Set out the question for disabled youth: does sport help their mental health, and what is the evidence?', also: ['Poster, NASPSPA 2024, Louisiana'] },
+    P10: { s: 's2', row: 0, cell: 1, type: 'pub', lead: true, yr: '2025', short: ['Combat sports and', 'disability: review'], meta: 'Article · 2025', role: 'First author',
+      title: 'Olympic combat sports and mental health in children and adolescents with disability: A systematic review of controlled trials',
+      venue: 'Frontiers in Psychology, 16, 1567978', link: 'https://doi.org/10.3389/fpsyg.2025.1567978', linkText: 'DOI',
+      data: '12 controlled trials in nearly 50 years · N = 436 · mean age 11.4 · 6 trials in autism',
+      find: 'Gains in social interaction, emotion regulation, and executive function, mostly in autism, but the evidence base is very small.',
+      why: 'Shows both the promise of structured sport for autistic youth and how little evidence exists. Boxing here led to my VR boxing trials.', also: ['Oral, ECSS 2024, Glasgow'] },
+    P7: { s: 's2', row: 0, cell: 2, type: 'pub', lead: false, yr: '2025', short: ['Combat sports for', 'health and inclusion'], meta: 'Article · 2025', role: 'Second author',
+      title: 'Combat sports and wellbeing: Advancing health and inclusion in athletes and practitioners. An opinion paper',
+      venue: 'Frontiers in Psychology, 16, 1587672', link: 'https://doi.org/10.3389/fpsyg.2025.1587672', linkText: 'DOI',
+      find: 'Argues that combat sports should move from elite performance toward health and inclusion, and names VR and technology as a research priority.',
+      why: 'An inclusion agenda that already pointed toward technology.' },
+    P11: { s: 's2', row: 0, cell: 3, type: 'pub', lead: false, yr: '2026', short: ['Resilience and equity', 'in grassroots sport'], meta: 'Article · 2026', role: 'Second author',
+      title: 'Building resilience and equity: An umbrella review of evidence for crisis management in grassroots sport',
+      venue: 'Societies, 16(4), 118', link: 'https://doi.org/10.3390/soc16040118', linkText: 'DOI',
+      data: 'Umbrella review of 15 reviews',
+      find: 'Adaptable delivery and safe, inclusive settings helped community sport through crises, but people with disabilities were underrepresented in the evidence.',
+      why: 'Disability is missing even from the evidence on inclusion in sport.' },
+    RV1: { s: 's2', row: 1, cell: 0, type: 'rev', lead: true, short: ['Organized sport and', 'autistic adolescents'], meta: 'In revision', role: 'First author',
+      title: 'Organized sports and psychosocial benefits for adolescents with autism: Evidence from the 2022 National Survey of Children’s Health',
+      venue: 'European Journal of Adapted Physical Activity, in revision',
+      data: 'NSCH 2022 · autistic adolescents aged 12–17 · n = 717',
+      find: 'About one in four played organized sport. Those who did reported higher flourishing and better overall health.',
+      why: 'Access matters: few autistic adolescents get into sport.', also: ['Two posters, World Congress of Sociology of Sport 2025, Seoul'] },
+    CP7: { s: 's2', row: 1, cell: 2, type: 'talk', lead: false, yr: '2024', short: ['Activity experiences', 'of autistic children'], meta: 'Oral · NAFAPA 2024', role: 'Third author, with D. Brooks and J. Hauck',
+      title: 'Exploring physical activity experiences in children with autism spectrum disorder',
+      venue: 'North American Federation of Adapted Physical Activity, New York, 2024',
+      why: 'How autistic children themselves experience physical activity.' },
+    PA3: { s: 's2', row: 1, cell: 3, type: 'talk', lead: false, yr: '2025', short: ['School-based activity', 'for disabled youth'], meta: 'Poster · NASPSPA 2025', role: 'Second author, with D. Brooks and colleagues',
+      title: 'Exploring contextual influences on school-based physical activity programs for youth with disabilities: A scoping review',
+      venue: 'NASPSPA, Lake Tahoe, 2025',
+      why: 'The school contexts that open or close doors to activity for disabled youth.' },
+
+    G3: { s: 's3', row: 0, cell: 0, type: 'ghost', short: ['Comparing autistic and', 'non-autistic youth'], meta: 'In progress',
+      title: 'Comparing autistic and non-autistic youth in national cohorts',
+      why: 'Studies under way test the gap directly, in national surveys and birth cohorts in the US and UK, with device-measured activity where possible.' },
+    P15: { s: 's3', row: 0, cell: 3, type: 'pub', lead: true, yr: '2026', short: ['Activity and mood in', 'autistic children'], meta: 'Article · 2026', role: 'Sole author',
+      title: 'Socioeconomic hardship and cumulative adverse experiences in relation to anxiety and depression in autistic children: Exploring the role of physical activity',
+      venue: 'Journal of Autism and Developmental Disorders', link: 'https://doi.org/10.1007/s10803-026-07607-7', linkText: 'DOI',
+      data: 'NSCH 2021–2024 · autistic children aged 6–17 · N = 5,750',
+      find: 'Active days were unrelated to anxiety (p = .233) or depression severity (p = .525), and hardship and adversity did not change that.',
+      why: 'The finding that turned my question around: being active on more days was not enough.' },
+
+    RV3: { s: 's4a', row: 0, cell: 0, type: 'rev', lead: true, short: ['VR exergames:', 'systematic review'], meta: 'In revision', role: 'First author',
+      title: 'A systematic review of immersive VR exergames for individuals with developmental disabilities',
+      venue: 'Disability and Rehabilitation: Assistive Technology, in revision',
+      data: 'Head-mounted VR only · 8 studies · N = 192 · ages 7–50',
+      find: 'Good enjoyment and acceptability, with early signs of benefit for motor skills, engagement, and repetitive behavior; most studies carried a serious risk of bias.',
+      why: 'What immersive exercise has shown so far for people with developmental disabilities.' },
+    DISS: { s: 's4a', row: 0, cell: 1, type: 'thesis', lead: true, yr: '2025', short: ['VR exercise for', 'depression in autism'], meta: 'Ph.D. dissertation · 2025', role: 'Author',
+      title: 'Immersive virtual reality exercise to improve depressive symptoms in young adults with autism spectrum disorder',
+      venue: 'Doctoral dissertation, Michigan State University', link: 'https://www.proquest.com/docview/3278169726', linkText: 'ProQuest',
+      data: 'Pilot randomized trial · autistic young adults · VR boxing on Meta Quest 3, twice a week for 4 weeks',
+      find: 'Tested whether VR boxing is feasible for autistic young adults and how it affects depressive symptoms and heart rate variability.',
+      why: 'My first exercise program built for autistic people.', also: ['Oral, NAFAPA 2024, New York', 'Featured by WKAR Public Media, 2025'] },
+    RV5: { s: 's4a', row: 0, cell: 2, type: 'rev', lead: true, short: ['VR boxing trial,', 'non-autistic adults'], meta: 'In revision', role: 'First author',
+      title: 'Effects of a 6-week virtual boxing on depressive symptoms and heart rate variability in adults: A pilot randomized controlled trial',
+      venue: 'Sport Sciences for Health, in revision',
+      data: 'Pilot randomized trial · young adults aged 18–24 without autism · N = 30',
+      find: 'Depressive symptoms tended to fall more with VR boxing than without exercise, while resting heart rate variability did not change.',
+      why: 'The non-autistic comparison trial for the same VR program.' },
+    L1: { s: 's4a', row: 0, cell: 3, type: 'talk', lead: true, yr: '2026', short: ['Bridging the gap: VR', 'as a new pathway'], meta: 'Invited talk · 2026', role: 'Invited speaker',
+      title: 'Bridging the gap: Immersive virtual reality as a new pathway for physical activity and mental health in autism',
+      venue: 'World Autism Awareness Day Symposium, East China Normal University, Shanghai, 2026',
+      why: 'The argument of steps 2 to 4a, given as an invited talk.' },
+
+    RV4: { s: 's4b', row: 0, cell: 0, type: 'rev', lead: true, short: ['Wearable data and', 'depression in autism'], meta: 'In revision', role: 'First author',
+      title: 'Wearable-derived behavioral data for depression-related/internalizing outcomes monitoring in autistic individuals: A scoping review',
+      venue: 'Review Journal of Autism and Developmental Disorders, in revision', link: 'https://doi.org/10.17605/OSF.IO/97DEK', linkText: 'Protocol (OSF)',
+      data: 'Scoping review, preregistered on OSF',
+      find: 'Maps how wearable-derived activity, sleep, and rhythm data have been used to monitor depression-related outcomes in autistic people.',
+      why: 'Why wearables, and what they can and cannot tell us yet.' },
+    CP13: { s: 's4b', row: 0, cell: 2, type: 'talk', lead: true, yr: '2026', short: ['Wearable sleep and', 'activity rhythms'], meta: 'Posters · SLEEP and Lurie 2026', role: 'First author, with L. Nye, P. Chen, and J. Mitchell',
+      title: 'Wearable-derived sleep and physical activity levels and rhythms and depressive symptoms in adults with and without autism spectrum disorder',
+      venue: 'SLEEP 2026, Baltimore, and Lurie Autism Institute Annual Symposium 2026, Philadelphia',
+      data: 'Fitbit data from the NIH All of Us Research Program · adults with and without autism',
+      why: 'Device-measured activity, sleep, and daily rhythms, compared between autistic and non-autistic adults.' },
+    G4: { s: 's4b', row: 0, cell: 3, type: 'ghost', short: ['When wearables come', 'off: missing data'], meta: 'In progress',
+      title: 'Missing wear time in autistic and non-autistic youth',
+      why: 'Simulation studies of how missing wear time biases activity estimates and their link with depression.' },
+
+    PA4: { s: 's5', row: 0, cell: 0, type: 'talk', lead: true, yr: '2025', short: ['VR exercise, HRV, and', 'motivation'], meta: 'Poster · NASPSPA 2025', role: 'First author',
+      title: 'Exploring the effects of immersive virtual reality exercise on depressive symptoms, heart rate variability, and motivation for physical activity in young adults',
+      venue: 'NASPSPA, Lake Tahoe, 2025',
+      why: 'Connects VR exercise to the body (HRV) and to motivation, the bridge to step 6.' },
+    P14: { s: 's5', row: 0, cell: 1, type: 'pub', lead: true, yr: '2026', short: ['Resting HRV and', 'VR simulator sickness'], meta: 'Article · 2026', role: 'Sole author',
+      title: 'Resting heart rate variability and the persistence of simulator sickness during virtual reality exercise in autistic young adults: A proof-of-principle study',
+      venue: 'Research in Autism, 139, 203046', link: 'https://doi.org/10.1016/j.reia.2026.203046', linkText: 'DOI',
+      data: 'Autistic young adults completing VR exercise · Polar H10 heart rate variability · 8 sessions',
+      find: 'Lower resting HRV predicted simulator sickness that persisted across sessions (r = −.91).',
+      why: 'First evidence that physiology can guide VR exercise: graded exposure tailored by HRV, rather than excluding people.' },
+
+    PA5: { s: 's6', row: 0, cell: 0, type: 'talk', lead: false, yr: '2025', short: ['MoodMiles: a gamified', 'exercise app'], meta: 'Poster · HCII 2025', role: 'Second author',
+      title: 'MoodMiles: A gamified exercise application for mental and physical well-being in young adults with all abilities',
+      venue: 'HCI International, Gothenburg, 2025',
+      why: 'Game design for motivation and enjoyment, built for users of all abilities.' },
+    G6: { s: 's6', row: 0, cell: 1, type: 'ghost', short: ['AI virtual coach', 'for XR exercise'], meta: 'Next',
+      title: 'An AI virtual coach for XR exercise',
+      why: 'An interactive coach, driven by AI and by real-time heart rate and HRV, that adapts each session and builds motivation, enjoyment, and social presence.' }
+  };
+  Object.keys(ITEMS).forEach(function (k) {
+    var it = ITEMS[k];
+    it.x = 364 + it.cell * 182;
+    it.y = STEPS[it.s].top + 34 + it.row * 62;
+  });
+
+  var FLOWS = [
+    { id: 'F0', a: 'M', b: 's1', d: 'M170,76 L170,110' },
+    { id: 'F1', a: 's1', b: 's2', d: 'M170,212 L170,256', lab: 'But autistic people are often left out', lx: 184, ly: 239 },
+    { id: 'F2', a: 's2', b: 's3', d: 'M170,392 L170,436', lab: 'Then a harder finding', lx: 184, ly: 419 },
+    { id: 'F3', a: 's3', b: 's4a', d: 'M170,538 L170,582', lab: 'So: change the activity', lx: 184, ly: 565 },
+    { id: 'F4', a: 's3', b: 's4b', d: 'M40,488 L30,488 Q20,488 20,498 L20,770 Q20,780 30,780 L38,780', lab: '…and measure what they actually do', lx: 34, ly: 711 },
+    { id: 'F5', a: 's4a', b: 's5', d: 'M300,634 L310,634 Q320,634 320,644 L320,916 Q320,926 310,926 L302,926' },
+    { id: 'F6', a: 's4b', b: 's5', d: 'M170,830 L170,874', lab: 'Bring them together', lx: 184, ly: 857 },
+    { id: 'F7', a: 's5', b: 's6', d: 'M170,976 L170,1020', lab: 'Add a coach that adapts and motivates', lx: 184, ly: 1003 },
+    { id: 'F8', a: 's6', b: 'G', d: 'M170,1122 L170,1158' }
   ];
-  var CL = {};
-  CLAIMS.forEach(function (c) { CL[c.id] = c; });
 
-  var TENSIONS = [
-    { id: 'T1', a: 'P13', b: 'P15', lp: [546, 423, 'start'], label: 'youth in general ≠ autistic children',
-      title: 'A link that holds for youth in general but vanishes in autistic children',
-      A: 'Across 45 countries, more active days meant higher life satisfaction and fewer symptoms.',
-      B: 'In 5,750 autistic children, active days were unrelated to anxiety or depression.',
-      q: 'Does activity work differently for autistic children, or does a parent-reported count of active days miss how they move? Comparing autistic and non-autistic youth in the same data can tell these apart.' },
-    { id: 'T2', a: 'P10', b: 'P15', lp: [638, 512, 'start'], label: 'structured sport ≠ activity days',
-      title: 'Structured sport helps; counting active days does not',
-      A: 'Structured combat-sport programs improved social and emotional outcomes in autistic children.',
-      B: 'Everyday active days showed no association with anxiety or depression.',
-      q: 'The benefit may come from structure, such as rules, coaches, and peers, more than from volume.' },
-    { id: 'T3', a: 'P12', b: 'P13', lp: [435, 340], label: 'more is better? ≠ inverted U',
-      title: 'An exception to “more is better”',
-      A: 'In adolescents overall, activity and mental health followed a steady dose-response.',
-      B: 'Among victimized adolescents, 1–3 aerobic days a week strengthened the link with suicidal ideation, and 4 or more weakened it.',
-      q: 'The shape of the dose-response can change with context, so activity should be modeled continuously and by type.' }
+  var LINKS = [
+    { id: 'E1', a: 'P4', b: 'P13', d: 'M364,133 Q637,73 901,137', label: 'One country → 45', lx: 637, ly: 99, desc: 'From US young adults to adolescents in 45 countries.' },
+    { id: 'E2', a: 'P9', b: 'P10', d: 'M364,279 Q455,219 537,283', label: 'Protocol → review', lx: 455, ly: 245, desc: 'The registered protocol, completed as a systematic review.' },
+    { id: 'E3', a: 'P10', b: 'DISS', d: 'M546,307 L546,603', label: 'Combat sport → VR boxing', lx: 554, ly: 455, anchor: 'start', desc: 'Evidence on combat sports for autistic youth became the basis for a VR boxing program.' },
+    { id: 'E4', a: 'RV3', b: 'DISS', d: 'M364,605 Q455,545 537,609', label: 'Review → own trial', lx: 455, ly: 571, desc: 'What VR exergames had shown, followed by my own trial.' },
+    { id: 'E5', a: 'DISS', b: 'RV5', d: 'M555,609 Q637,545 719,609', undir: true, label: 'Sister trials', lx: 637, ly: 571, desc: 'The same VR boxing program, tested with autistic and non-autistic adults.' },
+    { id: 'E6', a: 'DISS', b: 'P14', d: 'M546,633 L546,895', label: 'Same trial: HRV', lx: 554, ly: 772, anchor: 'start', desc: 'Heart rate variability and simulator sickness, analyzed from the dissertation trial.' },
+    { id: 'E7', a: 'RV4', b: 'CP13', d: 'M364,751 Q546,691 719,755', label: 'Review → data', lx: 452, ly: 720, desc: 'From mapping the field to analyzing wearable data.' }
   ];
+  var TENSION = { id: 'T1', a: 'P13', b: 'P15', d: 'M910,133 C912,100 1086,100 1086,150 L1086,430 C1086,452 980,446 920,463', gx: 1086, gy: 323,
+    label: 'General youth ≠ autistic children', lx: 1072, ly: 327,
+    title: 'A link that holds for youth in general but not for autistic children',
+    A: 'Across 45 countries, more active days meant higher life satisfaction and fewer symptoms.',
+    B: 'Among 5,750 autistic children, active days were unrelated to anxiety or depression.',
+    q: 'This contrast is step 3 of my path. Ongoing studies compare autistic and non-autistic youth in the same data, with device-measured activity where possible, to test whether the gap is real or partly a matter of how activity is measured.' };
 
-  var LINEAGE = [
-    { id: 'L1', a: 'P1', b: 'P3', bend: 0.45, lp: [168, 950, 'end'], label: 'applied to young adults', desc: 'The household × metabolic syndrome template, applied to adults aged 20–39.' },
-    { id: 'L2', a: 'P1', b: 'P2', bend: -0.45, lp: [215, 935, 'start'], label: 'household → income', desc: 'Same template, with income as the context and older adults as the population.' },
-    { id: 'L3', a: 'P3', b: 'P8', bend: 0, label: 'adds sleep', desc: 'Sleep duration joins activity and intake.' },
-    { id: 'L4', a: 'P3', b: 'P4', bend: 0, label: 'MetS → depression', desc: 'The same measures and design moved to US NHANES, with depression as the outcome.' },
-    { id: 'L5', a: 'P3', b: 'P5', cubic: [[220, 812], [700, 812]], lp: [720, 782], label: 'observe → intervene', desc: 'The activity and diet problem found in single-person households, tested as a remote trial.' },
-    { id: 'L6', a: 'P8', b: 'P6', bend: 0.25, undir: true, label: 'sleep & meal timing', desc: 'Companion papers from the same lab: sleep and meal timing, linked to metabolic health (8) and to depression (6).' },
-    { id: 'L7', a: 'P6', b: 'P4', bend: -0.2, undir: true, lp: [400, 655, 'start'], label: 'diet & mood', desc: 'The low intake seen with depression (4), given a circadian mechanism (6).' },
-    { id: 'L8', a: 'P4', b: 'P12', bend: 0, lp: [392, 585, 'end'], label: 'amount → type', desc: 'The vigorous-activity signal, split into aerobic vs muscle-strengthening and linear vs nonlinear.' },
-    { id: 'L9', a: 'P4', b: 'P13', bend: 0, lp: [470, 585, 'start'], label: '1 country → 45', desc: 'From one country’s young adults to multilevel models across 45 countries, with sex differences retested.' },
-    { id: 'L10', a: 'P12', b: 'P15', bend: 0, lp: [432, 452], label: 'adversity × PA', desc: 'The victimization × activity moderation design, carried to hardship and adversity in autistic children.' },
-    { id: 'L11', a: 'P9', b: 'P10', bend: 0, label: 'protocol → review', desc: 'The registered protocol, completed as a systematic review.' },
-    { id: 'L12', a: 'P10', b: 'P7', bend: 0.2, label: 'evidence → agenda', desc: 'Evidence on disabled youth, turned into a health and inclusion agenda for combat sports.' },
-    { id: 'L13', a: 'P10', b: 'P11', bend: 0, lp: [700, 478, 'end'], label: '→ umbrella review', desc: 'The same international team and review methods, applied to crisis management and equity.' },
-    { id: 'L14', a: 'P10', b: 'P14', bend: -0.12, label: 'boxing → VR boxing', desc: 'Combat-sport evidence in autistic youth became the basis for a VR boxing program.' },
-    { id: 'L15', a: 'P7', b: 'P14', bend: 0, label: 'VR agenda → test', desc: 'The VR priority named in paper 7, tested with autistic young adults.' },
-    { id: 'L16', a: 'P5', b: 'P14', bend: 0, label: 'remote → immersive', desc: 'From smartwatch-monitored remote walking to immersive VR with heart rate variability.' }
-  ];
-
-  var SUPPORT = [];
-  CLAIMS.forEach(function (c) { c.ev.forEach(function (e) { SUPPORT.push({ id: 'S-' + e[0] + '-' + c.id, p: e[0], c: c.id }); }); });
-
-  var TH = { x: 555, y: 20, w: 680, h: 88 };
-  var CY = 167, CH = 76, CW = 194;
-
+  /* Drawing */
   function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) { e.setAttribute(k, attrs[k]); } if (parent) { parent.appendChild(e); } return e; }
   function txt(parent, attrs, s) { var t = el('text', attrs, parent); t.textContent = s; return t; }
-  function num(id) { return id.slice(1); }
 
   var defs = el('defs', {}, svg);
-  ['rm-ar', 'rm-arH'].forEach(function (id) {
-    var m = el('marker', { id: id, viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '9', markerHeight: '9', markerUnits: 'userSpaceOnUse', orient: 'auto' }, defs);
-    el('path', { d: 'M0,0 L10,5 L0,10 z' }, m);
+  [['rm-ar', 8], ['rm-arH', 8], ['rm-arF', 10]].forEach(function (m) {
+    var mk = el('marker', { id: m[0], viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: m[1], markerHeight: m[1], markerUnits: 'userSpaceOnUse', orient: 'auto' }, defs);
+    el('path', { d: 'M0,0 L10,5 L0,10 z' }, mk);
   });
   var G = {};
-  ['bands', 'sup', 'k', 'lin', 'ten', 'nodes', 'labels'].forEach(function (n) { G[n] = el('g', {}, svg); });
+  ['bands', 'flows', 'links', 'ten', 'nodes', 'labels'].forEach(function (n) { G[n] = el('g', {}, svg); });
 
-  var COLS = [{ s: 'life', name: 'Lifestyle & metabolic health', x0: 55 }, { s: 'mental', name: 'Mental health epidemiology', x0: 305 }, { s: 'dis', name: 'Disability & inclusive sport', x0: 555 }, { s: 'tech', name: 'Intervention & delivery', x0: 805 }];
-  var ROWS = [{ t: '2026', y: 315 }, { t: '2025', y: 490 }, { t: '2023–24', y: 690 }, { t: '2021–22', y: 812 }];
-  COLS.forEach(function (c) {
-    txt(G.bands, { x: c.x0 + 10, y: 300, 'class': 'rm-colh', fill: SC[c.s] }, c.name);
-    el('rect', { x: c.x0 + 10, y: 306, width: 28, height: 3, rx: 1.5, fill: SC[c.s] }, G.bands);
-  });
-  [305, 555, 805].forEach(function (x) { el('line', { x1: x, y1: 315, x2: x, y2: 1005, 'class': 'rm-vsep' }, G.bands); });
-  ROWS.forEach(function (r) { el('line', { x1: 6, y1: r.y, x2: 1055, y2: r.y, 'class': 'rm-sep' }, G.bands); txt(G.bands, { x: 6, y: r.y + 20, 'class': 'rm-yr' }, r.t); });
+  ORDER.forEach(function (s, i) { if (i) { el('line', { x1: 340, y1: STEPS[s].top - 23, x2: 1080, y2: STEPS[s].top - 23, 'class': 'rm-sep' }, G.bands); } });
 
-  function rOf(id) { return PAPERS[id].s2 ? 23 : 19; }
-  function trim(p, to, d) { var dx = to[0] - p[0], dy = to[1] - p[1], L = Math.hypot(dx, dy) || 1; return [p[0] + dx / L * d, p[1] + dy / L * d]; }
-  function geom(e) {
-    var A = PAPERS[e.a], B = PAPERS[e.b], a = [A.x, A.y], b = [B.x, B.y], s, t;
-    if (e.cubic) {
-      var c1 = e.cubic[0], c2 = e.cubic[1];
-      s = trim(a, c1, rOf(e.a)); t = trim(b, c2, rOf(e.b) + (e.undir ? 0 : 2));
-      return { d: 'M' + s + ' C' + c1 + ' ' + c2 + ' ' + t, mid: [(a[0] + 3 * c1[0] + 3 * c2[0] + b[0]) / 8, (a[1] + 3 * c1[1] + 3 * c2[1] + b[1]) / 8] };
-    }
-    var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), k = e.bend || 0;
-    var c = [(a[0] + b[0]) / 2 - dy * k, (a[1] + b[1]) / 2 + dx * k];
-    s = trim(a, c, rOf(e.a)); t = trim(b, c, rOf(e.b) + (e.undir ? 0 : 2));
-    return { d: 'M' + s + ' Q' + c + ' ' + t, mid: [0.25 * a[0] + 0.5 * c[0] + 0.25 * b[0], 0.25 * a[1] + 0.5 * c[1] + 0.25 * b[1]] };
+  function banner(id, y, eyebrow, main) {
+    var g = el('g', { 'class': 'rm-node rm-ban', 'data-node': id, 'data-go': 'TH', tabindex: '0', role: 'button', 'aria-label': eyebrow + ': ' + main }, G.nodes);
+    el('rect', { x: 20, y: y, width: 1060, height: 60, rx: 12 }, g);
+    el('rect', { x: 16, y: y - 4, width: 1068, height: 68, rx: 15, 'class': 'focus' }, g);
+    txt(g, { x: 44, y: y + 22, 'class': 'e' }, eyebrow.toUpperCase());
+    txt(g, { x: 44, y: y + 46, 'class': 'm' }, main);
   }
-  function edgeLabel(id, mid, s, cls, lp) {
-    var at = lp ? { x: lp[0], y: lp[1], style: 'text-anchor:' + (lp[2] || 'middle') } : { x: mid[0], y: mid[1] - 8, style: 'text-anchor:middle' };
-    at['class'] = 'rm-el ' + cls; at['data-edge'] = id;
-    return txt(G.labels, at, s);
-  }
+  banner('M', 16, 'Where it starts', 'Physical activity as a way to solve mental health problems');
+  banner('G', 1160, 'My ultimate goal', 'An accessible, personalized, evidence-based path to better mental health for every autistic person');
 
-  SUPPORT.forEach(function (s) {
-    var P = PAPERS[s.p], C = CL[s.c];
-    var y0 = P.y - rOf(s.p) + 2, y1 = CY + CH, ex = C.x + Math.max(-72, Math.min(72, (P.x - C.x) * 0.2));
-    var g = el('g', { 'class': 'rm-e rm-sup', 'data-edge': s.id, style: '--c:' + SC[P.s] }, G.sup);
-    el('path', { d: 'M' + P.x + ',' + y0 + ' C' + P.x + ',' + (y0 - (y0 - y1) * 0.55) + ' ' + ex + ',' + (y1 + (y0 - y1) * 0.35) + ' ' + ex + ',' + y1 }, g);
+  FLOWS.forEach(function (f) {
+    var g = el('g', { 'class': 'rm-e rm-flow', 'data-edge': f.id }, G.flows);
+    el('path', { d: f.d }, g);
+    if (f.lab) { txt(g, { x: f.lx, y: f.ly, 'class': 'rm-flab' }, f.lab); }
   });
-  CLAIMS.forEach(function (c) {
-    var tx = TH.x + (c.x - TH.x) * 0.45;
-    var g = el('g', { 'class': 'rm-e rm-k', 'data-edge': 'K-' + c.id }, G.k);
-    el('path', { d: 'M' + c.x + ',' + CY + ' C' + c.x + ',' + (CY - 30) + ' ' + tx + ',' + (TH.y + TH.h + 26) + ' ' + tx + ',' + (TH.y + TH.h) }, g);
+  LINKS.forEach(function (l) {
+    var g = el('g', { 'class': 'rm-e rm-lin' + (l.undir ? ' rm-undir' : ''), 'data-edge': l.id }, G.links);
+    el('path', { d: l.d }, g);
+    txt(G.labels, { x: l.lx, y: l.ly, 'class': 'rm-el', 'data-edge': l.id, style: 'text-anchor:' + (l.anchor || 'middle') }, l.label);
   });
-  LINEAGE.forEach(function (e) {
-    var g0 = geom(e), g = el('g', { 'class': 'rm-e rm-lin' + (e.undir ? ' rm-undir' : ''), 'data-edge': e.id }, G.lin);
-    el('path', { d: g0.d }, g);
-    edgeLabel(e.id, g0.mid, e.label, 'l', e.lp);
-  });
-  TENSIONS.forEach(function (t) {
-    var g0 = geom({ a: t.a, b: t.b, bend: 0, undir: true }), g = el('g', { 'class': 'rm-e rm-ten', 'data-edge': t.id }, G.ten);
-    el('path', { d: g0.d }, g);
-    var gg = el('g', { 'class': 'rm-tg', 'data-edge': t.id, 'data-go': t.id, tabindex: '0', role: 'button', 'aria-label': 'Findings disagree: ' + t.title, transform: 'translate(' + g0.mid[0] + ',' + g0.mid[1] + ')' }, G.ten);
-    el('circle', { r: 10 }, gg); txt(gg, { y: 1 }, '≠');
-    edgeLabel(t.id, g0.mid, t.label, 't', t.lp);
-  });
-
   (function () {
-    var g = el('g', { 'class': 'rm-node rm-th', 'data-node': 'TH', 'data-go': 'TH', tabindex: '0', role: 'button', 'aria-label': 'Thesis' }, G.nodes);
-    el('rect', { x: TH.x - TH.w / 2, y: TH.y, width: TH.w, height: TH.h, rx: 12, 'class': 'rm-thbox' }, g);
-    el('rect', { x: TH.x - TH.w / 2 - 4, y: TH.y - 4, width: TH.w + 8, height: TH.h + 8, rx: 15, 'class': 'focus' }, g);
-    txt(g, { x: TH.x, y: TH.y + 24, 'class': 't0' }, 'THESIS');
-    txt(g, { x: TH.x, y: TH.y + 53, 'class': 't1' }, 'The mental health benefit of physical activity is conditional');
-    txt(g, { x: TH.x, y: TH.y + 76, 'class': 't2' }, 'Who is active, where, in what form, and how it is delivered decide whether it helps');
+    var t = TENSION, g = el('g', { 'class': 'rm-e rm-ten', 'data-edge': t.id }, G.ten);
+    el('path', { d: t.d }, g);
+    var gg = el('g', { 'class': 'rm-tg', 'data-edge': t.id, 'data-go': t.id, tabindex: '0', role: 'button', 'aria-label': 'Findings disagree: ' + t.title, transform: 'translate(' + t.gx + ',' + t.gy + ')' }, G.ten);
+    el('circle', { r: 10 }, gg); txt(gg, { y: 1 }, '≠');
+    txt(G.labels, { x: t.lx, y: t.ly, 'class': 'rm-el t', 'data-edge': t.id, style: 'text-anchor:end' }, t.label);
   })();
-  CLAIMS.forEach(function (c) {
-    var g = el('g', { 'class': 'rm-node rm-c', 'data-node': c.id, 'data-go': c.id, tabindex: '0', role: 'button', 'aria-label': 'Claim: ' + c.name }, G.nodes);
-    el('rect', { x: c.x - CW / 2, y: CY, width: CW, height: CH, rx: 10, 'class': 'rm-cbox' }, g);
-    el('rect', { x: c.x - CW / 2 - 4, y: CY - 4, width: CW + 8, height: CH + 8, rx: 13, 'class': 'focus' }, g);
-    txt(g, { x: c.x, y: CY + 32, 'class': 'ct' }, c.name);
-    txt(g, { x: c.x, y: CY + 54, 'class': 'cs' }, c.sub);
-  });
-  Object.keys(PAPERS).forEach(function (id) {
-    var p = PAPERS[id];
-    var g = el('g', { 'class': 'rm-node rm-p', 'data-node': id, 'data-go': id, tabindex: '0', role: 'button', 'aria-label': 'Paper ' + num(id) + ': ' + p.title, transform: 'translate(' + p.x + ',' + p.y + ')' }, G.nodes);
-    el('circle', { r: 30, 'class': 'halo', fill: SC[p.s] }, g);
-    if (p.s2) { el('circle', { r: 22.5, 'class': 'ring2', stroke: SC[p.s2] }, g); }
-    el('circle', { r: 17, 'class': 'core', fill: p.lead ? SC[p.s] : '#fff', stroke: SC[p.s] }, g);
-    el('circle', { r: p.s2 ? 27 : 22, 'class': 'focus' }, g);
-    txt(g, { 'class': 'pid', fill: p.lead ? '#fff' : SC[p.s] }, num(id));
-    var off = p.s2 ? 6 : 0, pos;
-    if (p.lab === 'r') { pos = { x: 24 + off, a: 'start', y1: -3, y2: 13 }; }
-    else if (p.lab === 'l') { pos = { x: -24 - off, a: 'end', y1: -3, y2: 13 }; }
-    else { pos = { x: 0, a: 'middle', y1: 36 + off, y2: 52 + off }; }
-    txt(g, { 'class': 'rm-lab', x: pos.x, y: pos.y1, 'text-anchor': pos.a }, p.short[0]);
-    txt(g, { 'class': 'rm-lab', x: pos.x, y: pos.y2, 'text-anchor': pos.a }, p.short[1]);
+
+  ORDER.forEach(function (s) {
+    var st = STEPS[s], top = st.top;
+    var g = el('g', { 'class': 'rm-node rm-card' + (st.next ? ' rm-next' : ''), 'data-node': s, 'data-go': s, tabindex: '0', role: 'button', 'aria-label': 'Step ' + st.n + ': ' + stepName(s) }, G.nodes);
+    el('rect', { x: 40, y: top, width: 260, height: 100, rx: 10, 'class': 'rm-box' }, g);
+    el('rect', { x: 36, y: top - 4, width: 268, height: 108, rx: 13, 'class': 'focus' }, g);
+    el('circle', { cx: 64, cy: top + 26, r: 13, fill: sc(s) }, g);
+    txt(g, { x: 64, y: top + 26, 'class': 'n' }, st.n);
+    txt(g, { x: 86, y: top + 31, 'class': 't' }, st.title[0]);
+    txt(g, { x: 86, y: top + 51, 'class': 't' }, st.title[1]);
+    txt(g, { x: 86, y: top + 74, 'class': 's' }, st.sub[0]);
+    txt(g, { x: 86, y: top + 90, 'class': 's' }, st.sub[1]);
   });
 
-  /* State and highlighting */
-  var state = { sel: null, hover: null };
-  function focusOf(id) {
-    var nodes = {}, edges = {};
-    if (id === 'TH') { nodes.TH = 1; CLAIMS.forEach(function (c) { nodes[c.id] = 1; edges['K-' + c.id] = 1; }); }
-    else if (id.charAt(0) === 'P') {
-      nodes[id] = 1;
-      LINEAGE.concat(TENSIONS).forEach(function (e) { if (e.a === id || e.b === id) { edges[e.id] = 1; nodes[e.a] = 1; nodes[e.b] = 1; } });
-      SUPPORT.forEach(function (s) { if (s.p === id) { edges[s.id] = 1; nodes[s.c] = 1; } });
-    } else if (id.charAt(0) === 'C') {
-      nodes[id] = 1; nodes.TH = 1; edges['K-' + id] = 1;
-      SUPPORT.forEach(function (s) { if (s.c === id) { edges[s.id] = 1; nodes[s.p] = 1; } });
+  Object.keys(ITEMS).forEach(function (id) {
+    var it = ITEMS[id], c = sc(it.s);
+    var g = el('g', { 'class': 'rm-node rm-it ' + it.type, 'data-node': id, 'data-go': id, tabindex: '0', role: 'button', 'aria-label': it.meta + ': ' + it.title, transform: 'translate(' + it.x + ',' + it.y + ')' }, G.nodes);
+    el('circle', { r: 24, 'class': 'halo', fill: c }, g);
+    var fill = (it.lead && (it.type === 'pub' || it.type === 'thesis')) ? c : '#fff';
+    if (it.type === 'talk' || it.type === 'thesis') {
+      el('rect', { x: -12, y: -12, width: 24, height: 24, rx: 5, 'class': 'core', fill: fill, stroke: c }, g);
     } else {
-      TENSIONS.forEach(function (t) { if (t.id === id) { nodes[t.a] = 1; nodes[t.b] = 1; edges[t.id] = 1; } });
+      el('circle', { r: 13, 'class': 'core', fill: fill, stroke: it.type === 'ghost' ? 'var(--muted)' : c }, g);
     }
-    return { nodes: nodes, edges: edges };
+    el('circle', { r: 19, 'class': 'focus' }, g);
+    if (it.yr) { txt(g, { 'class': 'yr', fill: fill === '#fff' ? c : '#fff' }, it.yr.slice(2)); }
+    if (it.type === 'ghost') { txt(g, { 'class': 'yr', fill: 'var(--muted)', y: -2 }, '…'); }
+    txt(g, { 'class': 'rm-lab', x: 18, y: -9 }, it.short[0]);
+    txt(g, { 'class': 'rm-lab', x: 18, y: 6 }, it.short[1]);
+    txt(g, { 'class': 'rm-meta', x: 18, y: 21 }, it.meta);
+  });
+
+  /* Highlighting */
+  var state = { sel: null, hover: null };
+  function add(o, k) { o[k] = 1; }
+  function focusOf(id) {
+    var n = {}, e = {};
+    if (id === 'TH') {
+      add(n, 'M'); add(n, 'G'); ORDER.forEach(function (s) { add(n, s); }); FLOWS.forEach(function (f) { add(e, f.id); });
+    } else if (STEPS[id]) {
+      add(n, id);
+      FLOWS.forEach(function (f) { if (f.a === id || f.b === id) { add(e, f.id); add(n, f.a); add(n, f.b); } });
+      Object.keys(ITEMS).forEach(function (k) { if (ITEMS[k].s === id) { add(n, k); } });
+      LINKS.forEach(function (l) { if (ITEMS[l.a].s === id && ITEMS[l.b].s === id) { add(e, l.id); } });
+    } else if (id === 'T1') {
+      add(n, 'P13'); add(n, 'P15'); add(n, 's1'); add(n, 's3'); add(e, 'T1');
+    } else if (ITEMS[id]) {
+      add(n, id); add(n, ITEMS[id].s);
+      LINKS.forEach(function (l) { if (l.a === id || l.b === id) { add(e, l.id); add(n, l.a); add(n, l.b); } });
+      if (id === TENSION.a || id === TENSION.b) { add(e, 'T1'); add(n, TENSION.a); add(n, TENSION.b); }
+    }
+    return { n: n, e: e };
   }
   function apply() {
     var key = state.hover || state.sel, f = key ? focusOf(key) : null;
-    Array.prototype.forEach.call(svg.querySelectorAll('[data-node]'), function (n) {
-      var id = n.getAttribute('data-node');
-      n.classList.toggle('dim', !!f && !f.nodes[id]);
-      n.classList.toggle('hi', !!f && !!f.nodes[id]);
-      n.classList.toggle('sel', id === state.sel);
+    Array.prototype.forEach.call(svg.querySelectorAll('[data-node]'), function (x) {
+      var id = x.getAttribute('data-node');
+      x.classList.toggle('dim', !!f && !f.n[id]);
+      x.classList.toggle('hi', !!f && !!f.n[id]);
+      x.classList.toggle('sel', id === state.sel || (state.sel === 'TH' && (id === 'M' || id === 'G')));
     });
-    Array.prototype.forEach.call(svg.querySelectorAll('[data-edge]'), function (e) {
-      var on = !!f && !!f.edges[e.getAttribute('data-edge')];
-      e.classList.toggle('dim', !!f && !on);
-      e.classList.toggle('hi', on);
+    Array.prototype.forEach.call(svg.querySelectorAll('[data-edge]'), function (x) {
+      var on = !!f && !!f.e[x.getAttribute('data-edge')];
+      x.classList.toggle('dim', !!f && !on);
+      x.classList.toggle('hi', on);
     });
   }
 
   /* Detail panel */
-  function pchip(id) { return '<button type="button" class="rm-chip" data-go="' + id + '" style="--c:' + SC[PAPERS[id].s] + '" aria-label="Paper ' + num(id) + '">' + num(id) + '</button>'; }
-  function cchip(id) { return '<button type="button" class="rm-cchip" data-go="' + id + '">' + CL[id].name + '</button>'; }
-  function tchip(id) { return '<button type="button" class="rm-chip rm-t" data-go="' + id + '">≠</button>'; }
-  function paperPanel(id) {
-    var p = PAPERS[id], links = [];
-    LINEAGE.forEach(function (e) {
-      if (e.b === id) { links.push('<li>' + pchip(e.a) + (e.undir ? ' — ' : ' → ') + 'this paper. ' + e.desc + '</li>'); }
-      if (e.a === id) { links.push('<li>This paper' + (e.undir ? ' — ' : ' → ') + pchip(e.b) + '. ' + e.desc + '</li>'); }
+  function marker(id) {
+    var it = ITEMS[id], cls = it.type === 'pub' ? (it.lead ? 'lead' : '') : it.type;
+    return '<span class="rm-mk ' + cls + '" style="--c:' + sc(it.s) + '"></span>';
+  }
+  function itemButton(id) {
+    var it = ITEMS[id];
+    return '<li><button type="button" class="rm-ib" data-go="' + id + '">' + marker(id) + '<span><b>' + it.short.join(' ') + '</b><small>' + it.meta + '</small></span></button></li>';
+  }
+  function stepButton(s, note) {
+    var st = STEPS[s];
+    return '<li><button type="button" class="rm-ib" data-go="' + s + '"><span class="rm-step-n" style="--c:' + sc(s) + '">' + st.n + '</span><span><b>' + stepName(s) + '</b><small>' + (note || st.sub.join(' · ')) + '</small></span></button></li>';
+  }
+  function overview() {
+    return '<p class="rm-eyebrow">Research path</p><h3>Making physical activity work for the mental health of autistic people</h3>' +
+      '<p class="rm-lead">I started from one question, whether physical activity can solve mental health problems, and followed it from general populations to autistic people. Barriers explained only part of the story: even when autistic people are active, the benefit seems smaller. So I am building a different approach: immersive XR exercise, measured with wearables, personalized with real-time heart rate and HRV, and guided by an AI virtual coach.</p>' +
+      '<div class="rm-kv"><span>Steps</span><ul class="rm-plain">' + ORDER.map(function (s) { return stepButton(s); }).join('') + '</ul></div>' +
+      '<p class="rm-hint">Select a step, an item, or the red ≠ mark. Select empty space to return here.</p>';
+  }
+  function stepPanel(s) {
+    var st = STEPS[s], items = Object.keys(ITEMS).filter(function (k) { return ITEMS[k].s === s; });
+    var nexts = FLOWS.filter(function (f) { return f.a === s && STEPS[f.b]; }).map(function (f) { return stepButton(f.b, f.lab ? '“' + f.lab + '”' : ''); });
+    return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + sc(s) + '"></span>Step ' + st.n + (st.next ? ' · next' : '') + '</p><h3>' + stepName(s) + '</h3>' +
+      '<p class="rm-lead">' + st.text + '</p>' +
+      '<div class="rm-kv"><span>The work behind it</span><ul class="rm-plain">' + items.map(itemButton).join('') + '</ul></div>' +
+      (nexts.length ? '<div class="rm-kv"><span>Leads to</span><ul class="rm-plain">' + nexts.join('') + '</ul></div>' : '');
+  }
+  function itemPanel(id) {
+    var it = ITEMS[id], links = [];
+    LINKS.forEach(function (l) {
+      if (l.b === id) { links.push('<li>' + itemButton(l.a).slice(4, -5) + '<p>' + (l.undir ? '' : 'Led to this: ') + l.desc + '</p></li>'); }
+      if (l.a === id) { links.push('<li>' + itemButton(l.b).slice(4, -5) + '<p>' + (l.undir ? '' : 'This led to it: ') + l.desc + '</p></li>'); }
     });
-    TENSIONS.forEach(function (t) { if (t.a === id || t.b === id) { links.push('<li>' + tchip(t.id) + ' ' + pchip(t.a === id ? t.b : t.a) + ' ' + t.title + '</li>'); } });
-    var claims = CLAIMS.filter(function (c) { return c.ev.some(function (e) { return e[0] === id; }); });
-    var src = '<cite>' + p.journal + '</cite>' + (p.doi ? ' · <a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">DOI</a>' : ' · in press');
-    return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + SC[p.s] + '"></span>Paper ' + num(id) + ' · ' + p.yr + ' · ' + p.role + '</p>' +
-      '<h3>' + p.title + '</h3><p class="rm-src">' + src + '</p>' +
-      '<div class="rm-kv"><span>Data</span><p>' + p.data + '</p></div>' +
-      '<div class="rm-kv"><span>Key findings</span><ul>' + p.find.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul></div>' +
-      '<div class="rm-kv rm-role"><span>Role in the network</span><p>' + p.net + '</p></div>' +
+    if (id === TENSION.a || id === TENSION.b) {
+      links.push('<li><button type="button" class="rm-ib" data-go="T1"><span class="rm-mk" style="--c:var(--rm-tension);border-style:dashed"></span><span><b>Findings disagree</b><small>' + TENSION.title + '</small></span></button></li>');
+    }
+    var src = it.venue ? '<p class="rm-src">' + it.venue + (it.link ? ' · <a href="' + it.link + '" target="_blank" rel="noopener">' + it.linkText + '</a>' : '') + '</p>' : '';
+    return '<p class="rm-eyebrow"><span class="rm-dot" style="background:' + sc(it.s) + '"></span>' + it.meta + (it.role ? ' · ' + it.role : '') + '</p>' +
+      '<h3>' + it.title + '</h3>' + src +
+      (it.data ? '<div class="rm-kv"><span>Data</span><p>' + it.data + '</p></div>' : '') +
+      (it.find ? '<div class="rm-kv"><span>Key finding</span><p>' + it.find + '</p></div>' : '') +
+      '<div class="rm-kv rm-role"><span>Role in the path</span><p>' + it.why + '</p></div>' +
+      (it.also ? '<div class="rm-kv"><span>Also presented</span><ul>' + it.also.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul></div>' : '') +
       (links.length ? '<div class="rm-kv"><span>Connections</span><ul class="rm-plain">' + links.join('') + '</ul></div>' : '') +
-      '<div class="rm-kv"><span>Supports</span><p>' + claims.map(function (c) { return cchip(c.id); }).join(' ') + '</p></div>';
+      '<div class="rm-kv"><span>Part of</span><ul class="rm-plain">' + stepButton(it.s) + '</ul></div>';
   }
-  function claimPanel(id) {
-    var c = CL[id];
-    return '<p class="rm-eyebrow">Claim · ' + c.ev.length + ' papers</p><h3>' + c.name + '</h3><p class="rm-src" style="color:var(--ink-2)">' + c.stmt + '</p>' +
-      '<div class="rm-kv"><span>Evidence</span><ul class="rm-plain">' + c.ev.map(function (e) { return '<li>' + pchip(e[0]) + ' ' + e[1] + '</li>'; }).join('') + '</ul></div>' +
-      '<div class="rm-kv"><span>Limits</span><p>' + c.limit + '</p></div>';
-  }
-  function tensionPanel(id) {
-    var t = TENSIONS.filter(function (x) { return x.id === id; })[0];
-    return '<p class="rm-eyebrow" style="color:var(--rm-tension)">Findings disagree · ' + num(t.a) + ' ≠ ' + num(t.b) + '</p><h3>' + t.title + '</h3>' +
-      '<div class="rm-vs"><div>' + pchip(t.a) + ' ' + t.A + '</div><div>' + pchip(t.b) + ' ' + t.B + '</div></div>' +
-      '<div class="rm-kv rm-role"><span>Open question</span><p>' + t.q + '</p></div>';
-  }
-  function thesisPanel() {
-    return '<p class="rm-eyebrow">Thesis</p><h3>The mental health benefit of physical activity is conditional</h3>' +
-      '<p class="rm-src" style="color:var(--ink-2)">Who is active, in what context, in what form, and through what delivery decide whether activity helps. Autistic and disabled young people, who may gain the most, are where the evidence is thinnest, which is why my work converges on them and on technology that fits each person.</p>' +
-      '<div class="rm-kv"><span>Five claims</span><ul class="rm-plain">' + CLAIMS.map(function (c) { return '<li>' + cchip(c.id) + ' ' + c.stmt + '</li>'; }).join('') + '</ul></div>' +
-      '<p class="rm-hint">Select a node or a ≠ mark to trace its connections. Select empty space to return here.</p>';
+  function tensionPanel() {
+    var t = TENSION;
+    return '<p class="rm-eyebrow" style="color:var(--rm-tension)">Findings disagree</p><h3>' + t.title + '</h3>' +
+      '<div class="rm-vs"><div>' + t.A + '</div><div>' + t.B + '</div></div>' +
+      '<div class="rm-kv rm-role"><span>Why it matters</span><p>' + t.q + '</p></div>' +
+      '<div class="rm-kv"><span>The two papers</span><ul class="rm-plain">' + itemButton(t.a) + itemButton(t.b) + '</ul></div>';
   }
   function render() {
     var id = state.sel;
-    panel.innerHTML = !id || id === 'TH' ? thesisPanel() : id.charAt(0) === 'P' ? paperPanel(id) : id.charAt(0) === 'C' ? claimPanel(id) : tensionPanel(id);
+    panel.innerHTML = !id || id === 'TH' ? overview() : STEPS[id] ? stepPanel(id) : id === 'T1' ? tensionPanel() : itemPanel(id);
   }
 
-  /* Interaction. mode: 'map' toggles, 'panel' sets, 'outside' sets and scrolls to the map */
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Interaction. mode: 'map' toggles, 'panel' sets */
   function select(id, mode) {
     state.sel = (mode === 'map' && state.sel === id) ? null : id;
     state.hover = null;
     render(); apply();
-    if (mode === 'outside') { svg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
   }
   svg.addEventListener('click', function (e) {
     var t = e.target.closest('[data-go]');
@@ -1410,17 +1440,10 @@ main > .page[id] { scroll-margin-top: 68px; }
     if (id !== state.hover) { state.hover = id; apply(); }
   });
   svg.addEventListener('pointerleave', function () { if (state.hover) { state.hover = null; apply(); } });
-  var block = document.getElementById('research-map');
-  block.addEventListener('click', function (e) {
+  panel.addEventListener('click', function (e) {
     var t = e.target.closest('[data-go]');
-    if (!t || svg.contains(t)) { return; }
-    select(t.getAttribute('data-go'), panel.contains(t) ? 'panel' : 'outside');
+    if (t) { select(t.getAttribute('data-go'), 'panel'); }
   });
-
-  document.getElementById('rm-tensions').innerHTML = TENSIONS.map(function (t) {
-    return '<article class="rm-tcard"><span class="rm-neq">Paper ' + num(t.a) + ' ≠ paper ' + num(t.b) + '</span><h4>' + t.title + '</h4><p>' + t.q + '</p>' +
-      '<button type="button" class="rm-link" data-go="' + t.id + '">Show on the map</button></article>';
-  }).join('');
 
   render(); apply();
 })();
